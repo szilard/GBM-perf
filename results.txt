@@ -110,7 +110,18 @@ dealing with cats as suggested by @Laurae2 here https://github.com/szilard/GBM-p
 [1] 0.7758901
 
 
+-----
 
+better maching xgboost depth params as suggested by @Laurae2 here https://github.com/szilard/GBM-perf/issues/2#issuecomment-304437441
+
+10M:
+
+[LightGBM] [Info] Trained a tree with leaves=507 and max_depth=10
+
+   user  system elapsed
+613.247   0.409  28.547
+
+[1] 0.7563627
 
 
 

@@ -32,6 +32,14 @@ md <- lgb.train(data = dlgb_train, objective = "binary",
 })
 
 
+## better maching xgboost depth params as suggested by @Laurae2 here https://github.com/szilard/GBM-perf/issues/2#issuecomment-304437441
+
+# system.time({
+# md <- lgb.train(data = dlgb_train, objective = "binary", 
+#             nrounds = 100, max_depth = 10, num_leaves = 1024, learning_rate = 0.1, categorical_feature = cols_cats)
+# })
+
+
 
 system.time({
   phat <- predict(md, data = X_test)
