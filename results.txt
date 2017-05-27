@@ -90,4 +90,30 @@ lightgbm  via R   github https://github.com/Microsoft/LightGBM/tree/97ca38d1db90
 [1] 0.7753221
 
 
+-----
+
+dealing with cats as suggested by @Laurae2 here https://github.com/szilard/GBM-perf/issues/2#issuecomment-304437441
+
+1M:
+
+   user  system elapsed
+138.049   0.146   4.832
+
+[1] 0.7662695
+
+
+10M:
+
+   user  system elapsed
+918.005   0.390  37.600
+
+[1] 0.7758901
+
+
+
+
+
+
+
+
 

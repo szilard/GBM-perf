@@ -19,3 +19,44 @@ sudo chown ubuntu. /opt/mldb
 sudo docker run --rm=true -v /opt/mldb:/mldb_data -p 127.0.0.1:2222:80 -e MLDB_IDS="`id`" quay.io/mldb/mldb:latest 
 
 
+
+
+############ GPU:
+
+p2.xlarge
+Ubuntu 14.04
+Nvidia CUDA 8.0
+
+
+#### xgboost
+
+https://xgboost.readthedocs.io/en/latest/build.html
+https://github.com/dmlc/xgboost/tree/master/plugin/updater_gpu
+
+git clone --recursive https://github.com/dmlc/xgboost
+
+cd xgboost
+mkdir build
+cd build
+
+   wget https://github.com/NVlabs/cub/archive/1.6.4.zip
+
+cmake .. -DPLUGIN_UPDATER_GPU=ON -DCUB_DIRECTORY=/home/ubuntu/dwnl/cub-1.6.4/
+  
+    CMake 3.5 or higher is required.  You are running version 2.8.12.2
+    sudo apt-get remove cmake
+    wget https://cmake.org/files/v3.8/cmake-3.8.1-Linux-x86_64.sh
+    sudo ln -s /home/ubuntu/bin/cmake-3.8.1-Linux-x86_64/bin/* /usr/local/bin/
+
+make   
+## If the build fails try invoking make again. 
+
+cd python-package
+sudo python setup.py install
+
+## for anaconda:  (.bashrc)
+export PYTHONPATH=~/dwnl/xgboost/python-package
+
+
+
+
