@@ -1,0 +1,71 @@
+
+#### installation
+
+sudo apt-get install cmake
+
+wget https://github.com/Microsoft/LightGBM/archive/v2.0.tar.gz
+
+mkdir build ; cd build
+cmake .. 
+make -j 
+
+
+
+#### data prep into libsvm format
+
+
+tail -n +2 test.csv > test-noh.csv
+cat train-10m.csv test-noh.csv > all.csv
+
+
+## python:
+
+import pandas as pd
+import numpy as np
+from sklearn.datasets import dump_svmlight_file
+from sklearn.preprocessing import LabelEncoder
+
+d = pd.read_csv("all.csv")
+X = d.drop('dep_delayed_15min', 1)
+y = d[["dep_delayed_15min"]]
+
+categorical_names = ["Month" , "DayofMonth" , "DayOfWeek" , "UniqueCarrier" , "Origin" , "Dest" ]
+
+for name in categorical_names:
+    le = LabelEncoder().fit(X[name])
+    X[name]  = le.transform(X[name])
+    
+y_num = np.where(y=="Y",1,0)[:,0]
+dump_svmlight_file(X, y_num, 'all.libsvm') 
+
+
+head -10000000 all.libsvm > train.libsvm
+tail -100000 all.libsvm > test.libsvm
+
+
+
+## -------------------------------------------------------------------
+
+
+
+time ~/bin/LightGBM-2.0/lightgbm  data=train.libsvm  task=train  objective=binary \
+     num_iterations=100  learning_rate=0.1  num_leaves=512  min_data_in_leaf=0 categorical_column=0,1,2,4,5,6
+
+
+~/bin/LightGBM-2.0/lightgbm  data=test.libsvm  task=predict  input_model=LightGBM_model.txt
+
+
+R --vanilla <<'EOF'
+library(ROCR)
+library(data.table)
+d_test <- fread("test.csv")
+phat <- data.table::fread("LightGBM_predict_result.txt")$V1
+rocr_pred <- prediction(phat, d_test$dep_delayed_15min)
+performance(rocr_pred, "auc")@y.values
+EOF
+
+
+rm LightGBM_model.txt LightGBM_predict_result.txt
+
+
+

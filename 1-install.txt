@@ -1,0 +1,21 @@
+
+
+h2o, xgboost - CRAN
+
+
+
+#### lightgbm
+
+devtools::install_github("Microsoft/LightGBM", subdir = "R-package")
+
+
+
+
+#### MLDB
+
+sudo mkdir /opt/mldb
+sudo chown ubuntu. /opt/mldb
+
+sudo docker run --rm=true -v /opt/mldb:/mldb_data -p 127.0.0.1:2222:80 -e MLDB_IDS="`id`" quay.io/mldb/mldb:latest 
+
+

@@ -1,0 +1,93 @@
+
+
+r4.8xlarge    32 cores 250GB RAM
+
+
+-----------------------------------------------------------------
+
+h2o via R   3.10.4.6 (cran)
+
+1M:
+
+   user  system elapsed
+  0.393   0.002  24.992
+
+[1] 0.7623672  
+
+
+10M:
+
+   user  system elapsed
+  1.249   0.084 142.375
+
+[1] 0.7763126
+
+
+
+-----------------------------------------------------------------
+
+
+xgboost via R    0.6-4 (cran)
+
+1M:
+
+   user  system elapsed
+372.812   0.231  20.860
+
+[1] 0.7507367
+
+
+10M:
+
+Tree method is automatically selected to be 'approx' for faster speed. to use old behavior(exact greedy algorithm on single machine), set tree_method to 'exact'
+
+    user   system  elapsed
+9120.303    5.818  289.899
+
+[1] 0.7511081
+
+
+
+-----------------------------------------------------------------
+
+lightgbm  CL  v2.0 (github release)
+
+1M:
+
+real    0m6.610s
+user    2m59.174s
+sys     0m0.273s
+
+[1] 0.7627659
+
+
+10M:
+
+real    0m47.022s
+user    17m30.154s
+sys     0m0.979s
+
+[1] 0.7739444
+
+
+----------------------------
+
+lightgbm  via R   github https://github.com/Microsoft/LightGBM/tree/97ca38d1db904c9daa88f3ded2259cc9f91edf04
+
+1M:
+
+   user  system elapsed
+175.736   0.196   6.220
+
+[1] 0.7649044
+
+
+10M:
+
+    user   system  elapsed
+1025.732    0.558   44.055
+
+[1] 0.7753221
+
+
+
