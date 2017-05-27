@@ -1,7 +1,7 @@
 
-## GBM performance
+## GBM Performance
 
-Performance of best open source GBM implementations on the airline dataset (1M and 10M records).
+Performance of various open source GBM implementations on the airline dataset (1M and 10M records).
 
 GBM: `100` trees, depth `10`, learning rate `0.1`
 
