@@ -124,6 +124,57 @@ better maching xgboost depth params as suggested by @Laurae2 here https://github
 [1] 0.7563627
 
 
+============================================================================
+
+
+GPU
+
+p2.xlarge     Tesla K80  12GB     4 cores 60GB RAM
+
+
+-----------------------------------------------------------------
+
+xgboost   via python with GPU support   https://github.com/dmlc/xgboost/tree/master/plugin/updater_gpu
+                    version github  commit 6776292951565c8cd72e69afd9d94de1474f00c0
+
+1M:
+
+p2.xlarge -- r4.8xlarge   --- AUC
+
+params = {'max_depth':10, 'eta':0.1, 'objective':'binary:logistic'}
+51.9485359192  --  18.7552878857   --- 0.75132778517359111
+
+params = {'max_depth':10, 'eta':0.1, 'objective':'binary:logistic', 'updater':'grow_colmaker'}
+51.9320878983  --  18.8291950226   --- 0.75132778517359111
+
+params = {'max_depth':10, 'eta':0.1, 'objective':'binary:logistic', 'updater':'grow_fast_histmaker'}
+20.5155758858   --  13.0155651569    --- 0.75028728324140626
+
+params = {'max_depth':10, 'eta':0.1, 'objective':'binary:logistic', 'updater':'grow_gpu'}
+61.838160038    --  no NVIDIA devices found    --- 0.7501515701398791
+
+params = {'max_depth':10, 'eta':0.1, 'objective':'binary:logistic', 'updater':'grow_gpu_hist'}
+13.5080471039   --  no NVIDIA devices found    --- 0.73525323806070153
+
+
+10M:
+
+time -- AUC
+
+r4.8xlarge    params = {'max_depth':10, 'eta':0.1, 'objective':'binary:logistic', 'updater':'grow_colmaker'}
+240.093116999  --  0.73511011321422837
+
+r4.8xlarge    params = {'max_depth':10, 'eta':0.1, 'objective':'binary:logistic', 'updater':'grow_fast_histmaker'}
+108.615642071 -- 0.7556663607506835
+
+p2.xlarge   params = {'max_depth':10, 'eta':0.1, 'objective':'binary:logistic', 'updater':'grow_gpu'}
+*crash*
+
+p2.xlarge   params = {'max_depth':10, 'eta':0.1, 'objective':'binary:logistic', 'updater':'grow_gpu_hist'}
+*crash*
+
+[04:51:54] /home/ubuntu/dwnl/xgboost/dmlc-core/include/dmlc/././logging.h:300: [04:51:54] /home/ubuntu/dwnl/xgboost/plugin/updater_gpu/src/gpu_hist_builder.cu:582: Check failed: fmat.SingleColBlock() grow_gpu_hist: must have single column block. Try setting 'tree_method' parameter to 'exact'
+
 
 
 
