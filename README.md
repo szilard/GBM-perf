@@ -19,7 +19,7 @@ With GPU support on p2.xlarge (Tesla K80, 12GB)
 
 Tool     |  Version        | Time[s] 1M  |  Time[s] 10M  |   AUC 1M  |   AUC 10M
 ---------|-----------------|-------------|---------------|-----------|------------
-xgboost  |  github 677629  |   13        |    crash      |   0.735   |   crash
+xgboost  |  github 6776292 |   13        |    crash      |   0.735   |   crash
 
 
 
