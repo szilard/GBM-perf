@@ -15,7 +15,7 @@ xgboost  |  cran 0.6-4     |   20        |    290        |   0.750   |   0.751
 lightgbm |  github 97ca38d |    6        |     50        |   0.764   |   0.775
 
 
-With GPU support on p2.xlarge (Tesla K80)
+With GPU support on p2.xlarge (Tesla K80, 12GB)
 
 Tool     |  Version        | Time[s] 1M  |  Time[s] 10M  |   AUC 1M  |   AUC 10M
 ---------|-----------------|-------------|---------------|-----------|------------
