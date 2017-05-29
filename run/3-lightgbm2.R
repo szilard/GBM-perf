@@ -14,7 +14,7 @@ d_train_test <- rbind(d_train, d_test)
 # cols_cats <- setdiff(names(which(sapply(d_train, is.character))),"dep_delayed_15min")
 # #for (k in cols_cats) d_train_test[[k]] <- as.numeric(as.factor(d_train_test[[k]]))
 # d_train_test <- lgb.prepare2(d_train_test)
-d_train_test_xtra <- lgb.prepare_rules2(d_train_test)
+d_train_test_xtra <- lgb.prepare_rules(d_train_test)
 d_train_test <- d_train_test_xtra$data
 cols_cats <- setdiff(names(d_train_test_xtra$rules),"dep_delayed_15min")
 
