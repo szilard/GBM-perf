@@ -1,0 +1,22 @@
+
+time ~/bin/LightGBM-GPU/lightgbm  data=train.libsvm  task=train  objective=binary \
+     num_iterations=100  learning_rate=0.1  num_leaves=1024  categorical_column=0,1,2,4,5,6 device=gpu
+
+
+~/bin/LightGBM-GPU/lightgbm  data=test.libsvm  task=predict  input_model=LightGBM_model.txt
+
+
+R --vanilla <<'EOF'
+library(ROCR)
+library(data.table)
+d_test <- fread("test.csv")
+phat <- data.table::fread("LightGBM_predict_result.txt")$V1
+rocr_pred <- prediction(phat, d_test$dep_delayed_15min)
+performance(rocr_pred, "auc")@y.values
+EOF
+
+
+rm LightGBM_model.txt LightGBM_predict_result.txt
+
+
+
