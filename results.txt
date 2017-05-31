@@ -201,7 +201,12 @@ GPU:
 
 cpu (4 cores):
 
+10 trees only (instead of 100 - too slow)
 
+   user  system elapsed 
+  3.320   0.108 278.294 
+  
+AUC (10 trees!) 0.7086457  
 
 GPU:
 
