@@ -6,7 +6,7 @@ library(Matrix)
 
 set.seed(123)
 
-d_train <- fread("train-10m.csv")
+d_train <- fread("train-1m.csv")
 d_test <- fread("test.csv")
 
 

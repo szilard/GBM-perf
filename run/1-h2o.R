@@ -3,7 +3,7 @@ library(h2o)
 
 h2o.init(nthreads=-1)
 
-dx_train <- h2o.importFile(path = "train-10m.csv")
+dx_train <- h2o.importFile(path = "train-1m.csv")
 dx_test <- h2o.importFile(path = "test.csv")
 
 

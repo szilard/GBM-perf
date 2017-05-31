@@ -176,6 +176,47 @@ p2.xlarge   params = {'max_depth':10, 'eta':0.1, 'objective':'binary:logistic', 
 [04:51:54] /home/ubuntu/dwnl/xgboost/dmlc-core/include/dmlc/././logging.h:300: [04:51:54] /home/ubuntu/dwnl/xgboost/plugin/updater_gpu/src/gpu_hist_builder.cu:582: Check failed: fmat.SingleColBlock() grow_gpu_hist: must have single column block. Try setting 'tree_method' parameter to 'exact'
 
 
+-----------------------------------------------------------------
+
+xgboost via h2o deep water
+
+1M: 
+
+cpu (4 cores):
+
+   user  system elapsed 
+  2.392   0.120 186.944 
+
+[1] 0.7153808
+
+GPU:
+
+   user  system elapsed 
+  0.392   0.016  22.341
+  
+[1] 0.715096
+
+
+10:
+
+cpu (4 cores):
+
+
+
+GPU:
+
+   user  system elapsed 
+  1.704   0.100 177.388 
+  
+[1] 0.7088061
+
+
+  
+
+
+
+  
+
 
 
 
