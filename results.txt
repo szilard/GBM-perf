@@ -47,6 +47,45 @@ Tree method is automatically selected to be 'approx' for faster speed. to use ol
 [1] 0.7511081
 
 
+---   github 6776292 
+
+      tree_method = "hist", grow_policy = "lossguide")
+
+1M:
+
+   user  system elapsed
+469.296   0.368  15.677
+
+0.7494959
+
+
+10M:
+
+    user   system  elapsed 
+2191.264    1.736  110.007 
+
+[1] 0.7551197
+
+
+---       tree_method = "hist", grow_policy = "lossguide")
+           max_depth=0, max_leaves=255
+
+1M:
+
+   user  system elapsed 
+648.028   0.256  21.389 
+
+[1] 0.7663244
+
+
+10M:
+
+    user   system  elapsed 
+3421.696    3.732  170.689 
+
+[1] 0.7728121
+
+
 
 -----------------------------------------------------------------
 
