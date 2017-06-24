@@ -1,0 +1,62 @@
+
+## CSV
+
+wget https://s3.amazonaws.com/benchm-ml--main/train-1m.csv
+wget https://s3.amazonaws.com/benchm-ml--main/train-10m.csv
+wget https://s3.amazonaws.com/benchm-ml--main/test.csv
+
+
+
+
+## LIBSVM for lightgbm/xgboost GPU
+## uses integer encoding for categoricals, so for xgboost it's probably not the right thing to do (though using this currently)
+
+
+wget https://s3.amazonaws.com/benchm-ml--libsvm-catintenc/train-1m.libsvm
+wget https://s3.amazonaws.com/benchm-ml--libsvm-catintenc/test-1m.libsvm
+wget https://s3.amazonaws.com/benchm-ml--libsvm-catintenc/train-10m.libsvm
+wget https://s3.amazonaws.com/benchm-ml--libsvm-catintenc/test-10m.libsvm
+
+
+## LIBSVM was generated from CSV like this:
+
+for SIZE in 1m 10m; do
+
+tail -n +2 test.csv > test-noh.csv
+cat train-$SIZE.csv test-noh.csv > all.csv
+
+
+python <<EOF
+
+import pandas as pd
+import numpy as np
+from sklearn.datasets import dump_svmlight_file
+from sklearn.preprocessing import LabelEncoder
+
+d = pd.read_csv("all.csv")
+X = d.drop('dep_delayed_15min', 1)
+y = d[["dep_delayed_15min"]]
+
+categorical_names = ["Month" , "DayofMonth" , "DayOfWeek" , "UniqueCarrier" , "Origin" , "Dest" ]
+
+for name in categorical_names:
+    le = LabelEncoder().fit(X[name])
+    X[name]  = le.transform(X[name])
+    
+y_num = np.where(y=="Y",1,0)[:,0]
+dump_svmlight_file(X, y_num, 'all.libsvm') 
+
+EOF
+
+head -$(echo $SIZE | sed 's/m//')000000 all.libsvm > train-$SIZE.libsvm
+tail -100000 all.libsvm > test-$SIZE.libsvm
+
+rm test-noh.csv all.libsvm all.csv
+
+done
+
+
+
+
+
+
