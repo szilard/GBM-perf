@@ -215,6 +215,22 @@ p2.xlarge   params = {'max_depth':10, 'eta':0.1, 'objective':'binary:logistic', 
 [04:51:54] /home/ubuntu/dwnl/xgboost/dmlc-core/include/dmlc/././logging.h:300: [04:51:54] /home/ubuntu/dwnl/xgboost/plugin/updater_gpu/src/gpu_hist_builder.cu:582: Check failed: fmat.SingleColBlock() grow_gpu_hist: must have single column block. Try setting 'tree_method' parameter to 'exact'
 
 
+-----------------------
+
+xgboost   via python with GPU support   https://github.com/dmlc/xgboost/tree/master/plugin/updater_gpu
+                    version github  commit 64c8f6fa6d01e284143f6cdaab3ade163924ceca
+
+p2.xlarge 
+
+1M:
+
+6.05611491203   0.75050752895096418
+
+10M:
+
+52.6796450615   0.74017468716491752
+
+
 -----------------------------------------------------------------
 
 xgboost via h2o deep water

@@ -18,11 +18,11 @@ lightgbm     |  github 97ca38d |    6        |     50        |   0.764   |   0.7
 
 With GPU support on p2.xlarge (Tesla K80, 12GB)
 
-Tool        |  Version               | Time[s] 1M  |  Time[s] 10M  |   AUC 1M  |   AUC 10M
-------------|------------------------|-------------|---------------|-----------|------------
-h2o xgboost |  deep water 3.11.0.266 |   20        |    180        |   0.715   |   0.708
-xgboost     |  github 6776292        |   13        |    crash      |   0.735   |   crash
-lightgbm    |  github 1d5867b        |   30        |    120        |   0.771   |   0.789
+Tool            |  Version               | Time[s] 1M  |  Time[s] 10M  |   AUC 1M  |   AUC 10M
+----------------|------------------------|-------------|---------------|-----------|------------
+h2o xgboost     |  deep water 3.11.0.266 |   20        |    180        |   0.715   |   0.708
+xgboost hist    |  github 64c8f6f        |   6         |    50         |   0.750   |   0.740
+lightgbm        |  github 1d5867b        |   30        |    120        |   0.771   |   0.789
 
 
 
