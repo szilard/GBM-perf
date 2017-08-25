@@ -24,6 +24,11 @@ h2o xgboost     |  deep water 3.11.0.266 |   20        |    180        |   0.715
 xgboost hist    |  github 64c8f6f        |   6         |    50         |   0.750   |   0.740
 lightgbm        |  github 1d5867b        |   30        |    120        |   0.771   |   0.789
 
+on g3.4xlarge (Tesla M60, 8GB)
+
+Tool            |  Version               | Time[s] 1M  |  Time[s] 10M  |   AUC 1M  |   AUC 10M
+----------------|------------------------|-------------|---------------|-----------|------------
+lightgbm        |  github 1d5867b        |   20        |    50         |   0.771   |   0.789
 
 
 
