@@ -1,7 +1,7 @@
-
+suppressMessages({
 library(h2o)
-
 h2o.init()
+})
 
 dx_train <- h2o.importFile("train.csv")
 dx_test <- h2o.importFile("test.csv")
