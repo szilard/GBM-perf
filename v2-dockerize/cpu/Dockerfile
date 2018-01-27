@@ -26,7 +26,7 @@ RUN git clone --recursive https://github.com/dmlc/xgboost && \
 RUN R -e 'devtools::install_github("Microsoft/LightGBM", subdir = "R-package")'
 
 
-ARG CACHE_HACK=13
+ARG CACHE_HACK=14
 
 RUN git clone https://github.com/szilard/GBM-perf.git
 
