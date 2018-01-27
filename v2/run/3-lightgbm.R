@@ -20,16 +20,14 @@ X_test <- X_train_test[(n1+1):(n1+n2),]
 dlgb_train <- lgb.Dataset(data = X_train, label = ifelse(d_train$dep_delayed_15min=='Y',1,0))
 
 
-cat("time:",system.time({
+cat(system.time({
   md <- lgb.train(data = dlgb_train, objective = "binary", 
             nrounds = 100, num_leaves = 512, learning_rate = 0.1, verbose = 0)
-})[[3]],"\n")
+})[[3]]," ",sep="")
 
 
 phat <- predict(md, data = X_test)
 rocr_pred <- prediction(phat, d_test$dep_delayed_15min)
-cat("auc=", performance(rocr_pred, "auc")@y.values[[1]], "\n")
-
-
+cat(performance(rocr_pred, "auc")@y.values[[1]],"\n")
 
 
