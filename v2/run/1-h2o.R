@@ -16,8 +16,6 @@ system.time({
 })
 
 
-system.time({
-  print(h2o.auc(h2o.performance(md, dx_test)))
-})
+print(h2o.auc(h2o.performance(md, dx_test)))
 
 
