@@ -20,16 +20,14 @@ X_test <- X_train_test[(n1+1):(n1+n2),]
 dxgb_train <- xgb.DMatrix(data = X_train, label = ifelse(d_train$dep_delayed_15min=='Y',1,0))
 
 
-
 cat("time:",system.time({
   md <- xgb.train(data = dxgb_train, objective = "binary:logistic", 
             nround = 100, max_depth = 10, eta = 0.1)
 })[[3]],"\n")
 
 
-
 phat <- predict(md, newdata = X_test)
 rocr_pred <- prediction(phat, d_test$dep_delayed_15min)
-cat("auc=, "performance(rocr_pred, "auc")@y.values[[1]], "\n")
+cat("auc=", performance(rocr_pred, "auc")@y.values[[1]], "\n")
 
 
