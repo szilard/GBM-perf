@@ -26,7 +26,7 @@ RUN git clone --recursive https://github.com/dmlc/xgboost && \
 RUN R -e 'devtools::install_github("Microsoft/LightGBM", subdir = "R-package")'
 
 
-ARG CACHE_HACK=12
+ARG CACHE_HACK=13
 
 RUN git clone https://github.com/szilard/GBM-perf.git
 
@@ -34,6 +34,11 @@ CMD cd GBM-perf/v2-dockerize/cpu/run && \
     ln -s /train-1m.csv train.csv && \
     ln -s /test.csv test.csv && \
     echo "1m:" && \
+      echo -n "h2o " && R --slave < 1-h2o.R 2>/dev/null && \
+      echo -n "xgboost " && R --slave < 2-xgboost.R && \
+      echo -n "lightgbm " && R --slave < 3-lightgbm.R && \
+    ln -sf /train-10m.csv train.csv && \
+    echo "10m:" && \
       echo -n "h2o " && R --slave < 1-h2o.R 2>/dev/null && \
       echo -n "xgboost " && R --slave < 2-xgboost.R && \
       echo -n "lightgbm " && R --slave < 3-lightgbm.R
