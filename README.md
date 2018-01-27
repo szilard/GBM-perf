@@ -6,6 +6,9 @@ Performance of various open source GBM implementations on the airline dataset (1
 GBM: `100` trees, depth `10`, learning rate `0.1`
 
 
+
+----------------------------------------------
+
 On r4.8xlarge (32 cores, 250GB RAM)
 
 Tool         |  Version        | Time[s] 1M  |  Time[s] 10M  |   AUC 1M  |   AUC 10M
@@ -29,6 +32,7 @@ on g3.4xlarge (Tesla M60, 8GB)
 Tool            |  Version               | Time[s] 1M  |  Time[s] 10M  |   AUC 1M  |   AUC 10M
 ----------------|------------------------|-------------|---------------|-----------|------------
 lightgbm        |  github 1d5867b        |   20        |    50         |   0.771   |   0.789
+
 
 
 ----------------------------------------------
