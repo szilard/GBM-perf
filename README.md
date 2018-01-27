@@ -49,6 +49,8 @@ sudo docker run gbmperf_cpu
 Results on r4.8xlarge (32 cores) with software as of 2018-01-27:
 
 ```
+Tool / time (s) / AUC
+
 1m:
 h2o 22.762 0.7623672
 xgboost 33.029 0.7507367
