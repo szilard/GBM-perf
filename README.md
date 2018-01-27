@@ -47,8 +47,16 @@ sudo docker run gbmperf_cpu
 Results on r4.8xlarge (32 cores) with software as of 2018-01-27:
 
 ```
+1m:
+h2o 22.762 0.7623672
+xgboost 33.029 0.7507367
+lightgbm 6.006 0.7660324
 
-
+10m:
+h2o 91.364 0.7763126
+xgboost 499.969 0.7519515
+lightgbm 46.375 0.7739303
+```
 
 
 
