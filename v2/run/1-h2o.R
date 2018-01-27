@@ -5,6 +5,7 @@ library(h2o)
 sink("/dev/null") 
 h2o.init()
 sink()
+h2o.no_progress()
 
 dx_train <- h2o.importFile("train.csv")
 dx_test <- h2o.importFile("test.csv")
