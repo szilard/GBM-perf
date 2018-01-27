@@ -31,6 +31,8 @@ Tool            |  Version               | Time[s] 1M  |  Time[s] 10M  |   AUC 1
 lightgbm        |  github 1d5867b        |   20        |    50         |   0.771   |   0.789
 
 
+----------------------------------------------
+
 ### v2: dockerizing (WIP)
 
 Automated install to latest h2o/xgboost/lightgbm versions and automated running/timing. 
