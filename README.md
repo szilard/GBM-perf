@@ -31,5 +31,28 @@ Tool            |  Version               | Time[s] 1M  |  Time[s] 10M  |   AUC 1
 lightgbm        |  github 1d5867b        |   20        |    50         |   0.771   |   0.789
 
 
+### v2: dockerizing (WIP)
+
+Automated install to latest h2o/xgboost/lightgbm versions and automated running/timing. 
+
+So far done for CPU versions:
+
+```
+git clone https://github.com/szilard/GBM-perf.git
+cd GBM-perf/v2-dockerize/cpu
+sudo docker build -t gbmperf_cpu .
+sudo docker run gbmperf_cpu
+```
+
+Results on r4.8xlarge (32 cores) with software as of 2018-01-27:
+
+```
+
+
+
+
+
+
+
 
 
