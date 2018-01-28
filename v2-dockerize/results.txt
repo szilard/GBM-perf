@@ -2,13 +2,13 @@
 CPU   r4.8xlarge (32 cores)    2018-01-27
 
 1m:
-h2o 22.762 0.7623672
-xgboost 33.029 0.7507367
-lightgbm 6.006 0.7660324
+h2o 21.415 0.7623672
+xgboost [20:43:54] Tree method is selected to be 'hist', which uses a single updater grow_fast_histmaker.
+16.096 0.7494959
+lightgbm 6.117 0.7660324
 10m:
-h2o 91.364 0.7763126
-[23:32:15] Tree method is automatically selected to be 'approx' for faster speed. to use old behavior(exact greedy algorithm on single machine), set tree_method to 'exact'
-499.969 0.7519515
-46.375 0.7739303
-
+h2o 89.497 0.7763126
+xgboost [20:47:13] Tree method is selected to be 'hist', which uses a single updater grow_fast_histmaker.
+151.108 0.7551197
+lightgbm 47.291 0.7739303
 
