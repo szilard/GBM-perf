@@ -27,6 +27,7 @@ RUN R -e 'devtools::install_github("Microsoft/LightGBM", subdir = "R-package")'
 
 
 ADD https://api.github.com/repos/szilard/GBM-perf/git/refs/heads/master version.json  
+## ^^^ hack to invalidate docker cache if repo gets updated
 RUN git clone https://github.com/szilard/GBM-perf.git
 
 CMD cd GBM-perf/v2-dockerize/cpu/run && \
