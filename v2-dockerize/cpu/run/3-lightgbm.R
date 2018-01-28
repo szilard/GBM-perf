@@ -7,8 +7,8 @@ library(Matrix)
 
 set.seed(123)
 
-d_train <- fread("train.csv")
-d_test <- fread("test.csv")
+d_train <- fread("train.csv", showProgress=FALSE)
+d_test <- fread("test.csv", showProgress=FALSE)
 
 
 X_train_test <- sparse.model.matrix(dep_delayed_15min ~ .-1, data = rbind(d_train, d_test))
