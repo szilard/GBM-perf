@@ -22,7 +22,8 @@ dlgb_train <- lgb.Dataset(data = X_train, label = ifelse(d_train$dep_delayed_15m
 
 cat(system.time({
   md <- lgb.train(data = dlgb_train, objective = "binary", 
-            nrounds = 100, num_leaves = 512, learning_rate = 0.1, verbose = 0)
+            nrounds = 100, num_leaves = 512, learning_rate = 0.1, 
+            verbose = 0)
 })[[3]]," ",sep="")
 
 
