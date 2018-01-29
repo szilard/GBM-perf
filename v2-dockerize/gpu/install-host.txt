@@ -1,0 +1,57 @@
+
+## install docker
+
+# https://docs.docker.com/install/linux/docker-ce/ubuntu/
+
+sudo apt-get update
+
+sudo apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+
+sudo apt-get update
+
+sudo apt-get install -y docker-ce
+
+
+
+
+## install nvidia driver+cuda
+
+# https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1604&target_type=debnetwork
+
+wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_9.1.85-1_amd64.deb
+sudo dpkg -i cuda-repo-ubuntu1604_9.1.85-1_amd64.deb
+sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub
+sudo apt-get update
+sudo apt-get install -y cuda
+
+
+
+
+## install nvidia-docker 
+
+# https://devblogs.nvidia.com/nvidia-docker-gpu-server-application-deployment-made-easy/
+# https://github.com/NVIDIA/nvidia-docker#quick-start
+
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | \
+  sudo apt-key add -
+curl -s -L https://nvidia.github.io/nvidia-docker/ubuntu16.04/amd64/nvidia-docker.list | \
+  sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+sudo apt-get update
+
+sudo apt-get install -y nvidia-docker2
+sudo pkill -SIGHUP dockerd
+
+docker run --runtime=nvidia --rm nvidia/cuda nvidia-smi
+nvidia-docker run --rm nvidia/cuda nvidia-smi
+
