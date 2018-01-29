@@ -18,7 +18,6 @@ cat(system.time({
   md <- h2o.xgboost(x = Xnames, y = "dep_delayed_15min", training_frame = dx_train, 
           distribution = "bernoulli", 
           ntrees = 100, max_depth = 10, learn_rate = 0.1, 
-          nbins = 100,
           backend = "gpu")
 })[[3]]," ",sep="")
 
