@@ -1,2 +1,2 @@
 docker build -t gbmperf_cpu .
-docker run gbmperf_cpu
+docker run --rm gbmperf_cpu

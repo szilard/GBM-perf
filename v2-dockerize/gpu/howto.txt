@@ -1,2 +1,2 @@
 docker build -t gbmperf_gpu .
-nvidia-docker run gbmperf_gpu
+nvidia-docker run --rm gbmperf_gpu
