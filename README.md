@@ -17,7 +17,7 @@ Installing to latest software versions and running/timing is fully automated wit
 
 ```
 git clone https://github.com/szilard/GBM-perf.git
-cd GBM-perf/v2-dockerize/cpu
+cd GBM-perf/cpu
 sudo docker build -t gbmperf_cpu .
 sudo docker run --rm gbmperf_cpu
 ```
@@ -28,7 +28,7 @@ sudo docker run --rm gbmperf_cpu
 
 ```
 git clone https://github.com/szilard/GBM-perf.git
-cd GBM-perf/v2-dockerize/gpu
+cd GBM-perf/gpu
 sudo docker build -t gbmperf_gpu .
 sudo nvidia-docker run --rm gbmperf_gpu
 ```

@@ -30,7 +30,7 @@ ADD https://api.github.com/repos/szilard/GBM-perf/git/refs/heads/master version.
 ## ^^^ hack to invalidate docker cache if repo gets updated
 RUN git clone https://github.com/szilard/GBM-perf.git
 
-CMD cd GBM-perf/v2-dockerize/cpu/run && \
+CMD cd GBM-perf/cpu/run && \
     ln -s /train-1m.csv train.csv && \
     ln -s /test.csv test.csv && \
     echo "1m:" && \

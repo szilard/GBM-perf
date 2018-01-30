@@ -58,7 +58,7 @@ RUN git clone https://github.com/szilard/GBM-perf.git
 RUN  apt-get clean && rm -rf /var/lib/apt/lists/*
 
 
-CMD cd GBM-perf/v2-dockerize/gpu/run && \
+CMD cd GBM-perf/gpu/run && \
     ln -s /train-1m.csv train.csv && \
     ln -s /test.csv test.csv && \
     echo "1m:" && \
