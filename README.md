@@ -55,19 +55,9 @@ p3.2xlarge (1 GPU, Tesla V100) with software as of 2018-01-29:
 
 Tool            | Time[s] 1M  |  Time[s] 10M  |   AUC 1M  |   AUC 10M
 ----------------|-------------|---------------|-----------|------------
-h2o xgboost     |   TODO      |    TODO       |   TODO    |   TODO
+h2o xgboost     |   18        |   error       |   0.712   |  error
 xgboost         |   8         |    25         |   0.748   |   0.756
 lightgbm        |   20        |    75         |   0.766   |   0.774
 
-
-
-----------------------------------------
-
-Old results (until h2o GPU above is done) on p2.xlarge:
-
-Tool            |  Version               | Time[s] 1M  |  Time[s] 10M  |   AUC 1M  |   AUC 10M
-----------------|------------------------|-------------|---------------|-----------|------------
-h2o xgboost     |  deep water 3.11.0.266 |   20        |    180        |   0.715   |   0.708
-
-
+(h2o xgboost errors out on 10M, will try to fix)
 

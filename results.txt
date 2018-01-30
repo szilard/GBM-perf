@@ -12,6 +12,7 @@ xgboost [20:47:13] Tree method is selected to be 'hist', which uses a single upd
 151.108 0.7551197
 lightgbm 47.291 0.7739303
 
+-------------------------------
 
 GPU   p3.2xlarge  (1 GPU, Tesla V100)    2018-01-29
 
@@ -21,5 +22,23 @@ lightgbm 19.66 0.7663258
 10m:
 xgboost 26.726 0.7558552
 lightgbm 73.897 0.7741668
+
+---
+
+h2o does not work with CUDA 9.1
+
+with CUDA 8.0:
+
+1m:
+h2o openjdk version "1.8.0_151"
+OpenJDK Runtime Environment (build 1.8.0_151-8u151-b12-0ubuntu0.16.04.2-b12)
+OpenJDK 64-Bit Server VM (build 25.151-b12, mixed mode)
+18.454 0.7120354
+10m:
+h2o Error in .h2o.doSafeREST(h2oRestApiVersion = h2oRestApiVersion, urlSuffix = urlSuffix,  :
+  Unexpected CURL error: Failed to connect to localhost port 54321: Connection refused
+Calls: h2o.importFile ... tryCatchOne -> doTryCatch -> .h2o.doSafeGET -> .h2o.doSafeREST
+Execution halted
+
 
 
