@@ -9,9 +9,11 @@ GBM: `100` trees, depth `10`, learning rate `0.1`
 
 ### Run
 
-Install to latest software versions and run timing fully automated with docker: 
+Installing to latest software versions and running/timing is fully automated with docker: 
 
 #### CPU
+
+(requires docker)
 
 ```
 git clone https://github.com/szilard/GBM-perf.git
@@ -21,6 +23,8 @@ sudo docker run --rm gbmperf_cpu
 ```
 
 #### GPU
+
+(requires docker, nvidia drivers and the `nvidia-docker` utility)
 
 ```
 git clone https://github.com/szilard/GBM-perf.git
@@ -51,14 +55,15 @@ p3.2xlarge (1 GPU, Tesla V100) with software as of 2018-01-29:
 
 Tool            | Time[s] 1M  |  Time[s] 10M  |   AUC 1M  |   AUC 10M
 ----------------|-------------|---------------|-----------|------------
-h2o xgboost     |   NA        |    NA         |   NA      |    NA
+h2o xgboost     |   TODO      |    TODO       |   TODO    |   TODO
 xgboost         |   8         |    25         |   0.748   |   0.756
 lightgbm        |   20        |    75         |   0.766   |   0.774
 
 
+
 ----------------------------------------
 
-Old results on p2.xlarge (Tesla K80, 12GB)
+Old results (until h2o GPU above is done) on p2.xlarge:
 
 Tool            |  Version               | Time[s] 1M  |  Time[s] 10M  |   AUC 1M  |   AUC 10M
 ----------------|------------------------|-------------|---------------|-----------|------------
