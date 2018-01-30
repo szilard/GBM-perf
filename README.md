@@ -59,5 +59,19 @@ h2o xgboost     |   18        |   error       |   0.712   |  error
 xgboost         |   8         |    25         |   0.748   |   0.756
 lightgbm        |   20        |    75         |   0.766   |   0.774
 
-(h2o xgboost errors out on 10M, will try to fix)
+
+
+### Recommendations
+
+If you don't have a GPU, lightgbm (CPU) trains the fastest.
+
+If you have a GPU, xgboost (GPU) is also very fast (and depending on the data, 
+often the fastest).
+
+If you consider deployment, h2o has the best ways to deploy as a real-time
+(fast scoring) application.
+
+Note, however, there are a lot more other criteria to consider when you choose which tool
+to use.
+
 
