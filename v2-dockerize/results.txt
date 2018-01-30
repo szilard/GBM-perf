@@ -12,3 +12,14 @@ xgboost [20:47:13] Tree method is selected to be 'hist', which uses a single upd
 151.108 0.7551197
 lightgbm 47.291 0.7739303
 
+
+GPU   p3.2xlarge  (1 GPU, Tesla V100)    2018-01-29
+
+1m:
+xgboost 7.938 0.7482401
+lightgbm 19.66 0.7663258
+10m:
+xgboost 26.726 0.7558552
+lightgbm 73.897 0.7741668
+
+
