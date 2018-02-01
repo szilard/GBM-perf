@@ -9,8 +9,6 @@ d_test <- fread("test.csv", stringsAsFactors=FALSE)
 d_train_test <- rbind(d_train, d_test)    ## to match factors in train and test
 p <- ncol(d_train_test)-1
 
-d_train_test$DepTime <- as.numeric(d_train_test$DepTime)  ## integer not supported
-d_train_test$Distance <- as.numeric(d_train_test$Distance)
 d_train_test$dep_delayed_15min <- ifelse(d_train_test$dep_delayed_15min=="Y",1,0)   ## need numeric y
 
 d_train <- d_train_test[(1:nrow(d_train)),]
