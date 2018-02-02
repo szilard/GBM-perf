@@ -18,7 +18,8 @@ cat_cols = np.where(X_train.dtypes == np.object)[0]
 
 
 md = catboost.CatBoostClassifier(iterations = 100, depth = 10, learning_rate = 0.1,
-               thread_count = multiprocessing.cpu_count())
+               task_type = "GPU")
+      ##         thread_count = multiprocessing.cpu_count())
 %time md.fit(X_train, y_train, cat_features = cat_cols)
 
 
