@@ -25,4 +25,4 @@ model.matrix
 [1] 0.748418
 
 vs xgboost 8sec / 0.748
-or xgboost non-spares 26sec / 0.748418
+or xgboost non-sparse 26sec / 0.748418
