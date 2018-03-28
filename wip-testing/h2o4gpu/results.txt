@@ -1,0 +1,27 @@
+
+
+2018-03-28
+
+
+p3.2xlarge
+
+cuda 9.0
+0.2-nccl-cuda9/h2o4gpu-0.2.0-cp36-cp36m-linux_x86_64.whl
+virtualenv
+
+1M
+
+
+Matrix::sparse.model.matrix
+
+Error in resolve_model_input(x) :
+  Input x of type "dgCMatrix" is not currently supported.
+
+  
+model.matrix
+
+   user  system elapsed
+ 39.864   9.012  48.256
+[1] 0.748418
+
+vs xgboost 8sec / 0.748
