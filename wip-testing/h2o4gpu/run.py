@@ -32,12 +32,12 @@ y_test = y[d_train.shape[0]:]
 
 
 start = time.time()
-md = h2o4gpu.GradientBoostingRegressor(n_estimators = 100, learning_rate = 0.1, max_depth = 10,
+md = h2o4gpu.GradientBoostingClassifier(n_estimators = 100, learning_rate = 0.1, max_depth = 10,
       backend = "h2o4gpu", tree_method = "gpu_hist").fit(X_train, y_train)
 end = time.time()
 print(end - start)
 
-y_pred = md.predict(X_test)   
+y_pred = md.predict_proba(X_test)[:,1]
 metrics.roc_auc_score(y_test, y_pred)
 
 
