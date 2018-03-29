@@ -26,3 +26,19 @@ model.matrix
 
 vs xgboost 8sec / 0.748
 or xgboost non-sparse 26sec / 0.748418
+
+
+python:
+
+>>> md = h2o4gpu.GradientBoostingRegressor(n_estimators = 100, learning_rate = 0.1, max_depth = 10,
+...       backend = "h2o4gpu", tree_method = "gpu_hist").fit(X_train, y_train)
+11.80365777015686
+0.7527361409456772
+
+>>> param = {'max_depth':10, 'eta':0.1, 'objective':'binary:logistic',
+...              'tree_method':'gpu_hist',
+>>> md = xgb.train(param, dxgb_train, num_boost_round = 100)
+8.336868524551392
+0.7496957066608251
+
+
