@@ -54,6 +54,17 @@ sparse matrix support added to reticulate
 
 
 
+10M records:
+
+   user  system elapsed
+ 83.120  10.012  88.265
+[1] 0.755452
+
+xgb R: 26sec / 0.7556
+
+py h2o4gpu: 66 sec / 0.7569
+
+xgb py: 26sec / 0.7557
 
 
 

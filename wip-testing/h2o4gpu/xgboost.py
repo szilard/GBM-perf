@@ -17,7 +17,8 @@ vars_cat = ["Month","DayofMonth","DayOfWeek","UniqueCarrier", "Origin", "Dest"]
 vars_num = ["DepTime","Distance"]
 for col in vars_cat:
   d[col] = preprocessing.LabelEncoder().fit_transform(d[col])
-  
+ 
+ 
 X_cat = preprocessing.OneHotEncoder().fit_transform(d[vars_cat])    
 X = sparse.hstack((X_cat, d[vars_num]), format = "csr")                            
       
