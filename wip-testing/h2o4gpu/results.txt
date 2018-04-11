@@ -48,7 +48,9 @@ python:
 
 sparse matrix support added to reticulate
 
-
+   user  system elapsed
+ 14.572   2.236  15.650
+[1] 0.7482041
 
 
 
