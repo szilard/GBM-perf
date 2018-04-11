@@ -42,3 +42,16 @@ python:
 0.7496957066608251
 
 
+
+
+2018-04-11
+
+sparse matrix support added to reticulate
+
+
+
+
+
+
+
+
