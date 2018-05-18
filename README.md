@@ -76,7 +76,7 @@ to use.
 
 More info in my eRum 2018 R conference talk 
 (video recording [here](https://www.youtube.com/watch?v=DqS6EKjqBbY),
-slides [here](https://speakerdeck.com/szilard/better-than-deep-learning-gradient-boosting-machines-gbm-in-r-erum-conference-budapest-may-2018), and a summary comparison table here:
+slides [here](https://speakerdeck.com/szilard/better-than-deep-learning-gradient-boosting-machines-gbm-in-r-erum-conference-budapest-may-2018)), and a summary comparison table here:
 
 ![](comparison_table.png)
 
