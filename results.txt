@@ -12,6 +12,7 @@ xgboost [20:47:13] Tree method is selected to be 'hist', which uses a single upd
 151.108 0.7551197
 lightgbm 47.291 0.7739303
 
+
 2018-05-09:
 -- lightgbm was not working with R 3.5, so needed rocker/r-ver:3.4.3 
 -- apt-get install -y default-jdk-headless cmake    wget zlib1g-dev libssl-dev libcurl4-gnutls-dev git
@@ -26,6 +27,21 @@ h2o 18.129 0.702222
 xgboost [01:25:33] Tree method is selected to be 'hist', which uses a single updater grow_fast_histmaker.
 9.688 0.7329314
 lightgbm 3.242 0.7301989
+
+
+2018-06-02:
+-- lightgbm now works with R 3.5
+1m:
+21.893 0.7623664
+xgboost [12:18:55] Tree method is selected to be 'hist', which uses a single updater grow_fast_histmaker.
+15.752 0.7494959
+lightgbm 6.781 0.7636987
+10m:
+88.361 0.7763173
+xgboost [12:21:50] Tree method is selected to be 'hist', which uses a single updater grow_fast_histmaker.
+129.757 0.7551197
+lightgbm
+47.745 0.7742033
 
 
 -------------------------------
