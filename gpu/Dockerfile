@@ -18,7 +18,8 @@ ENV MAKE="make -j$(nproc)"
 
 RUN R -e 'install.packages(c("ROCR","data.table","R6"), repos = c(CRAN = "https://cran.rstudio.com/"))'
 
-RUN wget https://s3.amazonaws.com/benchm-ml--main/train-1m.csv && \
+RUN wget https://s3.amazonaws.com/benchm-ml--main/train-0.1m.csv && \
+    wget https://s3.amazonaws.com/benchm-ml--main/train-1m.csv && \
     wget https://s3.amazonaws.com/benchm-ml--main/train-10m.csv && \
     wget https://s3.amazonaws.com/benchm-ml--main/test.csv
 
@@ -59,12 +60,17 @@ RUN  apt-get clean && rm -rf /var/lib/apt/lists/*
 
 
 CMD cd GBM-perf/gpu/run && \
-    ln -s /train-1m.csv train.csv && \
     ln -s /test.csv test.csv && \
-    echo "1m:" && \
+    ln -sf /train-0.1m.csv train.csv && \
+    echo "0.1m:" && \
       # echo -n "h2o " && R --slave < 1-h2o.R && \
       echo -n "xgboost " && R --slave < 2-xgboost.R && \
       echo -n "lightgbm " && R --slave < 3-lightgbm.R && \
+    ln -sf /train-1m.csv train.csv && \
+    echo "1m:" && \
+      # echo -n "h2o " && R --slave < 1-h2o.R && \
+      echo -n "xgboost " && R --slave < 2-xgboost.R && \
+      echo -n "lightgbm " && R --slave < 3-lightgbm.R && \      
     ln -sf /train-10m.csv train.csv && \
     echo "10m:" && \
       # echo -n "h2o " && R --slave < 1-h2o.R && \
