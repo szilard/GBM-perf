@@ -20,28 +20,32 @@ lightgbm 44.121 0.7742033
 
 -------------------------------
 
-GPU   p3.2xlarge  (1 GPU, Tesla V100)    2018-01-29
+GPU   p3.2xlarge  (1 GPU, Tesla V100)    2018-06-02
 
-1m:
-xgboost 7.938 0.7482401
-lightgbm 19.66 0.7663258
-10m:
-xgboost 26.726 0.7558552
-lightgbm 73.897 0.7741668
-
-2018-05-09:
---1m:
---xgboost 9.594 0.7494498
---lightgbm 20.919 0.7661546
 0.1m:
-xgboost 4.41 0.7324187
-lightgbm 8.581 0.7301695
+xgboost 3.3 0.7324187
+lightgbm [LightGBM] [Warning] Unknown parameter: device
+[LightGBM] [Warning] Unknown parameter: device
+13.667 0.7299145
+1m:
+xgboost 7.813 0.7494498
+lightgbm [LightGBM] [Warning] Unknown parameter: device
+[LightGBM] [Warning] Unknown parameter: device
+13.471 0.7661107
+10m:
+xgboost 25.553 0.7566364
+lightgbm [LightGBM] [Warning] Unknown parameter: device
+[LightGBM] [Warning] Unknown parameter: device
+55.055 0.7740217
+
 
 ---
 
 h2o does not work with CUDA 9.1
 
 with CUDA 8.0:
+
+2018-01-29:
 
 1m:
 h2o openjdk version "1.8.0_151"
@@ -54,5 +58,19 @@ h2o Error in .h2o.doSafeREST(h2oRestApiVersion = h2oRestApiVersion, urlSuffix = 
 Calls: h2o.importFile ... tryCatchOne -> doTryCatch -> .h2o.doSafeGET -> .h2o.doSafeREST
 Execution halted
 
+
+2018-06-02:
+
+all sizes:
+Error in .h2o.doSafeREST(h2oRestApiVersion = h2oRestApiVersion, urlSuffix = page,  :
+  Unexpected CURL error: Empty reply from server
+
+cat h2o_UnknownUser_started_from_r.err
+Unexpected end of /proc/mounts line `overlay / overlay rw,relatime,lowerdir=/var/lib/docker/overlay2/l/BGMBNPM7CJ6EGTIRKYAHF743GN:/var/lib/docker/overlay2/l/SJ3ATWGQ6JG6KJJGWCFYBURMSA:/var/lib/docker/overlay2/l/P6LKIXW5VPKQMTXGRKGBCBMVHV:/var/lib/docker/overlay2/l/D3UJNAMTKDYSGCHSYFFQXAKSV7:/var/lib/docker/overlay2/l/Q6N4KTPAV5WZ2PVFGDGB3X5CK7:/var/lib/docker/overlay2/l/D76UUGJLQTB6LGGDCJ2GRT7IZ7:/var/lib/docker/overlay2/l/WCAHET3JIFDYADNQKRTYUP34MV:/var/lib/docker/overlay2/l/J4D44CYAYKHQ7MITHCQQ4RLQ7M:/var/lib/docker/overlay2/l/44UFIHCZS3PV4'
+Unexpected end of /proc/mounts line `K6ECSOYVBLAIN:/var/lib/docker/overlay2/l/MIXMX63C6IWQ7KX6P7AO3STN6V:/var/lib/docker/overlay2/l/DN35TTU2DLU2BGEXUWMKYFKQOP:/var/lib/docker/overlay2/l/4GCF5BXMLGJS4LZOFGO4OLCNKB:/var/lib/docker/overlay2/l/3OJGOXZY3ECDFH3K4GEDEQCUDU:/var/lib/docker/overlay2/l/OS3EBSROF2EM5Z7TM422RWQRQ7:/var/lib/docker/overlay2/l/PJPGPSBDY6QE6E54PTEMAJS2MB:/var/lib/docker/overlay2/l/OUXHDXTACVNJWNYABW3P6QBSF2:/var/lib/docker/overlay2/l/Z7WUVBQF4XIKJZBXDNOL7A2R2N:/var/lib/docker/overlay2/l/M7EAMDJJRW4MFQUJDJ4KZW4KZ5:/var/lib/do'
+terminate called after throwing an instance of 'thrust::system::system_error'
+  what():  function_attributes(): after cudaFuncGetAttributes: invalid device function
+
+backend = "gpu" -> backend = "cpu"    works OK  
 
 

@@ -51,13 +51,13 @@ lightgbm     |   **3.3**    |    **6**    |     47        |   0.766   |   0.774
 
 #### GPU
 
-p3.2xlarge (1 GPU, Tesla V100) with software as of 2018-01-29:
+p3.2xlarge (1 GPU, Tesla V100) with software as of 2018-06-02:
 
-Tool            | Time[s] 1M  |  Time[s] 10M  |   AUC 1M  |   AUC 10M
-----------------|-------------|---------------|-----------|------------
-h2o xgboost     |   18        |   error       |   0.712   |  error
-xgboost         |   8         |   **25**      |   0.748   |   0.756
-lightgbm        |   20        |    75         |   0.766   |   0.774
+Tool            | Time[s] 100K | Time[s] 1M  |  Time[s] 10M  |   AUC 1M  |   AUC 10M
+----------------|--------------|-------------|---------------|-----------|------------
+h2o xgboost     |  crash       |             |               |           |  
+xgboost         |   3.3        |   8         |   **25**      |   0.748   |   0.756
+lightgbm        |   13         |   13        |    55         |   0.766   |   0.774
 
 
 
