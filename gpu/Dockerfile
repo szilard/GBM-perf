@@ -25,7 +25,7 @@ RUN wget https://s3.amazonaws.com/benchm-ml--main/train-0.1m.csv && \
 
 
 
-ARG CACHE_DATE=2018-01-27
+ARG CACHE_DATE=2018-06-02
 
 RUN R -e 'install.packages("h2o", repos = c(CRAN = "https://cran.rstudio.com/"))'
 
