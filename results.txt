@@ -1,47 +1,21 @@
 
-CPU   r4.8xlarge (32 cores)    2018-01-27
+CPU   r4.8xlarge (32 cores)    2018-06-02
 
-1m:
-h2o 21.415 0.7623672
-xgboost [20:43:54] Tree method is selected to be 'hist', which uses a single updater grow_fast_histmaker.
-16.096 0.7494959
-lightgbm 6.117 0.7660324
-10m:
-h2o 89.497 0.7763126
-xgboost [20:47:13] Tree method is selected to be 'hist', which uses a single updater grow_fast_histmaker.
-151.108 0.7551197
-lightgbm 47.291 0.7739303
-
-
-2018-05-09:
--- lightgbm was not working with R 3.5, so needed rocker/r-ver:3.4.3 
--- apt-get install -y default-jdk-headless cmake    wget zlib1g-dev libssl-dev libcurl4-gnutls-dev git
--- RUN install2.r ROCR data.table    devtools Matrix
-----1m:
-----h2o 22.9 0.7623672
-----xgboost [01:22:32] Tree method is selected to be 'hist', which uses a single updater grow_fast_histmaker.
-----16.985 0.7494959
-----lightgbm 6.307 0.7660324
 0.1m:
-h2o 18.129 0.702222
-xgboost [01:25:33] Tree method is selected to be 'hist', which uses a single updater grow_fast_histmaker.
-9.688 0.7329314
-lightgbm 3.242 0.7301989
-
-
-2018-06-02:
--- lightgbm now works with R 3.5
+17.705 0.7022141
+xgboost [14:16:05] Tree method is selected to be 'hist', which uses a single updater grow_fast_histmaker.
+5.421 0.7329314
+lightgbm 3.302 0.7298355
 1m:
-21.893 0.7623664
-xgboost [12:18:55] Tree method is selected to be 'hist', which uses a single updater grow_fast_histmaker.
-15.752 0.7494959
-lightgbm 6.781 0.7636987
+20.867 0.7623664
+xgboost [14:16:52] Tree method is selected to be 'hist', which uses a single updater grow_fast_histmaker.
+15.398 0.7494959
+lightgbm 6.637 0.7636987
 10m:
-88.361 0.7763173
-xgboost [12:21:50] Tree method is selected to be 'hist', which uses a single updater grow_fast_histmaker.
-129.757 0.7551197
-lightgbm
-47.745 0.7742033
+88.164 0.7763173
+xgboost [14:19:46] Tree method is selected to be 'hist', which uses a single updater grow_fast_histmaker.
+127.029 0.7551197
+lightgbm 44.121 0.7742033
 
 
 -------------------------------
