@@ -18,6 +18,89 @@ xgboost [14:19:46] Tree method is selected to be 'hist', which uses a single upd
 lightgbm 44.121 0.7742033
 
 
+CPU   r4.8xlarge (32 cores)    2019-04-27
+
+CPU(s):                32
+Thread(s) per core:    2
+Core(s) per socket:    16
+Socket(s):             1
+NUMA node(s):          1
+Model name:            Intel(R) Xeon(R) CPU E5-2686 v4 @ 2.30GHz
+CPU MHz:               1341.906
+CPU max MHz:           3000.0000
+CPU min MHz:           1200.0000
+L1d cache:             32K
+L1i cache:             32K
+L2 cache:              256K
+L3 cache:              46080K
+NUMA node0 CPU(s):     0-31
+
+0.1m:
+16.765 0.7022141
+xgboost [21:17:54] Tree method is selected to be 'hist', which uses a single updater grow_fast_histmaker.
+4.849 0.7329314
+4.332 0.7298355
+1m:
+19.904 0.7623664
+xgboost [21:18:41] Tree method is selected to be 'hist', which uses a single updater grow_fast_histmaker.
+16.421 0.7494959
+7.409 0.7636987
+10m:
+86.641 0.7763173
+xgboost [21:21:36] Tree method is selected to be 'hist', which uses a single updater grow_fast_histmaker.
+136.302 0.7551197
+50.248 0.7742033
+
+
+0.1m:
+16.924 0.7022141
+xgboost [21:34:31] Tree method is selected to be 'hist', which uses a single updater grow_fast_histmaker.
+4.952 0.7329314
+3.684 0.7298355
+1m:
+20.467 0.7623664
+xgboost [21:35:19] Tree method is selected to be 'hist', which uses a single updater grow_fast_histmaker.
+16.583 0.7494959
+7.091 0.7636987
+10m:
+86.176 0.7763173
+xgboost [21:38:14] Tree method is selected to be 'hist', which uses a single updater grow_fast_histmaker.
+138.539 0.7551197
+44.808 0.7742033
+
+
+CPU   m5.12xlarge (48 cores)    2019-04-27
+
+CPU(s):                48
+Thread(s) per core:    2
+Core(s) per socket:    24
+Socket(s):             1
+NUMA node(s):          1
+Model name:            Intel(R) Xeon(R) Platinum 8175M CPU @ 2.50GHz
+CPU MHz:               2500.000
+L1d cache:             32K
+L1i cache:             32K
+L2 cache:              1024K
+L3 cache:              33792K
+NUMA node0 CPU(s):     0-47
+
+0.1m:
+11.709 0.702222
+xgboost [22:01:37] Tree method is selected to be 'hist', which uses a single updater grow_fast_histmaker.
+4.679 0.7329314
+3.197 0.7298355
+1m:
+13.988 0.7623721
+xgboost [22:02:14] Tree method is selected to be 'hist', which uses a single updater grow_fast_histmaker.
+15.193 0.7494959
+5.791 0.7636987
+10m:
+52.456 0.776335
+xgboost [22:04:17] Tree method is selected to be 'hist', which uses a single updater grow_fast_histmaker.
+111.464 0.7551197
+34.75 0.7742033
+
+
 -------------------------------
 
 GPU   p3.2xlarge  (1 GPU, Tesla V100)    2018-06-02
