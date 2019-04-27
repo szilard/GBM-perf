@@ -1,7 +1,7 @@
 
 ## GBM Performance
 
-Performance of various open source GBM implementations (h2o, xgboost, lightgbm) on the airline dataset (1M and 10M records).
+Performance of various open source GBM implementations (h2o, xgboost, lightgbm) on the airline dataset (100K, 1M and 10M records).
 
 GBM: `100` trees, depth `10`, learning rate `0.1`
 
