@@ -16,15 +16,17 @@ RUN wget https://s3.amazonaws.com/benchm-ml--main/train-0.1m.csv && \
     wget https://s3.amazonaws.com/benchm-ml--main/test.csv
 
 
-ARG CACHE_DATE=2018-06-02
+ARG CACHE_DATE=2019-04-27
 
 RUN install2.r h2o
 
 RUN git clone --recursive https://github.com/dmlc/xgboost && \
-    cd xgboost && git submodule init && git submodule update && \
+    cd xgboost && git checkout v0.72 && \
+    git submodule init && git submodule update && \
     cd R-package && R CMD INSTALL .
+## using OLD xgboost as new version slows down considerably (bug to be reported)
 
-RUN R -e 'devtools::install_github("Microsoft/LightGBM", subdir = "R-package")'
+RUN R -e 'devtools::install_github("Laurae2/lgbdl"); lgbdl::lgb.dl()'
 
 
 ADD https://api.github.com/repos/szilard/GBM-perf/git/refs/heads/master version.json  
