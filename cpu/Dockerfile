@@ -25,6 +25,7 @@ RUN git clone --recursive https://github.com/dmlc/xgboost && \
     git submodule init && git submodule update && \
     cd R-package && R CMD INSTALL .
 ## using OLD xgboost as new version slows down considerably (bug to be reported)
+## details here: https://github.com/szilard/GBM-perf/issues/9
 
 RUN R -e 'devtools::install_github("Laurae2/lgbdl"); lgbdl::lgb.dl()'
 
