@@ -20,7 +20,14 @@ X_test <- X_train_test[(n1+1):(n1+n2),]
 dxgb_train <- xgb.DMatrix(data = X_train, label = ifelse(d_train$dep_delayed_15min=='Y',1,0))
 
 
-for (nthr in c(1,parallel::detectCores()/2,parallel::detectCores())) {
+ncores <- parallel::detectCores()/2
+if(floor(log2(ncores))==log2(ncores)) {
+  nthr_list <- 2^(0:log2(ncores))
+} else {
+  nthr_list <- c(1,ncores/2,ncores)
+}
+
+for (nthr in nthr_list) {
 
 cat(nthr," ",system.time({
   md <- xgb.train(data = dxgb_train, 
