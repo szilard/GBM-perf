@@ -1,0 +1,2 @@
+docker build -t xgb_slowdown .
+docker run --rm xgb_slowdown
