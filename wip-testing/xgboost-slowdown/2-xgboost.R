@@ -20,16 +20,19 @@ X_test <- X_train_test[(n1+1):(n1+n2),]
 dxgb_train <- xgb.DMatrix(data = X_train, label = ifelse(d_train$dep_delayed_15min=='Y',1,0))
 
 
-cat(system.time({
+for (nthr in c(1,parallel::detectCores()/2,parallel::detectCores())) {
+
+cat(nthr," ",system.time({
   md <- xgb.train(data = dxgb_train, 
             objective = "binary:logistic", 
             nround = 100, max_depth = 10, eta = 0.1, 
+            nthread = nthr,
             tree_method = "hist")
 })[[3]]," ",sep="")
-
 
 phat <- predict(md, newdata = X_test)
 rocr_pred <- prediction(phat, d_test$dep_delayed_15min)
 cat(performance(rocr_pred, "auc")@y.values[[1]],"\n")
 
+}
 
