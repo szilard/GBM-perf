@@ -1,3 +1,3 @@
-docker build --build-arg VER=v0.72 -t xgb_slowdown .
-docker build --build-arg VER=v0.80 -t xgb_slowdown .
+docker build --build-arg VER=v0.81 -t xgb_slowdown .
+docker build --build-arg VER=v0.82 -t xgb_slowdown .
 docker run --rm xgb_slowdown

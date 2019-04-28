@@ -11,7 +11,7 @@ RUN install2.r ROCR data.table
 RUN wget https://s3.amazonaws.com/benchm-ml--main/train-1m.csv && \
     wget https://s3.amazonaws.com/benchm-ml--main/test.csv
 
-ARG VER=v0.72   
+ARG VER=master   
 ## default / pass other VER in `docker build --build-arg VER=v0.80`
 
 RUN git clone --recursive https://github.com/dmlc/xgboost && \
