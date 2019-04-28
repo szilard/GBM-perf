@@ -24,7 +24,7 @@ ncores <- parallel::detectCores()
 if(floor(log2(ncores))==log2(ncores)) {
   nthr_list <- 2^(0:log2(ncores))
 } else {
-  nthr_list <- c(1,ncores/2,ncores)
+  nthr_list <- unique(c(1,2,4,ncores/4,ncores/2,ncores))
 }
 
 for (nthr in nthr_list) {
