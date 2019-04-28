@@ -15,7 +15,7 @@ ARG VER=v0.72
 ## default / pass other VER in `docker build --build-arg VER=v0.80`
 
 RUN git clone --recursive https://github.com/dmlc/xgboost && \
-    cd xgboost && git checkout v0.72 && \
+    cd xgboost && git checkout $VER && \
     git submodule init && git submodule update && \
     cd R-package && R CMD INSTALL .
 
