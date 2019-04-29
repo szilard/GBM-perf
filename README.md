@@ -40,7 +40,7 @@ sudo nvidia-docker run --rm gbmperf_gpu
 
 #### CPU 
 
-r4.8xlarge (32 cores) with software as of 2019-04-29 (and run on physical cores only, no HT):
+r4.8xlarge (32 cores, but run on physical cores only/no hyperthreading) with software as of 2019-04-29:
 
 Tool         | Time[s] 100K | Time[s] 1M  |  Time[s] 10M  |   AUC 1M  |   AUC 10M
 -------------|--------------|-------------|---------------|-----------|------------
