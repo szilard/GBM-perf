@@ -27,6 +27,27 @@ xgboost 12.461 0.7494959
 xgboost 81.926 0.7551197
 41.639 0.7742033
 
+added catboost:
+
+0.1m:
+16.206 0.7022242
+xgboost 3.859 0.7324224
+2.378 0.7298355
+catboost Dataset is provided, but PredictionValuesChange feature importance don't use it, since non-empty LeafWeights in model.
+5.502 0.7225903
+1m:
+20.308 0.7623565
+xgboost 11.433 0.7494959
+5.217 0.7636987
+catboost Dataset is provided, but PredictionValuesChange feature importance don't use it, since non-empty LeafWeights in model.
+49.431 0.7402029
+10m:
+100.612 0.7763295
+xgboost 78.177 0.7551197
+41.929 0.7742033
+catboost Dataset is provided, but PredictionValuesChange feature importance don't use it, since non-empty LeafWeights in model.
+489.229 0.7439026
+
 
 -------------------------------
 
