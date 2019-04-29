@@ -9,17 +9,16 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
     apt-get install -y r-base
 
 
-RUN apt-get install -y git wget libcurl4-openssl-dev default-jdk-headless
+RUN apt-get install -y git wget libcurl4-openssl-dev default-jdk-headless libssl-dev
 
 ## xgboost: CMake 3.12 or higher is required
 RUN apt-get install -y python-pip && pip install cmake --upgrade
 
 RUN R CMD javareconf
 
-
 ENV MAKE="make -j$(nproc)"
 
-RUN R -e 'install.packages(c("ROCR","data.table","R6"), repos = c(CRAN = "https://cran.rstudio.com/"))'
+RUN R -e 'install.packages(c("ROCR","data.table","R6","devtools"), repos = "https://cran.rstudio.com/")'
 
 RUN wget https://s3.amazonaws.com/benchm-ml--main/train-0.1m.csv && \
     wget https://s3.amazonaws.com/benchm-ml--main/train-1m.csv && \
@@ -27,32 +26,19 @@ RUN wget https://s3.amazonaws.com/benchm-ml--main/train-0.1m.csv && \
     wget https://s3.amazonaws.com/benchm-ml--main/test.csv
 
 
+ARG CACHE_DATE
 
-ARG CACHE_DATE=2018-06-02
-
-RUN R -e 'install.packages("h2o", repos = c(CRAN = "https://cran.rstudio.com/"))'
+RUN R -e 'install.packages("h2o", repos = "http://h2o-release.s3.amazonaws.com/h2o/latest_stable_R")'
 
 RUN git clone --recursive https://github.com/dmlc/xgboost && \
     cd xgboost && \
     mkdir build && cd build && cmake .. -DUSE_CUDA=ON -DR_LIB=ON && \
     make install -j
 
-
 RUN apt-get install -y libboost-dev libboost-system-dev libboost-filesystem-dev
-
 RUN mkdir -p /etc/OpenCL/vendors && \
     echo "libnvidia-opencl.so.1" > /etc/OpenCL/vendors/nvidia.icd
-
-#RUN git clone --recursive https://github.com/Microsoft/LightGBM && \
-#    cd LightGBM && \
-#    mkdir build && cd build && cmake -DUSE_GPU=1 -DOpenCL_LIBRARY=/usr/local/cuda/lib64/libOpenCL.so -DOpenCL_INCLUDE_DIR=/usr/local/cuda/include/ .. && \
-#    make -j$(nproc)
-
-RUN git clone --recursive https://github.com/Microsoft/LightGBM && \
-    cd LightGBM/R-package && \
-    sed -i 's/use_gpu <- FALSE/use_gpu <- TRUE/' src/install.libs.R && \
-    sed -i 's/DUSE_GPU=ON/DUSE_GPU=1 -DOpenCL_LIBRARY=\/usr\/local\/cuda\/lib64\/libOpenCL.so -DOpenCL_INCLUDE_DIR=\/usr\/local\/cuda\/include\//' src/install.libs.R&& \
-    R CMD INSTALL --build . --no-multiarch
+RUN R -e 'devtools::install_github("Laurae2/lgbdl"); lgbdl::lgb.dl(use_gpu = TRUE)'
 
 
 ADD https://api.github.com/repos/szilard/GBM-perf/git/refs/heads/master version.json
