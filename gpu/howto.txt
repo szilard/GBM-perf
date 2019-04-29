@@ -1,2 +1,2 @@
-docker build -t gbmperf_gpu .
+docker build --build-arg CACHE_DATE=$(date +%Y-%m-%d) -t gbmperf_gpu .
 nvidia-docker run --rm gbmperf_gpu
