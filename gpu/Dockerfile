@@ -35,9 +35,7 @@ RUN git clone --recursive https://github.com/dmlc/xgboost && \
     mkdir build && cd build && cmake .. -DUSE_CUDA=ON -DR_LIB=ON && \
     make install -j
 
-RUN apt-get install -y libboost-dev libboost-system-dev libboost-filesystem-dev
-RUN mkdir -p /etc/OpenCL/vendors && \
-    echo "libnvidia-opencl.so.1" > /etc/OpenCL/vendors/nvidia.icd
+RUN apt-get install -y libboost-dev libboost-system-dev libboost-filesystem-dev ocl-icd-opencl-dev opencl-headers clinfo
 RUN R -e 'devtools::install_github("Laurae2/lgbdl"); lgbdl::lgb.dl(use_gpu = TRUE)'
 
 
