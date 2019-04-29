@@ -1,0 +1,9 @@
+
+2019-04-29
+
+params <- list(iterations = 100, depth = 10, learning_rate = 0.1)   ## 50.455  0.7402029
+params <- list(iterations = 100, depth = 10, learning_rate = 0.1, one_hot_max_size=255)   ## 44.813 0.7370259
+params <- list(iterations = 100, depth = 10, learning_rate = 0.1, max_ctr_complexity=1)   ## 12.614 0.7333416
+
+
+
