@@ -26,6 +26,8 @@ RUN git clone --recursive https://github.com/dmlc/xgboost && \
 
 RUN R -e 'devtools::install_github("Laurae2/lgbdl"); lgbdl::lgb.dl()'
 
+RUN R -e 'devtools::install_github("catboost/catboost", subdir = "catboost/R-package")'
+
 
 ADD https://api.github.com/repos/szilard/GBM-perf/git/refs/heads/master version.json
 ## ^^^ hack to invalidate docker cache if repo gets updated
@@ -41,14 +43,17 @@ CMD cd GBM-perf/cpu/run && \
       echo -n "h2o " && ${R_CMD} < 1-h2o.R && \
       echo -n "xgboost " && ${R_CMD} < 2-xgboost.R && \
       echo -n "lightgbm " && ${R_CMD} < 3-lightgbm.R && \
+      echo -n "catboost " && ${R_CMD} < 4-catboost.R && \
     ln -sf /train-1m.csv train.csv && \
     echo "1m:" && \
       echo -n "h2o " && ${R_CMD} < 1-h2o.R && \
       echo -n "xgboost " && ${R_CMD} < 2-xgboost.R && \
       echo -n "lightgbm " && ${R_CMD} < 3-lightgbm.R && \
+      echo -n "catboost " && ${R_CMD} < 4-catboost.R && \
     ln -sf /train-10m.csv train.csv && \
     echo "10m:" && \
       echo -n "h2o " && ${R_CMD} < 1-h2o.R && \
       echo -n "xgboost " && ${R_CMD} < 2-xgboost.R && \
-      echo -n "lightgbm " && ${R_CMD} < 3-lightgbm.R
+      echo -n "lightgbm " && ${R_CMD} < 3-lightgbm.R && \
+      echo -n "catboost " && ${R_CMD} < 4-catboost.R
 
