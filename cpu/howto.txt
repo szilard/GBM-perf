@@ -1,2 +1,2 @@
-docker build -t gbmperf_cpu .
+docker build --build-arg CACHE_DATE=$(date +%Y-%m-%d) -t gbmperf_cpu .
 docker run --rm gbmperf_cpu
