@@ -9,7 +9,10 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
     apt-get install -y r-base
 
 
-RUN apt-get install -y git wget libcurl4-openssl-dev default-jdk-headless cmake
+RUN apt-get install -y git wget libcurl4-openssl-dev default-jdk-headless
+
+## xgboost: CMake 3.12 or higher is required
+RUN apt-get install -y python-pip && pip install cmake --upgrade
 
 RUN R CMD javareconf
 
