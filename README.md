@@ -45,7 +45,7 @@ r4.8xlarge (32 cores) with software as of 2019-04-29 (and run on physical cores 
 Tool         | Time[s] 100K | Time[s] 1M  |  Time[s] 10M  |   AUC 1M  |   AUC 10M
 -------------|--------------|-------------|---------------|-----------|------------
 h2o          |   16         |   20        |    100        |   0.762   |   0.776
-xgboost      |   3.2        |   12        |     75        |   0.749   |   0.755
+xgboost      |   3.4        |   12        |     80        |   0.749   |   0.755
 lightgbm     |   **2.3**    |    **5**    |     42        |   0.766   |   0.774
 
 
