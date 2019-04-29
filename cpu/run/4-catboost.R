@@ -26,8 +26,7 @@ params <- list(iterations = 100, depth = 10, learning_rate = 0.1,
    #max_ctr_complexity=1,
    #one_hot_max_size=255,
    #leaf_estimation_iterations=1,
-   thread_count = parallel::detectCores(),
-   silent = TRUE)
+   verbose = 0)
 cat(system.time({
   md <- catboost.train(learn_pool = dx_train, test_pool = NULL, params = params)
 })[[3]]," ",sep="")
