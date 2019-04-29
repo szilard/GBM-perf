@@ -18,7 +18,7 @@ Installing to latest software versions and running/timing is fully automated wit
 ```
 git clone https://github.com/szilard/GBM-perf.git
 cd GBM-perf/cpu
-sudo docker build -t gbmperf_cpu .
+sudo docker build --build-arg CACHE_DATE=$(date +%Y-%m-%d) -t gbmperf_cpu .
 sudo docker run --rm gbmperf_cpu
 ```
 
@@ -40,13 +40,13 @@ sudo nvidia-docker run --rm gbmperf_gpu
 
 #### CPU 
 
-r4.8xlarge (32 cores) with software as of 2018-06-02:
+r4.8xlarge (32 cores) with software as of 2019-04-29 (and run on physical cores only, no HT):
 
 Tool         | Time[s] 100K | Time[s] 1M  |  Time[s] 10M  |   AUC 1M  |   AUC 10M
 -------------|--------------|-------------|---------------|-----------|------------
-h2o          |   17         |   21        |     90        |   0.762   |   0.776
-xgboost      |   5.4        |   16        |    130        |   0.749   |   0.755
-lightgbm     |   **3.3**    |    **6**    |     47        |   0.766   |   0.774
+h2o          |   16         |   20        |    100        |   0.762   |   0.776
+xgboost      |   3.2        |   12        |     75        |   0.749   |   0.755
+lightgbm     |   **2.3**    |    **5**    |     42        |   0.766   |   0.774
 
 
 #### GPU
