@@ -18,7 +18,7 @@ RUN R CMD javareconf
 
 ENV MAKE="make -j$(nproc)"
 
-RUN R -e 'install.packages(c("ROCR","data.table","R6","devtools"), repos = "https://cran.rstudio.com/")'
+RUN R -e 'install.packages(c("ROCR","data.table","R6","devtools","RCurl","jsonlite"), repos = "https://cran.rstudio.com/")'
 
 RUN wget https://s3.amazonaws.com/benchm-ml--main/train-0.1m.csv && \
     wget https://s3.amazonaws.com/benchm-ml--main/train-1m.csv && \
