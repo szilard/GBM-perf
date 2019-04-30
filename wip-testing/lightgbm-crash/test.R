@@ -1,7 +1,6 @@
 library(lightgbm)
 data(agaricus.train, package = "lightgbm")
 train <- agaricus.train
-##str(train)
 train$data[, 1] <- 1:6513
 dtrain <- lgb.Dataset(train$data, label = train$label)
 data(agaricus.test, package = "lightgbm")
