@@ -1,6 +1,7 @@
 library(lightgbm)
 data(agaricus.train, package = "lightgbm")
 train <- agaricus.train
+str(train)
 train$data[, 1] <- 1:6513
 dtrain <- lgb.Dataset(train$data, label = train$label)
 data(agaricus.test, package = "lightgbm")
@@ -24,4 +25,3 @@ model <- lgb.train(params,
                    min_data = 1,
                    learning_rate = 1,
                    early_stopping_rounds = 10)
-                   
