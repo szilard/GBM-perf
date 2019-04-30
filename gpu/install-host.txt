@@ -52,6 +52,6 @@ sudo apt-get update
 sudo apt-get install -y nvidia-docker2
 sudo pkill -SIGHUP dockerd
 
-docker run --runtime=nvidia --rm nvidia/cuda nvidia-smi
-nvidia-docker run --rm nvidia/cuda nvidia-smi
+docker run --runtime=nvidia --rm nvidia/cuda:9.1-devel-ubuntu16.04 nvidia-smi
+nvidia-docker run --rm nvidia/cuda:9.1-devel-ubuntu16.04 nvidia-smi
 
