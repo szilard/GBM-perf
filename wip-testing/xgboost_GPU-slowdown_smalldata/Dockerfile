@@ -46,9 +46,11 @@ RUN git clone https://github.com/szilard/GBM-perf.git
 RUN  apt-get clean && rm -rf /var/lib/apt/lists/*
 
 
+ENV TOOL=xgboost
+ENV SIZE=1m
+
 CMD cd GBM-perf/wip-testing/xgboost_GPU-slowdown_smalldata && \
     ln -s /test.csv test.csv && \
-    ln -sf /train-10m.csv train.csv && \
-    echo "10m:" && \
-      echo -n "xgboost " && R --slave < 2-xgboost.R 
-
+    ln -sf /train-${SIZE}.csv train.csv && \
+    echo "${SIZE}:" && \
+      echo -n "${TOOL} " && R --slave < ${TOOL}.R
