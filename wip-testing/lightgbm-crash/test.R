@@ -1,3 +1,5 @@
+library(Matrix)
+library(R6)
 sessionInfo()
 
 library(lightgbm)
