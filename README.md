@@ -83,3 +83,9 @@ slides [here](https://speakerdeck.com/szilard/better-than-deep-learning-gradient
 
 
 
+### Popularity of GBM Tools
+
+Poll conducted mainly via twitter (April, 2019):
+
+![](poll.png)
+
