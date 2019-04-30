@@ -47,6 +47,7 @@ RUN  apt-get clean && rm -rf /var/lib/apt/lists/*
 
 
 CMD cd GBM-perf/wip-testing/lightgbm-crash && \
-    R --slave < test.R 
-    
+    ln -s /test.csv test.csv && \
+    ln -sf /train-0.1m.csv train.csv && \
+    echo -n "lightgbm " && R --slave < 3-lightgbm.R 
 
