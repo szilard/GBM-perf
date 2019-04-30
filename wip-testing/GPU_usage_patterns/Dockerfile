@@ -52,5 +52,7 @@ ENV SIZE=1m
 CMD cd GBM-perf/wip-testing/GPU_usage_patterns && \
     ln -s /test.csv test.csv && \
     ln -sf /train-${SIZE}.csv train.csv && \
-    echo "${SIZE}:" && \
-      echo -n "${TOOL} " && R --slave < ${TOOL}.R
+    for k in 1 2 3; do
+      echo -n "${SIZE}: ${TOOL}: ${k}" && R --slave < ${TOOL}.R 
+    done
+
