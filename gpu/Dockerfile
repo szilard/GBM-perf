@@ -38,6 +38,8 @@ RUN git clone --recursive https://github.com/dmlc/xgboost && \
 RUN apt-get install -y libboost-dev libboost-system-dev libboost-filesystem-dev ocl-icd-opencl-dev opencl-headers clinfo
 RUN R -e 'devtools::install_github("Laurae2/lgbdl"); lgbdl::lgb.dl(use_gpu = TRUE)'
 
+RUN R -e 'devtools::install_github("catboost/catboost", subdir = "catboost/R-package")'
+
 
 ADD https://api.github.com/repos/szilard/GBM-perf/git/refs/heads/master version.json
 ## ^^^ hack to invalidate docker cache if repo gets updated
@@ -53,18 +55,22 @@ CMD cd GBM-perf/gpu/run && \
       echo -n "h2o " && R --slave < 1-h2o.R && \
       echo -n "xgboost " && R --slave < 2-xgboost.R && \
       ##echo -n "lightgbm " && R --slave < 3-lightgbm.R && \
+      echo -n "catboost " && R --slave < 4-catboost.R && \
     echo "0.1m:" && \
       echo -n "h2o " && R --slave < 1-h2o.R && \
       echo -n "xgboost " && R --slave < 2-xgboost.R && \
       ##echo -n "lightgbm " && R --slave < 3-lightgbm.R && \
+      echo -n "catboost " && R --slave < 4-catboost.R && \
     ln -sf /train-1m.csv train.csv && \
     echo "1m:" && \
       echo -n "h2o " && R --slave < 1-h2o.R && \
       echo -n "xgboost " && R --slave < 2-xgboost.R && \
       ##echo -n "lightgbm " && R --slave < 3-lightgbm.R && \      
+      echo -n "catboost " && R --slave < 4-catboost.R && \
     ln -sf /train-10m.csv train.csv && \
     echo "10m:" && \
       echo -n "h2o " && R --slave < 1-h2o.R && \
       echo -n "xgboost " && R --slave < 2-xgboost.R  ## && \
-      ##echo -n "lightgbm " && R --slave < 3-lightgbm.R
+      ##echo -n "lightgbm " && R --slave < 3-lightgbm.R && \
+      echo -n "catboost " && R --slave < 4-catboost.R
 
