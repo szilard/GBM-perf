@@ -8,6 +8,14 @@ GBM: `100` trees, depth `10`, learning rate `0.1`
 
 
 
+### Popularity of GBM Tools
+
+Poll conducted mainly via twitter (April, 2019):
+
+![](poll.png)
+
+
+
 ### Run
 
 Installing to latest software versions and running/timing is fully automated with docker: 
@@ -81,11 +89,4 @@ slides [here](https://speakerdeck.com/szilard/better-than-deep-learning-gradient
 
 ![](comparison_table.png)
 
-
-
-### Popularity of GBM Tools
-
-Poll conducted mainly via twitter (April, 2019):
-
-![](poll.png)
 
