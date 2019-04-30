@@ -1,5 +1,5 @@
 docker build --build-arg CACHE_DATE=$(date +%Y-%m-%d) -t gbmperf_gpu .
-nvidia-docker run --rm -e SIZE=0.1m -e TOOL=h2o gbmperf_gpu
+nvidia-docker run --rm gbmperf_gpu
 
 mpstat 1
 while true; do gpustat| grep Tesla; sleep 1; done
