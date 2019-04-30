@@ -53,7 +53,7 @@ catboost     |   5.4        |   50        |    490        |   0.740   |   0.744
 
 #### GPU
 
-p3.2xlarge (1 GPU, Tesla V100) with software as of 2018-06-02:
+p3.2xlarge (1 GPU, Tesla V100) with software as of 2019-04-29:
 
 Tool            | Time[s] 100K | Time[s] 1M  |  Time[s] 10M  |   AUC 1M  |   AUC 10M
 ----------------|--------------|-------------|---------------|-----------|------------
@@ -66,8 +66,8 @@ xgboost         | **2.4**      |  **4.8**    |   **13**      |   0.750   |   0.7
 
 If you don't have a GPU, lightgbm (CPU) trains the fastest.
 
-If you have a GPU, xgboost (GPU) is also very fast (and depending on the data, 
-often the fastest).
+If you have a GPU, xgboost (GPU) is also very fast (and depending on the data, your hardware etc.
+often faster than the above mentioned lightgbm on CPU).
 
 If you consider deployment, h2o has the best ways to deploy as a real-time
 (fast scoring) application.
