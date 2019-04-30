@@ -49,6 +49,10 @@ RUN  apt-get clean && rm -rf /var/lib/apt/lists/*
 CMD cd GBM-perf/gpu/run && \
     ln -s /test.csv test.csv && \
     ln -sf /train-0.1m.csv train.csv && \
+    echo "warmup:" && \
+      echo -n "h2o " && R --slave < 1-h2o.R && \
+      echo -n "xgboost " && R --slave < 2-xgboost.R && \
+      ##echo -n "lightgbm " && R --slave < 3-lightgbm.R && \
     echo "0.1m:" && \
       echo -n "h2o " && R --slave < 1-h2o.R && \
       echo -n "xgboost " && R --slave < 2-xgboost.R && \
