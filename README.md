@@ -1,7 +1,8 @@
 
 ## GBM Performance
 
-Performance of various open source GBM implementations (h2o, xgboost, lightgbm) on the airline dataset (100K, 1M and 10M records).
+Performance of the top/most widely used open source GBM implementations (h2o, xgboost, lightgbm, catboost) 
+on the airline dataset (100K, 1M and 10M records).
 
 GBM: `100` trees, depth `10`, learning rate `0.1`
 
@@ -47,6 +48,7 @@ Tool         | Time[s] 100K | Time[s] 1M  |  Time[s] 10M  |   AUC 1M  |   AUC 10
 h2o          |   16         |   20        |    100        |   0.762   |   0.776
 xgboost      |   3.4        |   12        |     80        |   0.749   |   0.755
 lightgbm     |   **2.3**    |    **5**    |     42        |   0.766   |   0.774
+catboost     |   5.4        |   50        |    490        |   0.740   |   0.744 
 
 
 #### GPU
