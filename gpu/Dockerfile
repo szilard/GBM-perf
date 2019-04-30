@@ -36,6 +36,8 @@ RUN git clone --recursive https://github.com/dmlc/xgboost && \
     make install -j
 
 RUN apt-get install -y libboost-dev libboost-system-dev libboost-filesystem-dev ocl-icd-opencl-dev opencl-headers clinfo
+RUN mkdir -p /etc/OpenCL/vendors && \
+    echo "libnvidia-opencl.so.1" > /etc/OpenCL/vendors/nvidia.icd   ## otherwise lightgm segfaults at runtime (compiles fine without it)
 RUN R -e 'devtools::install_github("Laurae2/lgbdl"); lgbdl::lgb.dl(use_gpu = TRUE)'
 
 RUN R -e 'devtools::install_github("catboost/catboost", subdir = "catboost/R-package")'
@@ -54,23 +56,23 @@ CMD cd GBM-perf/gpu/run && \
     echo "warmup:" && \
       echo -n "h2o " && R --slave < 1-h2o.R && \
       echo -n "xgboost " && R --slave < 2-xgboost.R && \
-      ##echo -n "lightgbm " && R --slave < 3-lightgbm.R && \
+      echo -n "lightgbm " && R --slave < 3-lightgbm.R && \
       echo -n "catboost " && R --slave < 4-catboost.R && \
     echo "0.1m:" && \
       echo -n "h2o " && R --slave < 1-h2o.R && \
       echo -n "xgboost " && R --slave < 2-xgboost.R && \
-      ##echo -n "lightgbm " && R --slave < 3-lightgbm.R && \
+      echo -n "lightgbm " && R --slave < 3-lightgbm.R && \
       echo -n "catboost " && R --slave < 4-catboost.R && \
     ln -sf /train-1m.csv train.csv && \
     echo "1m:" && \
       echo -n "h2o " && R --slave < 1-h2o.R && \
       echo -n "xgboost " && R --slave < 2-xgboost.R && \
-      ##echo -n "lightgbm " && R --slave < 3-lightgbm.R && \      
+      echo -n "lightgbm " && R --slave < 3-lightgbm.R && \      
       echo -n "catboost " && R --slave < 4-catboost.R && \
     ln -sf /train-10m.csv train.csv && \
     echo "10m:" && \
       echo -n "h2o " && R --slave < 1-h2o.R && \
       echo -n "xgboost " && R --slave < 2-xgboost.R && \
-      ##echo -n "lightgbm " && R --slave < 3-lightgbm.R && \
+      echo -n "lightgbm " && R --slave < 3-lightgbm.R && \
       echo -n "catboost " && R --slave < 4-catboost.R
 
