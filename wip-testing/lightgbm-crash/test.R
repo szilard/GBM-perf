@@ -1,3 +1,5 @@
+sessionInfo()
+
 library(lightgbm)
 data(agaricus.train, package = "lightgbm")
 train <- agaricus.train
