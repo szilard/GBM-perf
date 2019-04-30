@@ -2,13 +2,11 @@
 ## GBM Performance
 
 Performance of the top/most widely used open source GBM implementations (h2o, xgboost, lightgbm, catboost) 
-on the airline dataset (100K, 1M and 10M records).
-
-GBM: `100` trees, depth `10`, learning rate `0.1`
+on the airline dataset (100K, 1M and 10M records) and with `100` trees, depth `10`, learning rate `0.1`.
 
 
 
-### Popularity of GBM Tools
+### Popularity of GBM implementations
 
 Poll conducted mainly via twitter (April, 2019):
 
@@ -16,7 +14,7 @@ Poll conducted mainly via twitter (April, 2019):
 
 
 
-### Run
+### How to run/reproduce the benchmark/results
 
 Installing to latest software versions and running/timing is fully automated with docker: 
 
@@ -45,7 +43,6 @@ sudo nvidia-docker run --rm gbmperf_gpu
 
 
 ### Results
-
 
 #### CPU 
 
