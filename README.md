@@ -46,8 +46,8 @@ r4.8xlarge (32 cores, but run on physical cores only/no hyperthreading) with sof
 Tool         | Time[s] 100K | Time[s] 1M  |  Time[s] 10M  |   AUC 1M  |   AUC 10M
 -------------|--------------|-------------|---------------|-----------|------------
 h2o          |   16         |   20        |    100        |   0.762   |   0.776
-xgboost      |   3.4        |   12        |     80        |   0.749   |   0.755
-lightgbm     |   **2.3**    |    **5**    |     42        |   0.766   |   0.774
+xgboost      |   3.8        |   12        |     78        |   0.749   |   0.755
+lightgbm     |   **2.4**    |    **5.2**  |     42        |   0.764   |   0.774
 catboost     |   5.4        |   50        |    490        |   0.740   |   0.744 
 
 

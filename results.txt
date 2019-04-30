@@ -1,33 +1,5 @@
 
-CPU    r4.8xlarge (32 cores)     2019-04-29     run only on physical cores (16) only (no HT)
-
-0.1m:
-16.02 0.7022242
-xgboost 3.266 0.7324224
-2.292 0.7298355
-1m:
-20.341 0.7623565
-xgboost 12.297 0.7494959
-5.151 0.7636987
-10m:
-99.44 0.7763295
-xgboost 75.66 0.7551197
-42.301 0.7742033
-
-0.1m:
-16.186 0.7022242
-xgboost 3.623 0.7324224
-2.357 0.7298355
-1m:
-20.2 0.7623565
-xgboost 12.461 0.7494959
-5.288 0.7636987
-10m:
-98.305 0.7763295
-xgboost 81.926 0.7551197
-41.639 0.7742033
-
-added catboost:
+CPU    r4.8xlarge     2019-04-29     
 
 0.1m:
 16.206 0.7022242
@@ -70,57 +42,18 @@ catboost Dataset is provided, but PredictionValuesChange feature importance don'
 
 -------------------------------
 
-GPU   p3.2xlarge  (1 GPU, Tesla V100)    2018-06-02
+GPU   p3.2xlarge     2019-04-29
 
+###warmup:
+###14.811 0.733044
+###xgboost 16.161 0.7325722
 0.1m:
-xgboost 3.3 0.7324187
-lightgbm [LightGBM] [Warning] Unknown parameter: device
-[LightGBM] [Warning] Unknown parameter: device
-13.667 0.7299145
+9.317 0.733044
+xgboost 2.394 0.7325722
 1m:
-xgboost 7.813 0.7494498
-lightgbm [LightGBM] [Warning] Unknown parameter: device
-[LightGBM] [Warning] Unknown parameter: device
-13.471 0.7661107
+14.538 0.7494511
+xgboost 4.838 0.749577
 10m:
-xgboost 25.553 0.7566364
-lightgbm [LightGBM] [Warning] Unknown parameter: device
-[LightGBM] [Warning] Unknown parameter: device
-55.055 0.7740217
-
-
----
-
-h2o does not work with CUDA 9.1
-
-with CUDA 8.0:
-
-2018-01-29:
-
-1m:
-h2o openjdk version "1.8.0_151"
-OpenJDK Runtime Environment (build 1.8.0_151-8u151-b12-0ubuntu0.16.04.2-b12)
-OpenJDK 64-Bit Server VM (build 25.151-b12, mixed mode)
-18.454 0.7120354
-10m:
-h2o Error in .h2o.doSafeREST(h2oRestApiVersion = h2oRestApiVersion, urlSuffix = urlSuffix,  :
-  Unexpected CURL error: Failed to connect to localhost port 54321: Connection refused
-Calls: h2o.importFile ... tryCatchOne -> doTryCatch -> .h2o.doSafeGET -> .h2o.doSafeREST
-Execution halted
-
-
-2018-06-02:
-
-all sizes:
-Error in .h2o.doSafeREST(h2oRestApiVersion = h2oRestApiVersion, urlSuffix = page,  :
-  Unexpected CURL error: Empty reply from server
-
-cat h2o_UnknownUser_started_from_r.err
-Unexpected end of /proc/mounts line `overlay / overlay rw,relatime,lowerdir=/var/lib/docker/overlay2/l/BGMBNPM7CJ6EGTIRKYAHF743GN:/var/lib/docker/overlay2/l/SJ3ATWGQ6JG6KJJGWCFYBURMSA:/var/lib/docker/overlay2/l/P6LKIXW5VPKQMTXGRKGBCBMVHV:/var/lib/docker/overlay2/l/D3UJNAMTKDYSGCHSYFFQXAKSV7:/var/lib/docker/overlay2/l/Q6N4KTPAV5WZ2PVFGDGB3X5CK7:/var/lib/docker/overlay2/l/D76UUGJLQTB6LGGDCJ2GRT7IZ7:/var/lib/docker/overlay2/l/WCAHET3JIFDYADNQKRTYUP34MV:/var/lib/docker/overlay2/l/J4D44CYAYKHQ7MITHCQQ4RLQ7M:/var/lib/docker/overlay2/l/44UFIHCZS3PV4'
-Unexpected end of /proc/mounts line `K6ECSOYVBLAIN:/var/lib/docker/overlay2/l/MIXMX63C6IWQ7KX6P7AO3STN6V:/var/lib/docker/overlay2/l/DN35TTU2DLU2BGEXUWMKYFKQOP:/var/lib/docker/overlay2/l/4GCF5BXMLGJS4LZOFGO4OLCNKB:/var/lib/docker/overlay2/l/3OJGOXZY3ECDFH3K4GEDEQCUDU:/var/lib/docker/overlay2/l/OS3EBSROF2EM5Z7TM422RWQRQ7:/var/lib/docker/overlay2/l/PJPGPSBDY6QE6E54PTEMAJS2MB:/var/lib/docker/overlay2/l/OUXHDXTACVNJWNYABW3P6QBSF2:/var/lib/docker/overlay2/l/Z7WUVBQF4XIKJZBXDNOL7A2R2N:/var/lib/docker/overlay2/l/M7EAMDJJRW4MFQUJDJ4KZW4KZ5:/var/lib/do'
-terminate called after throwing an instance of 'thrust::system::system_error'
-  what():  function_attributes(): after cudaFuncGetAttributes: invalid device function
-
-backend = "gpu" -> backend = "cpu"    works OK  
-
+56.955 0.7556837
+xgboost 12.928 0.7563275
 
