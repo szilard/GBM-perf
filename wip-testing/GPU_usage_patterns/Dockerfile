@@ -49,7 +49,7 @@ RUN  apt-get clean && rm -rf /var/lib/apt/lists/*
 ENV TOOL=xgboost
 ENV SIZE=1m
 
-CMD cd GBM-perf/wip-testing/xgboost_GPU-slowdown_smalldata && \
+CMD cd GBM-perf/wip-testing/GPU_usage_patterns && \
     ln -s /test.csv test.csv && \
     ln -sf /train-${SIZE}.csv train.csv && \
     echo "${SIZE}:" && \
