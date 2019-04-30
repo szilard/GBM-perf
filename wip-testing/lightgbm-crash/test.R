@@ -1,7 +1,3 @@
-library(Matrix)
-library(R6)
-sessionInfo()
-
 library(lightgbm)
 data(agaricus.train, package = "lightgbm")
 train <- agaricus.train
@@ -14,9 +10,9 @@ valids <- list(test = dtest)
 
 params <- list(objective = "regression",
                metric = "rmse",
-               device = "gpu",
-               gpu_platform_id = 0,
-               gpu_device_id = 0,
+#               device = "gpu",
+#               gpu_platform_id = 0,
+#               gpu_device_id = 0,
                nthread = 1,
                boost_from_average = FALSE,
                num_tree_per_iteration = 10,
