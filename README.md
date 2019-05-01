@@ -8,15 +8,15 @@ on the airline dataset (100K, 1M and 10M records) and with `100` trees, depth `1
 
 ## Popularity of GBM implementations
 
-Poll conducted mainly via twitter (April, 2019):
+Poll conducted via twitter (April, 2019):
 
 ![](poll.png)
 
 
 
-## How to run/reproduce the benchmark/results
+## How to run/reproduce the benchmark
 
-Installing to latest software versions and running/timing is fully automated with docker: 
+Installing to latest software versions and running/timing is easy and fully automated with docker: 
 
 ### CPU
 
@@ -85,7 +85,8 @@ to use.
 
 More info in my eRum 2018 R conference talk 
 (video recording [here](https://www.youtube.com/watch?v=DqS6EKjqBbY),
-slides [here](https://speakerdeck.com/szilard/better-than-deep-learning-gradient-boosting-machines-gbm-in-r-erum-conference-budapest-may-2018)), and a summary comparison table here:
+slides [here](https://speakerdeck.com/szilard/better-than-deep-learning-gradient-boosting-machines-gbm-in-r-erum-conference-budapest-may-2018)), 
+and a summary comparison table here:
 
 ![](comparison_table.png)
 
