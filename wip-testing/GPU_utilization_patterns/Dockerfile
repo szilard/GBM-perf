@@ -51,7 +51,7 @@ RUN  apt-get clean && rm -rf /var/lib/apt/lists/*
 ENV TOOL=xgboost
 ENV SIZE=1m
 
-CMD cd GBM-perf/wip-testing/GPU_usage_patterns && \
+CMD cd GBM-perf/wip-testing/GPU_utilization_patterns && \
     ln -s /test.csv test.csv && \
     ln -sf /train-0.1m.csv train.csv && \
     echo -n "warmup: ${TOOL}: " && R --slave < ${TOOL}.R && sleep 2 && \
