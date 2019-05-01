@@ -36,6 +36,8 @@ RUN git clone --recursive https://github.com/dmlc/xgboost && \
     make install -j
 
 RUN apt-get install -y libboost-dev libboost-system-dev libboost-filesystem-dev ocl-icd-opencl-dev opencl-headers clinfo
+RUN mkdir -p /etc/OpenCL/vendors && \
+    echo "libnvidia-opencl.so.1" > /etc/OpenCL/vendors/nvidia.icd   ## otherwise lightgm segfaults at runtime (compiles fine without it)
 RUN R -e 'devtools::install_github("Laurae2/lgbdl"); lgbdl::lgb.dl(use_gpu = TRUE)'
 
 RUN R -e 'devtools::install_github("catboost/catboost", subdir = "catboost/R-package")'
