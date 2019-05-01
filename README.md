@@ -1,12 +1,12 @@
 
-## GBM Performance
+# GBM Performance
 
 Performance of the top/most widely used open source GBM implementations (h2o, xgboost, lightgbm, catboost) 
 on the airline dataset (100K, 1M and 10M records) and with `100` trees, depth `10`, learning rate `0.1`.
 
 
 
-### Popularity of GBM implementations
+## Popularity of GBM implementations
 
 Poll conducted mainly via twitter (April, 2019):
 
@@ -14,11 +14,11 @@ Poll conducted mainly via twitter (April, 2019):
 
 
 
-### How to run/reproduce the benchmark/results
+## How to run/reproduce the benchmark/results
 
 Installing to latest software versions and running/timing is fully automated with docker: 
 
-#### CPU
+### CPU
 
 (requires docker)
 
@@ -29,7 +29,7 @@ sudo docker build --build-arg CACHE_DATE=$(date +%Y-%m-%d) -t gbmperf_cpu .
 sudo docker run --rm gbmperf_cpu
 ```
 
-#### GPU
+### GPU
 
 (requires docker, nvidia drivers and the `nvidia-docker` utility)
 
@@ -42,9 +42,9 @@ sudo nvidia-docker run --rm gbmperf_gpu
 
 
 
-### Results
+## Results
 
-#### CPU 
+### CPU 
 
 r4.8xlarge (32 cores, but run on physical cores only/no hyperthreading) with software as of 2019-04-29:
 
@@ -56,7 +56,7 @@ lightgbm     |   **2.4**    |    **5.2**  |     42        |   0.764   |   0.774
 catboost     |   5.4        |   50        |    490        |   0.740   |   0.744 
 
 
-#### GPU
+### GPU
 
 p3.2xlarge (1 GPU, Tesla V100) with software as of 2019-04-29:
 
@@ -70,7 +70,7 @@ catboost        |   3.9        |    10       |    135        |   0.742   |   0.7
 
 
 
-### Recommendations
+## Recommendations
 
 If you don't have a GPU, lightgbm (CPU) trains the fastest.
 
