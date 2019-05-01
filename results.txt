@@ -5,38 +5,31 @@ CPU    r4.8xlarge     2019-04-29
 16.206 0.7022242
 xgboost 3.859 0.7324224
 2.378 0.7298355
-catboost Dataset is provided, but PredictionValuesChange feature importance don't use it, since non-empty LeafWeights in model.
 5.502 0.7225903
 1m:
 20.308 0.7623565
 xgboost 11.433 0.7494959
 5.217 0.7636987
-catboost Dataset is provided, but PredictionValuesChange feature importance don't use it, since non-empty LeafWeights in model.
 49.431 0.7402029
 10m:
 100.612 0.7763295
 xgboost 78.177 0.7551197
 41.929 0.7742033
-catboost Dataset is provided, but PredictionValuesChange feature importance don't use it, since non-empty LeafWeights in model.
 489.229 0.7439026
 
 0.1m:
 15.211 0.7022242
 xgboost 3.92 0.7324224
-2.415 0.7298355
-catboost Dataset is provided, but PredictionValuesChange feature importance don't use it, since non-empty LeafWeights in model.
 5.288 0.7225903
 1m:
 21.01 0.7623565
 xgboost 11.91 0.7494959
 5.24 0.7636987
-catboost Dataset is provided, but PredictionValuesChange feature importance don't use it, since non-empty LeafWeights in model.
 49.502 0.7402029
 10m:
 100.183 0.7763295
 xgboost 77.977 0.7551197
 42.328 0.7742033
-catboost Dataset is provided, but PredictionValuesChange feature importance don't use it, since non-empty LeafWeights in model.
 488.012 0.743902
 
 
@@ -45,69 +38,44 @@ catboost Dataset is provided, but PredictionValuesChange feature importance don'
 GPU   p3.2xlarge     2019-04-29
 
 ###warmup:
-###14.811 0.733044
-###xgboost 16.161 0.7325722
+###14.524 0.733044
+###xgboost 16.301 0.7325722
+###15.189 0.7298149
+###3.849 0.7256759
 0.1m:
-9.317 0.733044
-xgboost 2.394 0.7325722
+8.807 0.733044
+xgboost 2.381 0.7325722
+10.074 0.72985
+3.954 0.7256759
 1m:
-14.538 0.7494511
-xgboost 4.838 0.749577
+14.084 0.7494511
+xgboost 4.749 0.749577
+15.744 0.7661209
+10.501 0.7424434
 10m:
-56.955 0.7556837
-xgboost 12.928 0.7563275
+54.916 0.7556837
+xgboost 12.947 0.7565877
+64.75 0.7742306
+134.913 0.7500668
 
 ###warmup:
-###15.599 0.733044
-###xgboost 16.066 0.7325722
+###14.579 0.733044
+###xgboost 16.245 0.7325722
+###15.17 0.7298311
+###3.857 0.7256759
 0.1m:
-8.779 0.733044
-xgboost 2.417 0.7325722
+8.973 0.733044
+xgboost 2.389 0.7325722
+9.735 0.7297767
+3.875 0.7256759
 1m:
-14.166 0.7494511
-xgboost 4.856 0.749577
+14.261 0.7494511
+xgboost 4.794 0.749577
+15.737 0.766098
+10.44 0.7424434
 10m:
-78.935 0.7556837
-xgboost 13.032 0.7565236
+54.454 0.7556837
+xgboost 12.998 0.7564074
+64.481 0.7742452
+135.2 0.7500668
 
-
-catboost:
-
-##warmup:
-##3.962 0.7256759
-0.1m:
-3.927 0.7256759
-1m:
-10.612 0.7424434
-10m:
-135.842 0.7500668
-
-##warmup:
-##3.941 0.7256759
-0.1m:
-3.909 0.7256759
-1m:
-10.7 0.7424434
-10m:
-136.684 0.7500668
-
-
-lightgbm:
-
-###warmup:
-###15.09 0.729762
-0.1m:
-9.922 0.7298525
-1m:
-16.383 0.7661406
-10m:
-67.744 0.7742429
-
-###warmup:
-###15.088 0.7297918
-0.1m:
-10.175 0.7298516
-1m:
-15.896 0.7660008
-10m:
-67.887 0.7741793
