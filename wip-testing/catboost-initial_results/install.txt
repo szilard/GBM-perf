@@ -1,8 +1,0 @@
-
-
-devtools::install_github('catboost/catboost', subdir = 'catboost/R-package')
-
-
-
-
-
