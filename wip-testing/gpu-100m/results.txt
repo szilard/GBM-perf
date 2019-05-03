@@ -1,0 +1,198 @@
+
+nvidia-docker run --rm -it gbmperf_gpu R
+
+--------
+
+xgboost
+
+warmup:
+[0] Tesla V100-SXM2-16GB | 38'C,   0 % |  1042 / 16160 MB | root(1032M)
+[0] Tesla V100-SXM2-16GB | 38'C,   0 % |  1042 / 16160 MB | root(1032M)
+
+
+[0] Tesla V100-SXM2-16GB | 39'C,  82 % |  4768 / 16160 MB | root(4758M)
+[0] Tesla V100-SXM2-16GB | 39'C,  78 % |  4768 / 16160 MB | root(4758M)
+[0] Tesla V100-SXM2-16GB | 39'C,  71 % |  4768 / 16160 MB | root(4758M)
+[0] Tesla V100-SXM2-16GB | 39'C,  76 % |  4768 / 16160 MB | root(4758M)
+[0] Tesla V100-SXM2-16GB | 39'C,  83 % |  4768 / 16160 MB | root(4758M)
+[0] Tesla V100-SXM2-16GB | 39'C,  79 % |  4768 / 16160 MB | root(4758M)
+[0] Tesla V100-SXM2-16GB | 39'C,  73 % |  4768 / 16160 MB | root(4758M)
+[0] Tesla V100-SXM2-16GB | 39'C,  81 % |  4768 / 16160 MB | root(4758M)
+[0] Tesla V100-SXM2-16GB | 39'C,  76 % |  4768 / 16160 MB | root(4758M)
+[0] Tesla V100-SXM2-16GB | 39'C,  82 % |  4768 / 16160 MB | root(4758M)
+[0] Tesla V100-SXM2-16GB | 39'C,  74 % |  4768 / 16160 MB | root(4758M)
+[0] Tesla V100-SXM2-16GB | 39'C,  81 % |  4768 / 16160 MB | root(4758M)
+[0] Tesla V100-SXM2-16GB | 39'C,  83 % |  4768 / 16160 MB | root(4758M)
+[0] Tesla V100-SXM2-16GB | 39'C,  79 % |  4768 / 16160 MB | root(4758M)
+[0] Tesla V100-SXM2-16GB | 39'C,  73 % |  4768 / 16160 MB | root(4758M)
+[0] Tesla V100-SXM2-16GB | 39'C,  75 % |  4768 / 16160 MB | root(4758M)
+[0] Tesla V100-SXM2-16GB | 39'C,  80 % |  4768 / 16160 MB | root(4758M)
+[0] Tesla V100-SXM2-16GB | 39'C,  82 % |  4768 / 16160 MB | root(4758M)
+[0] Tesla V100-SXM2-16GB | 39'C,  76 % |  4768 / 16160 MB | root(4758M)
+[0] Tesla V100-SXM2-16GB | 39'C,  76 % |  7462 / 16160 MB | root(7452M)
+[0] Tesla V100-SXM2-16GB | 42'C,  99 % |  6672 / 16160 MB | root(6662M)
+[0] Tesla V100-SXM2-16GB | 43'C,  94 % |  6672 / 16160 MB | root(6662M)
+[0] Tesla V100-SXM2-16GB | 43'C,  98 % |  6672 / 16160 MB | root(6662M)
+[0] Tesla V100-SXM2-16GB | 43'C,  98 % |  6672 / 16160 MB | root(6662M)
+[0] Tesla V100-SXM2-16GB | 44'C,  98 % |  6672 / 16160 MB | root(6662M)
+[0] Tesla V100-SXM2-16GB | 44'C,  94 % |  6672 / 16160 MB | root(6662M)
+[0] Tesla V100-SXM2-16GB | 44'C,  94 % |  6672 / 16160 MB | root(6662M)
+[0] Tesla V100-SXM2-16GB | 45'C,  94 % |  6672 / 16160 MB | root(6662M)
+[0] Tesla V100-SXM2-16GB | 45'C,  96 % |  6672 / 16160 MB | root(6662M)
+[0] Tesla V100-SXM2-16GB | 44'C,  98 % |  6672 / 16160 MB | root(6662M)
+[0] Tesla V100-SXM2-16GB | 45'C,  95 % |  6672 / 16160 MB | root(6662M)
+[0] Tesla V100-SXM2-16GB | 45'C,  99 % |  6672 / 16160 MB | root(6662M)
+[0] Tesla V100-SXM2-16GB | 46'C,  96 % |  6672 / 16160 MB | root(6662M)
+[0] Tesla V100-SXM2-16GB | 46'C,  95 % |  6672 / 16160 MB | root(6662M)
+[0] Tesla V100-SXM2-16GB | 46'C,  95 % |  6672 / 16160 MB | root(6662M)
+[0] Tesla V100-SXM2-16GB | 46'C,  95 % |  6672 / 16160 MB | root(6662M)
+[0] Tesla V100-SXM2-16GB | 46'C,  96 % |  6672 / 16160 MB | root(6662M)
+[0] Tesla V100-SXM2-16GB | 46'C,  94 % |  6672 / 16160 MB | root(6662M)
+[0] Tesla V100-SXM2-16GB | 46'C,  95 % |  6672 / 16160 MB | root(6662M)
+[0] Tesla V100-SXM2-16GB | 46'C,  97 % |  6672 / 16160 MB | root(6662M)
+[0] Tesla V100-SXM2-16GB | 47'C,  95 % |  6672 / 16160 MB | root(6662M)
+[0] Tesla V100-SXM2-16GB | 47'C,  95 % |  6672 / 16160 MB | root(6662M)
+[0] Tesla V100-SXM2-16GB | 44'C,   0 % |  6672 / 16160 MB | root(6662M)
+[0] Tesla V100-SXM2-16GB | 44'C,   0 % |  6672 / 16160 MB | root(6662M)
+
+83.678 >
+
+0.7556472
+
+-----------
+
+h2o
+
+warmup
+[0] Tesla V100-SXM2-16GB | 38'C,   0 % |   444 / 16160 MB | root(434M)
+[0] Tesla V100-SXM2-16GB | 38'C,   0 % |   444 / 16160 MB | root(434M)
+
+
+[0] Tesla V100-SXM2-16GB | 40'C,   0 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 42'C, 100 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 43'C, 100 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 44'C, 100 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 45'C, 100 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 45'C, 100 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 45'C, 100 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 46'C, 100 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 46'C, 100 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 46'C, 100 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 45'C,  68 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 44'C,  11 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 44'C,  31 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 44'C,  93 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 44'C,  62 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 44'C,  95 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 44'C,  35 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 46'C, 100 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 47'C, 100 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 46'C, 100 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 47'C, 100 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 47'C, 100 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 47'C, 100 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 46'C, 100 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 45'C,   0 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 45'C,  60 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 45'C,  46 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 45'C,  98 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 47'C, 100 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 47'C, 100 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 47'C, 100 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 48'C, 100 % |  4246 / 16160 MB | root(4236M)
+[0] Tesla V100-SXM2-16GB | 48'C, 100 % |  4246 / 16160 MB | root(4236M)
+
+RAM usage increases though from 6GB to 36GB
+
+270.292 >
+
+0.7546421
+
+-----------------
+
+lightgbm
+
+0] Tesla V100-SXM2-16GB | 38'C,   7 % |  3070 / 16160 MB | root(3058M)
+[0] Tesla V100-SXM2-16GB | 38'C,   6 % |  3070 / 16160 MB | root(3058M)
+[0] Tesla V100-SXM2-16GB | 38'C,   4 % |  3070 / 16160 MB | root(3058M)
+[0] Tesla V100-SXM2-16GB | 38'C,   3 % |  3070 / 16160 MB | root(3058M)
+[0] Tesla V100-SXM2-16GB | 38'C,   3 % |  3070 / 16160 MB | root(3058M)
+[0] Tesla V100-SXM2-16GB | 38'C,   0 % |  3070 / 16160 MB | root(3058M)
+[0] Tesla V100-SXM2-16GB | 38'C,   5 % |  3070 / 16160 MB | root(3058M)
+[0] Tesla V100-SXM2-16GB | 38'C,   1 % |  3070 / 16160 MB | root(3058M)
+[0] Tesla V100-SXM2-16GB | 38'C,   4 % |  3070 / 16160 MB | root(3058M)
+[0] Tesla V100-SXM2-16GB | 38'C,  41 % |  3070 / 16160 MB | root(3058M)
+[0] Tesla V100-SXM2-16GB | 38'C,   8 % |  3070 / 16160 MB | root(3058M)
+[0] Tesla V100-SXM2-16GB | 38'C,   7 % |  3070 / 16160 MB | root(3058M)
+[0] Tesla V100-SXM2-16GB | 38'C,   1 % |  3070 / 16160 MB | root(3058M)
+[0] Tesla V100-SXM2-16GB | 39'C,   0 % |  3070 / 16160 MB | root(3058M)
+[0] Tesla V100-SXM2-16GB | 39'C,  20 % |  3070 / 16160 MB | root(3058M)
+[0] Tesla V100-SXM2-16GB | 39'C,   7 % |  3070 / 16160 MB | root(3058M)
+[0] Tesla V100-SXM2-16GB | 39'C,   3 % |  3070 / 16160 MB | root(3058M)
+
+RAM usage increases though from 18G to 24G
+also uses all CPU cores 100% 
+
+404.215 >
+
+0.7737832
+
+
+-----------
+
+catboost
+
+warmup:
+[0] Tesla V100-SXM2-16GB | 36'C,   0 % |     0 / 16160 MB |
+[0] Tesla V100-SXM2-16GB | 36'C,   0 % |     0 / 16160 MB |
+[0] Tesla V100-SXM2-16GB | 36'C,   0 % |     0 / 16160 MB |
+[0] Tesla V100-SXM2-16GB | 37'C,   1 % | 15376 / 16160 MB | root(15366M)
+[0] Tesla V100-SXM2-16GB | 37'C,   0 % |   452 / 16160 MB | root(442M)
+[0] Tesla V100-SXM2-16GB | 38'C,   0 % |   452 / 16160 MB | root(442M)
+[0] Tesla V100-SXM2-16GB | 38'C,   0 % |   452 / 16160 MB | root(442M)
+
+
+[0] Tesla V100-SXM2-16GB | 39'C,   0 % |   452 / 16160 MB | root(442M)
+[0] Tesla V100-SXM2-16GB | 39'C,   0 % |   452 / 16160 MB | root(442M)
+[0] Tesla V100-SXM2-16GB | 39'C,   0 % |   452 / 16160 MB | root(442M)
+[0] Tesla V100-SXM2-16GB | 39'C,   0 % |   452 / 16160 MB | root(442M)
+[0] Tesla V100-SXM2-16GB | 39'C,   0 % |   452 / 16160 MB | root(442M)
+[0] Tesla V100-SXM2-16GB | 39'C,   0 % | 15376 / 16160 MB | root(15366M)
+[0] Tesla V100-SXM2-16GB | 39'C,  27 % | 15376 / 16160 MB | root(15366M)
+[0] Tesla V100-SXM2-16GB | 39'C,  22 % | 15376 / 16160 MB | root(15366M)
+[0] Tesla V100-SXM2-16GB | 39'C,  23 % | 15376 / 16160 MB | root(15366M)
+[0] Tesla V100-SXM2-16GB | 39'C,  51 % | 15376 / 16160 MB | root(15366M)
+[0] Tesla V100-SXM2-16GB | 39'C,   0 % | 15376 / 16160 MB | root(15366M)
+[0] Tesla V100-SXM2-16GB | 39'C,   0 % | 15376 / 16160 MB | root(15366M)
+[0] Tesla V100-SXM2-16GB | 39'C,   0 % | 15376 / 16160 MB | root(15366M)
+[0] Tesla V100-SXM2-16GB | 39'C,   0 % | 15376 / 16160 MB | root(15366M)
+[0] Tesla V100-SXM2-16GB | 39'C,   0 % | 15376 / 16160 MB | root(15366M)
+[0] Tesla V100-SXM2-16GB | 39'C,  19 % | 15376 / 16160 MB | root(15366M)
+[0] Tesla V100-SXM2-16GB | 39'C,   0 % | 15376 / 16160 MB | root(15366M)
+
+RAM usage increases though from 8G to 22G
+
+
+Application terminated with error: ??+0 (0x7F7F3B86FD32)
+??+0 (0x7F7F3B86DDBE)
+??+0 (0x7F7F3B86CAB5)
+??+0 (0x7F7F3B86D4C8)
+??+0 (0x7F7F3AAC2823)
+??+0 (0x7F7F3AAC26D7)
+??+0 (0x7F7F44EA56BA)
+clone+109 (0x7F7F44BDB41D)
+
+(NCudaLib::TOutOfMemoryError) catboost/cuda/cuda_lib/memory_pool/stack_like_memory_pool.h:302: Error: Out of memory. Requested 381.4697266 MB; Free 283.5054197 MB
+uncaught exception:
+    address -> 0x1b842d008
+    what() -> "catboost/cuda/cuda_lib/memory_pool/stack_like_memory_pool.h:302: Error: Out of memory. Requested 381.4697266 MB; Free 283.5054197 MB"
+    type -> NCudaLib::TOutOfMemoryError
+
+ *** caught segfault ***
+address (nil), cause 'unknown'
+
+
+
+
+
+
