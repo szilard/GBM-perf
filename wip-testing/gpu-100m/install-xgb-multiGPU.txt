@@ -1,0 +1,34 @@
+
+https://docs.nvidia.com/deeplearning/sdk/nccl-install-guide/index.html
+
+
+In order to download NCCL, ensure you are registered for the NVIDIA Developer Program.
+nccl-repo-ubuntu1604-2.4.2-ga-cuda9.2_1-1_amd64.deb
+
+
+sudo dpkg -i nccl-repo-ubuntu1604-2.4.2-ga-cuda9.2_1-1_amd64.deb
+
+sudo apt update
+sudo apt install libnccl2 libnccl-dev
+
+####
+
+apt install nvidia-cuda-toolkit
+
+
+
+git clone --recursive https://github.com/dmlc/xgboost && \
+    cd xgboost && \
+    mkdir build && cd build && cmake .. -DUSE_CUDA=ON -DR_LIB=ON -DUSE_NCCL=ON && \
+    make install -j
+
+
+[ 84%] Building CUDA object src/CMakeFiles/objxgboost.dir/common/hist_util.cu.o
+[ 85%] Building CUDA object src/CMakeFiles/objxgboost.dir/common/common.cu.o
+[ 88%] Building CUDA object src/CMakeFiles/objxgboost.dir/objective/multiclass_obj.cu.o
+nvcc fatal   : Unsupported gpu architecture 'compute_60'
+[ 87%] Building CXX object src/CMakeFiles/objxgboost.dir/tree/updater_sync.cc.o
+src/CMakeFiles/objxgboost.dir/build.make:621: recipe for target 'src/CMakeFiles/objxgboost.dir/common/host_device_vector.cu.o' failed
+make[2]: *** [src/CMakeFiles/objxgboost.dir/common/host_device_vector.cu.o] Error 1
+
+

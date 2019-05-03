@@ -48,3 +48,21 @@ uncaught exception:
     type -> NCudaLib::TOutOfMemoryError
 
 
+
+smaller size:
+
+10M
+
+1 GPUs:
+
+126.405 >
+
+0.7500668
+
+
+4 GPUs:
+
+90.478 >
+
+0.7485892
+

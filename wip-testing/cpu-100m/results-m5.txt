@@ -1,0 +1,40 @@
+
+
+docker run --rm -ti gbmperf_cpu taskset -c 0-23 bash
+
+
+R --vanilla < 1-h2o.R
+
+524.348 >
+
+0.7747512
+
+
+
+R --vanilla < 2-xgboost.R
+
+509.165 >
+
+0.756058
+
+
+
+R --vanilla < 3-lightgbm.R
+
+312.752 >
+>
+0.7742657
+
+
+
+R --vanilla < 4-catboost.R
+
+
+3357.599 >
+>
+0.7229581
+
+
+
+
+
