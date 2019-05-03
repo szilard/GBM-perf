@@ -1,0 +1,88 @@
+
+docker run -it gbmperf_cpu taskset -c 0-15 R
+
+
+--------
+
+d_train <- fread("train-10m.csv", showProgress=FALSE)
+d_test <- fread("test.csv", showProgress=FALSE)
+## 1.5G
+
+d_train <- rbindlist(list(d_train, d_train, d_train, d_train, d_train, d_train, d_train, d_train, d_train, d_train))
+## 7.5G / gc 7G
+
+X_train_test <- sparse.model.matrix(dep_delayed_15min ~ .-1, data = rbindlist(list(d_train, d_test)))
+## slow***
+## 47G / gc 18G
+
+n1 <- nrow(d_train)
+n2 <- nrow(d_test)
+X_train <- X_train_test[1:n1,]
+X_test <- X_train_test[(n1+1):(n1+n2),]
+## 29G
+
+dxgb_train <- xgb.DMatrix(data = X_train, label = ifelse(d_train$dep_delayed_15min=='Y',1,0))
+## 46G / gc 35G
+
+rm(d_train, X_train_test, X_train)
+## gc 10G
+
+
+  md <- xgb.train(data = dxgb_train, 
+## max 25G / gc 25G
+
+683.275 >
+
+0.756058
+
+--------
+
+dlgb_train <- lgb.Dataset(data = X_train, label = ifelse(d_train$dep_delayed_15min=='Y',1,0))
+rm(d_train, X_train_test, X_train)
+## gc 13G
+
+  md <- lgb.train(data = dlgb_train, 
+## max 18G / gc 9GB
+
+416.943 >
+
+0.7742657
+
+--------
+
+dx_train0 <- h2o.importFile("train-10m.csv")
+dx_train <- h2o.rbind(dx_train0, dx_train0, dx_train0, dx_train0, dx_train0, dx_train0, dx_train0, dx_train0, dx_train0, dx_train0)
+dx_test <- h2o.importFile("test.csv")
+## 4G (h2o compresses the data)
+
+ md <- h2o.gbm(x = Xnames, y = "dep_delayed_15min", training_frame = dx_train, 
+## max 12G
+
+882.199 >
+
+0.7747782
+
+-------
+
+d_train <- d_train_test[(1:nrow(d_train)),]
+d_test <-  d_train_test[(nrow(d_train)+1):(nrow(d_train)+nrow(d_test)),]
+## 12G / gc 8G
+
+dx_train <- catboost.load_pool(d_train[,1:p], label = d_train$dep_delayed_15min)
+dx_test  <- catboost.load_pool(d_test[,1:p])
+## 29G / gc 15G
+
+rm(d_train, d_train_test)
+## 8G
+
+ md <- catboost.train(learn_pool = dx_train, test_pool = NULL, params = params)
+## max 150GB
+## 18G / gc 18G
+
+5420.555 >
+
+0.7229581  ??!!
+
+
+
+
