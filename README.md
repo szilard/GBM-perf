@@ -85,6 +85,7 @@ for smaller data high-frequency CPU (c5) is the best. Nevertheless, **the rankin
 training time stays the same** for a given data size when changing CPU. More details
 [here](https://github.com/szilard/GBM-perf/issues/13).
 
+
 ### Multi-socket CPUs
 
 Most high-end servers have nowadays more than 1 CPU on the motherboard. For example c5.18xlarge has 2 CPUs
@@ -135,10 +136,27 @@ h2o xgboost on GPU is slower than native xgboost on GPU and also adds
 a lot of overhead in RAM usage ("extra RAM") (this must be due to some pre- and post-processing of data in h2o as one can
 see by looking at the GPU utilization patterns as discussed next).
 
+More details [here](https://github.com/szilard/GBM-perf/issues/14).
+
 
 ### GPU utilization patterns
 
-...
+For the GPU runs, it is interesting to observe the GPU utilization patterns and also the CPU utilization meanwhile
+(usually 1 CPU thread doing coordination work with the GPU etc).
+
+xgboost uses GPU at ~80% and 1 CPU core at 100%.
+
+h2o xgboost shows 3 phases: first only using CPU at ~30% (all cores) and no GPU, then GPU at ~70% and CPU at 100%, then
+no GPU and CPU at 100%. This means 3-4x longer training time vs native xgboost. 
+
+lightgbm uses GPU at 5-10% and meanwhile CPU at 100% (all cores).
+
+catboost uses GPU at ~80% and 1 CPU core at 100%. Unlike the other tools catboost takes all the GPU memory available when it
+starts training no matter of data size (so we don't know how much memory it needs by using the standard monitoring tools).
+
+More details [here](https://github.com/szilard/GBM-perf/issues/11).
+
+
 
 ### Multiple GPUs
 
