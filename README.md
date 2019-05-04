@@ -158,12 +158,6 @@ More details [here](https://github.com/szilard/GBM-perf/issues/11).
 
 
 
-### Multiple GPUs
-
-...
-
-
-
 ## Recommendations
 
 If you **don't have a GPU, lightgbm** (CPU) trains the fastest.
