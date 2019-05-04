@@ -128,7 +128,8 @@ lightgbm      | 400         | 0.774     | 3              | 6
 catboost      | crash (OOM) |           | >16            | 14
 
 Note that catboost CPU achieves lower AUC vs the 10M dataset (might be due to the way of binning or some other approximation).
-catboost GPU crashes out-of-memory on the 16GB GPU. 
+catboost GPU crashes out-of-memory on the 16GB GPU (while this doesn't tell us how fast it would run with more GPU RAM, 
+the results with 10M data indicate that it would be slow compared to the other libs).
 
 h2o xgboost on GPU is slower than native xgboost on GPU and also adds
 a lot of overhead in RAM usage ("extra RAM") (this must be due to some pre- and post-processing of data in h2o as one can
