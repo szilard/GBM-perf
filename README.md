@@ -111,7 +111,7 @@ while the "extra RAM" is the additional RAM used by some of the tools (on the CP
 
 CPU (m5.12xlarge):
 
-              | time [s]   | AUC       | RAM train [GB]
+Tool          | time [s]   | AUC       | RAM train [GB]
 --------------|------------|-----------|-------------------------
 h2o           | 520        |  0.775    |   8
 xgboost       | 510        |  0.751    |  15
@@ -120,7 +120,7 @@ catboost      | 3360       |  0.723 ?! |  140
 
 GPU (Tesla V100):
 
-              | time [s]    |  AUC      | GPU mem [GB]   | extra RAM [GB]
+Tool          | time [s]    |  AUC      | GPU mem [GB]   | extra RAM [GB]
 --------------|-------------|-----------|----------------|----------------
 h2o xgboost   | 270         | 0.755     | 4              | 30
 xgboost       | 80          | 0.756     | 6              | 0
