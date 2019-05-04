@@ -81,8 +81,8 @@ c5.9xlarge (Xeon Platinum 8124M 3.00GHz, 36 cores) or more number of cores
 m5.12xlarge (Xeon Platinum 8175M 2.50GHz, 48 cores).
 
 c5 and m5 are typically 20-50% faster than r4, for larger data more cores (m5) is the best, 
-for smaller data high-frequency CPU (c5) is the best. Nevertheless, *the ranking of libs by
-training time stays the same* for a given data size when changing CPU. More details
+for smaller data high-frequency CPU (c5) is the best. Nevertheless, **the ranking of libs by
+training time stays the same** for a given data size when changing CPU. More details
 [here](https://github.com/szilard/GBM-perf/issues/13).
 
 ### Multi-socket CPUs
@@ -98,15 +98,41 @@ you will pay more money for a larger instance and get actually much slower train
 [here](https://github.com/szilard/GBM-perf/issues/13) and 
 [here](https://github.com/szilard/GBM-multicore).
 
-### RAM usage
 
-...
+### 100M records and RAM usage
+
+Results on fastest CPU (most cores, 1 socket, see why above) and fastest GPU on EC2.
+The data is obtained by replicating the 10M dataset 10x, so the AUC is not indicative of a learning curve, just used to
+see if it is equal approximately the 10M AUC (it should be).
+
+For the CPU runs, "RAM train" is measured as the increase in memory usage during training (on top of the RAM used by the data). 
+For the GPU runs, the "GPU memory" usage is the total GPU memory used (cannot separate training from copies of the data),
+while the "extra RAM" is the additional RAM used by some of the tools (on the CPU) if any.
+
+CPU (m5.12xlarge):
+
+              | time [s]   | AUC       | RAM train [GB]
+--------------|------------|-----------|-------------------------
+h2o           | 520        |  0.775    |   8
+xgboost       | 510        |  0.751    |  15
+lightgbm      | 310        |  0.774    |   5
+catboost      | 3360       |  0.723 ?! |  140
+
+GPU (Tesla V100):
+
+              | time [s]    |  AUC      | GPU mem [GB]   | extra RAM [GB]
+--------------|-------------|-----------|----------------|----------------
+h2o xgboost   | 270         | 0.755     | 4              | 30
+xgboost       | 80          | 0.756     | 6              | 0
+lightgbm      | 400         | 0.774     | 3              | 6
+catboost      | crash (OOM) |           | >16            | 14
+
+Note that catboost CPU achieves lower AUC vs the 10M dataset (might be due to the way of binning or some other approximation).
+catboost GPU crashes out-of-memory on the 16GB GPU. h2o xgboost on GPU is slower than native xgboost on GPU and also adds
+a lot of overhead in RAM usage ("extra RAM") (this must be due to some pre- and post-processing of data in h2o as one can
+see by looking at the GPU utilization patterns as discussed next).
 
 ### GPU utilization patterns
-
-...
-
-### 100M records
 
 ...
 
