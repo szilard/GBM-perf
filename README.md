@@ -98,6 +98,21 @@ you will pay more money for a larger instance and get actually much slower train
 [here](https://github.com/szilard/GBM-perf/issues/13) and 
 [here](https://github.com/szilard/GBM-multicore).
 
+### RAM usage
+
+...
+
+### GPU utilization patterns
+
+...
+
+### 100M records
+
+...
+
+### Multiple GPUs
+
+...
 
 
 
