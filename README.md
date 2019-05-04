@@ -69,6 +69,37 @@ catboost        |   3.9        |    10       |    135        |   0.742   |   0.7
 
 
 
+## Additional results 
+
+Some additional studies made "manually" (not fully automated with docker as the main benchmark above).
+Thanks [@Laurae2](https://github.com/Laurae2) for lots of help with some if these. 
+
+### Faster CPUs
+
+AWS has now better CPUs than r4.8xlarge (Xeon E5-2686 v4 2.30GHz, 32 cores), for example with higher CPU frequency 
+c5.9xlarge (Xeon Platinum 8124M 3.00GHz, 36 cores) or more number of cores 
+m5.12xlarge (Xeon Platinum 8175M 2.50GHz, 48 cores).
+
+c5 and m5 are typically 20-50% faster than r4, for larger data more cores (m5) is the best, 
+for smaller data high-frequency CPU (c5) is the best. Nevertheless, the ranking of libs by
+training time stays the same for a given data size when changing CPU. More details
+[here](https://github.com/szilard/GBM-perf/issues/13).
+
+### Multi-socket CPUs
+
+Most high-end servers have nowadays more than 1 CPU on the motherboard. For example c5.18xlarge has 2 CPUs
+(2x of the c5.9xlarge CPUs mentioned above), same for r4.16xlarge or m5.24xlarge. There are even EC2 instances with 
+4 CPUs e.g. x1.32xlarge (128 cores) or more.
+
+One would think more CPU cores means higher training speed, though because of RAM topology and NUMA, most of the above tools
+run slower on 2 CPUs than 1 CPU!! (with the exception of h2o for large data). The slowdown might be pretty 
+dramatic, e.g. 2x for lightgbm or 3-5x for xgboost for the data in this benchmark. If you don't know about this, 
+you will pay more money for a larger instance and get actually much slower training. More details
+[here](https://github.com/szilard/GBM-perf/issues/13) and 
+[here](https://github.com/szilard/GBM-multicore).
+
+
+
 
 ## Recommendations
 
