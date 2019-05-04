@@ -103,12 +103,12 @@ you will pay more money for a larger instance and get actually much slower train
 
 ## Recommendations
 
-If you don't have a GPU, lightgbm (CPU) trains the fastest.
+If you **don't have a GPU, lightgbm** (CPU) trains the fastest.
 
-If you have a GPU, xgboost (GPU) is also very fast (and depending on the data, your hardware etc.
+If you **have a GPU, xgboost** (GPU) is also very fast (and depending on the data, your hardware etc.
 often faster than the above mentioned lightgbm on CPU).
 
-If you consider deployment, h2o has the best ways to deploy as a real-time
+If you consider deployment, **h2o has the best ways to deploy** as a real-time
 (fast scoring) application.
 
 Note, however, there are a lot more other criteria to consider when you choose which tool
