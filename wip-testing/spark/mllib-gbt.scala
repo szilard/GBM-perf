@@ -12,7 +12,7 @@ val d_test = spark.read.parquet("spark_ohe-test.parquet").cache()
 
 val rf = new GBTClassifier().setLabelCol("label").setFeaturesCol("features").
   setMaxIter(10).setMaxDepth(10).setStepSize(0.1).
-  setMaxBins(100).setMaxMemoryInMB(100*1024)
+  setMaxBins(100).setMaxMemoryInMB(10240)     // max possible setMaxMemoryInMB (otherwise errors out)
 val pipeline = new Pipeline().setStages(Array(rf))
 
 val now = System.nanoTime
