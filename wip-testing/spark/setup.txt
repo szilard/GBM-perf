@@ -1,0 +1,18 @@
+
+wget http://apache.cs.utah.edu/spark/spark-2.4.2/spark-2.4.2-bin-hadoop2.7.tgz
+
+
+wget https://s3.amazonaws.com/benchm-ml--main/train-0.1m.csv && \
+wget https://s3.amazonaws.com/benchm-ml--main/train-1m.csv && \
+wget https://s3.amazonaws.com/benchm-ml--main/train-10m.csv && \
+wget https://s3.amazonaws.com/benchm-ml--main/test.csv
+
+
+
+spark-2.4.2-bin-hadoop2.7/bin/spark-shell --master local[*] --driver-memory 100G --executor-memory 100G 
+
+
+
+
+
+
