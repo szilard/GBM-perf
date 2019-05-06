@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SPARK_ROOT=spark-2.4.2-bin-hadoop2.7
+SPARK_ROOT=~/spark-2.4.2-bin-hadoop2.7
 
 for SIZE in 0.1m 1m 10m; do
    ln -sf train-${SIZE}.csv train.csv
