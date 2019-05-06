@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SPARK_ROOT=spark-2.4.2-bin-hadoop2.7
+SPARK_ROOT=~/spark-2.4.2-bin-hadoop2.7
 
 TOOL=$1   ## mllib-gbt 
 SIZE=$2   ## 0.1m 1m 10m

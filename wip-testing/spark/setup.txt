@@ -9,7 +9,7 @@ wget https://s3.amazonaws.com/benchm-ml--main/test.csv
 
 
 
-spark-2.4.2-bin-hadoop2.7/bin/spark-shell --master local[*] --driver-memory 100G --executor-memory 100G 
+~/spark-2.4.2-bin-hadoop2.7/bin/spark-shell --master local[*] --driver-memory 100G --executor-memory 100G 
 
 
 
