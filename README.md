@@ -103,17 +103,21 @@ you will pay more money for a larger instance and get actually much slower train
 ### Spark MLlib 
 
 In my previous broader benchmark of ML libraries, Spark MLlib GBT (and random forest as well) performed very poorly 
-(at least 10x runtime, 10x memory usage and an accuracy issue for larger data) and therefore
+(10-100x running time vs top libs, 10-100x memory usage and an accuracy issue for larger data) and therefore it
 was not included in the current GBM/GBT benchmark. However, people might still be interested if there has been any
 improvements since 2016 and Spark 2.0.
 
 With Spark 2.4.2 as of 2019-05-05 there seems to have been improvements in the 
-memory usage, it does not crash anymore out-of-memory on the 10M data, though it still uses more RAM than the other
+memory usage, it does not crash anymore out-of-memory on the 10M data, though it still uses way more RAM than the other
 tools (it's hard to measure exact RAM usage, as Spark is filling up all the available RAM quickly, not doing garbage
-collection unless it's force to). Also, the accuracy issue for larger data has been fixed.
+collection unless it's forced to). Also, the accuracy issue for larger data has been fixed.
 Nevertheless, Spark MLlib GBT is still very slow:
 
-
+      | time lgbm [s] | time spark [s] | ratio | AUC lgbm | AUC spark
+------|---------------|----------------|-------|----------|-------------
+0.1m  |           2.4 |           1020 | 425   |    0.730 | 0.721
+1m              | 5.2 |           1380 | 265   |    0.764 | 0.748
+10m   |            42 |           8390 | 200   |    0.774 | 0.755
 
 
 ### 100M records and RAM usage
