@@ -100,6 +100,22 @@ you will pay more money for a larger instance and get actually much slower train
 [here](https://github.com/szilard/GBM-multicore).
 
 
+### Spark MLlib 
+
+In my previous broader benchmark of ML libraries, Spark MLlib GBT (and random forest as well) performed very poorly 
+(at least 10x runtime, 10x memory usage and an accuracy issue for larger data) and therefore
+was not included in the current GBM/GBT benchmark. However, people might still be interested if there has been any
+improvements since 2016 and Spark 2.0.
+
+With Spark 2.4.2 as of 2019-05-05 there seems to have been improvements in the 
+memory usage, it does not crash anymore out-of-memory on the 10M data, though it still uses more RAM than the other
+tools (it's hard to measure exact RAM usage, as Spark is filling up all the available RAM quickly, not doing garbage
+collection unless it's force to). Also, the accuracy issue for larger data has been fixed.
+Nevertheless, Spark MLlib GBT is still very slow:
+
+
+
+
 ### 100M records and RAM usage
 
 Results on fastest CPU (most cores, 1 socket, see why above) and fastest GPU on EC2.

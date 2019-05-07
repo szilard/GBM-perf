@@ -21,7 +21,7 @@ fullDF.printSchema
 fullDF.show(5)
 
 
-val res = new RFormula().setFormula("dep_delayed_15min ~ .").fit(fullDF).transform(fullDF)
+val res = new RFormula().setFormula("dep_delayed_15min ~ . - isTrain").fit(fullDF).transform(fullDF)
 
 res.printSchema
 res.show(5)
