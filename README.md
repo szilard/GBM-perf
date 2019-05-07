@@ -1,7 +1,8 @@
 
 # GBM Performance
 
-Performance of the top/most widely used open source GBM implementations (h2o, xgboost, lightgbm, catboost) 
+Performance of the top/most widely used open source gradient boosting machines (GBM)/ boosted trees (GBDT)
+implementations (h2o, xgboost, lightgbm, catboost) 
 on the airline dataset (100K, 1M and 10M records) and with `100` trees, depth `10`, learning rate `0.1`.
 
 
