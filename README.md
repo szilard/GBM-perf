@@ -113,11 +113,13 @@ tools (it's hard to measure exact RAM usage, as Spark is filling up all the avai
 collection unless it's forced to). Also, the accuracy issue for larger data has been fixed.
 Nevertheless, Spark MLlib GBT is still very slow:
 
-      | time lgbm [s] | time spark [s] | ratio | AUC lgbm | AUC spark
+size  | time lgbm [s] | time spark [s] | ratio | AUC lgbm | AUC spark
 ------|---------------|----------------|-------|----------|-------------
-0.1m  |           2.4 |           1020 | 425   |    0.730 | 0.721
-1m              | 5.2 |           1380 | 265   |    0.764 | 0.748
-10m   |            42 |           8390 | 200   |    0.774 | 0.755
+100K  |           2.4 |           1020 | 425   |    0.730 | 0.721
+1M    |           5.2 |           1380 | 265   |    0.764 | 0.748
+10M   |            42 |           8390 | 200   |    0.774 | 0.755
+
+(compared vs lighgbm CPU, code [here](https://github.com/szilard/GBM-perf/tree/master/wip-testing/spark))
 
 
 ### 100M records and RAM usage
