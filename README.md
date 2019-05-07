@@ -128,7 +128,7 @@ bigger data would help, the answer in nope.
 
 ### 100M records and RAM usage
 
-Results on fastest CPU (most cores, 1 socket, see why above) and fastest GPU on EC2.
+Results on the fastest CPU (most cores, 1 socket, see above why this is the fastest) and the fastest GPU on EC2.
 The data is obtained by replicating the 10M dataset 10x, so the AUC is not indicative of a learning curve, just used to
 see if it is equal approximately the 10M AUC (it should be).
 
@@ -178,7 +178,7 @@ no GPU and CPU at 100%. This means 3-4x longer training time vs native xgboost.
 lightgbm uses GPU at 5-10% and meanwhile CPU at 100% (all cores).
 
 catboost uses GPU at ~80% and 1 CPU core at 100%. Unlike the other tools catboost takes all the GPU memory available when it
-starts training no matter of data size (so we don't know how much memory it needs by using the standard monitoring tools).
+starts training no matter of the data size (so we don't know how much memory it needs by using the standard monitoring tools).
 
 More details [here](https://github.com/szilard/GBM-perf/issues/11).
 
