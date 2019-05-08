@@ -10,10 +10,10 @@ val d_train = spark.read.parquet("spark_ohe-train.parquet").cache()
 val d_test = spark.read.parquet("spark_ohe-test.parquet").cache()
 (d_train.count(), d_test.count())
 
-val rf = new GBTClassifier().setLabelCol("label").setFeaturesCol("features").
+val gbm = new GBTClassifier().setLabelCol("label").setFeaturesCol("features").
   setMaxIter(100).setMaxDepth(10).setStepSize(0.1).
   setMaxBins(100).setMaxMemoryInMB(10240)     // max possible setMaxMemoryInMB (otherwise errors out)
-val pipeline = new Pipeline().setStages(Array(rf))
+val pipeline = new Pipeline().setStages(Array(gbm))
 
 val now = System.nanoTime
 val model = pipeline.fit(d_train)
