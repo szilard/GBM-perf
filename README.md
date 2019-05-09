@@ -179,6 +179,11 @@ size  | time lgbm [s] | time spark [s] | ratio | AUC lgbm | AUC spark
 So Spark MLlib GBT is still 100x slower than the top tools. In case you are wondering if more nodes or
 bigger data would help, the answer in nope.
 
+##### Spark MLlib on 100M records
+
+Besides being slow Spark also uses 100x RAM compared to the top tools. In fact, on 100M records 
+(20GB after being loaded from disk and cached in RAM) it
+crashes out-of-memory even on servers with 1 TB RAM, see details [here](https://github.com/szilard/GBM-perf/issues/18).
 
 
 ## Recommendations
