@@ -101,28 +101,6 @@ you will pay more money for a larger instance and get actually much slower train
 [here](https://github.com/szilard/GBM-multicore).
 
 
-### Spark MLlib 
-
-In my previous broader benchmark of ML libraries, Spark MLlib GBT (and random forest as well) performed very poorly 
-(10-100x running time vs top libs, 10-100x memory usage and an accuracy issue for larger data) and therefore it
-was not included in the current GBM/GBT benchmark. However, people might still be interested if there has been any
-improvements since 2016 and Spark 2.0.
-
-With Spark 2.4.2 as of 2019-05-05  the accuracy issue for larger data has been fixed, but the
-speed and the memory footprint did not improve:
-
-size  | time lgbm [s] | time spark [s] | ratio | AUC lgbm | AUC spark
-------|---------------|----------------|-------|----------|-------------
-100K  |           2.4 |           1020 | 425   |    0.730 | 0.721
-1M    |           5.2 |           1380 | 265   |    0.764 | 0.748
-10M   |            42 |           8390 | 200   |    0.774 | 0.755
-
-(compared to lighgbm CPU, Spark code [here](https://github.com/szilard/GBM-perf/tree/master/wip-testing/spark))
-
-So Spark MLlib GBT is still 100x slower than the top tools. In case you are wondering if more nodes or
-bigger data would help, the answer in nope.
-
-
 ### 100M records and RAM usage
 
 Results on the fastest CPU (most cores, 1 socket, see above why this is the fastest) and the fastest GPU on EC2.
@@ -178,6 +156,28 @@ catboost uses GPU at ~80% and 1 CPU core at 100%. Unlike the other tools catboos
 starts training no matter of the data size (so we don't know how much memory it needs by using the standard monitoring tools).
 
 More details [here](https://github.com/szilard/GBM-perf/issues/11).
+
+
+### Spark MLlib 
+
+In my previous broader benchmark of ML libraries, Spark MLlib GBT (and random forest as well) performed very poorly 
+(10-100x running time vs top libs, 10-100x memory usage and an accuracy issue for larger data) and therefore it
+was not included in the current GBM/GBT benchmark. However, people might still be interested if there has been any
+improvements since 2016 and Spark 2.0.
+
+With Spark 2.4.2 as of 2019-05-05  the accuracy issue for larger data has been fixed, but the
+speed and the memory footprint did not improve:
+
+size  | time lgbm [s] | time spark [s] | ratio | AUC lgbm | AUC spark
+------|---------------|----------------|-------|----------|-------------
+100K  |           2.4 |           1020 | 425   |    0.730 | 0.721
+1M    |           5.2 |           1380 | 265   |    0.764 | 0.748
+10M   |            42 |           8390 | 200   |    0.774 | 0.755
+
+(compared to lighgbm CPU, Spark code [here](https://github.com/szilard/GBM-perf/tree/master/wip-testing/spark))
+
+So Spark MLlib GBT is still 100x slower than the top tools. In case you are wondering if more nodes or
+bigger data would help, the answer in nope.
 
 
 
