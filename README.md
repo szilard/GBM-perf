@@ -108,11 +108,8 @@ In my previous broader benchmark of ML libraries, Spark MLlib GBT (and random fo
 was not included in the current GBM/GBT benchmark. However, people might still be interested if there has been any
 improvements since 2016 and Spark 2.0.
 
-With Spark 2.4.2 as of 2019-05-05 there seems to have been improvements in the 
-memory usage, it does not crash anymore out-of-memory on the 10M data, though it still uses way more RAM than the other
-tools (it's hard to measure exact RAM usage, as Spark is filling up all the available RAM quickly, not doing garbage
-collection unless it's forced to). Also, the accuracy issue for larger data has been fixed.
-Nevertheless, Spark MLlib GBT is still very slow:
+With Spark 2.4.2 as of 2019-05-05  the accuracy issue for larger data has been fixed, but the
+speed and the memory footprint did not improve:
 
 size  | time lgbm [s] | time spark [s] | ratio | AUC lgbm | AUC spark
 ------|---------------|----------------|-------|----------|-------------
