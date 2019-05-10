@@ -182,7 +182,7 @@ bigger data would help, the answer in nope (see below).
 #### Spark MLlib on 100M records
 
 Besides being slow, Spark also uses 100x RAM compared to the top tools. In fact, on 100M records 
-(20GB after being loaded from disk and cached in RAM) it crashes out-of-memory even on servers with 1 TB RAM.
+(20GB after being loaded from disk and cached in RAM) it crashes out-of-memory even on servers with almost 1 TB RAM.
 
       |       | 100M      |       |            | 10M      |       |  
 ----- | ----- | --------- | ----- | ---------- | -------- | ----- | --
