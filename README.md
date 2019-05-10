@@ -190,7 +190,7 @@ trees | depth | time [s]  | AUC   | RAM [GB]   | time [s] | AUC   | RAM [GB]
 1     | 1     | 1150      | 0.634 | 620        | 70       | 0.635 | 110
 1     | 10    | 1350      | 0.712 | 620        | 90       | 0.712 | 112
 10    | 10    | 7850      | 0.731 | 780        | 830      | 0.731 | 125
-100   | 10    | crash OOM |       | >960 (OOM) | 8070     | 0.755 | 230
+100   | 10    | crash OOM |       | >960 (OOM) | 8390     | 0.755 | 230
 
 (100M ran on x1e.8xlarge [32 cores, 960GB RAM], 10M ran on r4.8xlarge [32 cores, 240GB RAM])
 
