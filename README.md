@@ -194,6 +194,8 @@ trees | depth | time [s]  | AUC   | RAM [GB]   | time [s] | AUC   | RAM [GB]
 
 (100M ran on x1e.8xlarge [32 cores, 960GB RAM], 10M ran on r4.8xlarge [32 cores, 240GB RAM])
 
+(compare this with 100M records 100 trees depth 10, lightgbm 5GB RAM usage)
+
 More details [here](https://github.com/szilard/GBM-perf/issues/18).
 
 
