@@ -174,7 +174,7 @@ size  | time lgbm [s] | time spark [s] | ratio | AUC lgbm | AUC spark
 1M    |           5.2 |           1380 | 265   |    0.764 | 0.748
 10M   |            42 |           8390 | 200   |    0.774 | 0.755
 
-(compared to lighgbm CPU, Spark code [here](https://github.com/szilard/GBM-perf/tree/master/wip-testing/spark))
+(compared to lighgbm CPU) (Spark code [here](https://github.com/szilard/GBM-perf/tree/master/wip-testing/spark))
 
 So Spark MLlib GBT is still 100x slower than the top tools. In case you are wondering if more nodes or
 bigger data would help, the answer in nope (see below).
@@ -182,8 +182,19 @@ bigger data would help, the answer in nope (see below).
 #### Spark MLlib on 100M records
 
 Besides being slow, Spark also uses 100x RAM compared to the top tools. In fact, on 100M records 
-(20GB after being loaded from disk and cached in RAM) it
-crashes out-of-memory even on servers with 1 TB RAM, see details [here](https://github.com/szilard/GBM-perf/issues/18).
+(20GB after being loaded from disk and cached in RAM) it crashes out-of-memory even on servers with 1 TB RAM.
+
+      |       | 100M      |       |            | 10M      |       |  
+----- | ----- | --------- | ----- | ---------- | -------- | ----- | --
+trees | depth | time [s]  | AUC   | RAM [GB]   | time [s] | AUC   | RAM [GB]
+1     | 1     | 1150      | 0.634 | 620        | 70       | 0.635 | 110
+1     | 10    | 1350      | 0.712 | 620        | 90       | 0.712 | 112
+10    | 10    | 7850      | 0.731 | 780        | 830      | 0.731 | 125
+100   | 10    | crash OOM |       | >960 (OOM) | 8070     | 0.755 | 230
+
+(100M ran on x1e.8xlarge - 32 cores, 960GB RAM, 10M ran on r4.8xlarge - 32 cores, 240GB RAM)
+
+More details [here](https://github.com/szilard/GBM-perf/issues/18).
 
 
 ## Recommendations
