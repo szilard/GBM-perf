@@ -192,7 +192,7 @@ trees | depth | time [s]  | AUC   | RAM [GB]   | time [s] | AUC   | RAM [GB]
 10    | 10    | 7850      | 0.731 | 780        | 830      | 0.731 | 125
 100   | 10    | crash OOM |       | >960 (OOM) | 8070     | 0.755 | 230
 
-(100M ran on x1e.8xlarge - 32 cores, 960GB RAM, 10M ran on r4.8xlarge - 32 cores, 240GB RAM)
+(100M ran on x1e.8xlarge [32 cores, 960GB RAM], 10M ran on r4.8xlarge [32 cores, 240GB RAM])
 
 More details [here](https://github.com/szilard/GBM-perf/issues/18).
 
