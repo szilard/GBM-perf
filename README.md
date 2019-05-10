@@ -196,7 +196,11 @@ trees | depth | time [s]  | AUC   | RAM [GB]   | time [s] | AUC   | RAM [GB]
 
 (compare this with 100M records 100 trees depth 10, lightgbm 5GB RAM usage)
 
-More details [here](https://github.com/szilard/GBM-perf/issues/18).
+More details [here](https://github.com/szilard/GBM-perf/issues/18). 
+
+Note the situation is much better for linear models in Spark MLlib, only 3-4x slower and 10x more memory
+footprint vs h2o for example, see results [here](https://github.com/szilard/GBM-perf/issues/20) (and training
+linear models is much much faster than trees, so training times are reasonable even for large data).
 
 
 ## Recommendations
