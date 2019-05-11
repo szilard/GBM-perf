@@ -36,7 +36,7 @@ ADD https://api.github.com/repos/szilard/GBM-perf/git/refs/heads/master version.
 RUN git clone https://github.com/szilard/GBM-perf.git
 
 
-ENV R_CMD="taskset -c 0-15 R --slave"
+ENV R_CMD="taskset -c 0 R --slave"
 
 CMD cd GBM-perf/cpu/run && \
     ln -s /test.csv test.csv && \
