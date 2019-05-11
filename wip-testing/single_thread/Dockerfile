@@ -46,12 +46,12 @@ CMD cd GBM-perf/cpu/run && \
       echo -n "xgboost " && ${R_CMD} < 2-xgboost.R && \
       echo -n "lightgbm " && ${R_CMD} < 3-lightgbm.R && \
       echo -n "catboost " && ${R_CMD} < 4-catboost.R && \
-      echo -n "Rgbm " && ${R_CMD} < 5-Rgbm && \
+      echo -n "Rgbm " && ${R_CMD} < 5-Rgbm.R && \
     ln -sf /train-1m.csv train.csv && \
     echo "1m:" && \
       echo -n "h2o " && ${R_CMD} < 1-h2o.R && \
       echo -n "xgboost " && ${R_CMD} < 2-xgboost.R && \
       echo -n "lightgbm " && ${R_CMD} < 3-lightgbm.R && \
       echo -n "catboost " && ${R_CMD} < 4-catboost.R && \
-      echo -n "Rgbm " && ${R_CMD} < 5-Rgbm 
+      echo -n "Rgbm " && ${R_CMD} < 5-Rgbm.R 
 
