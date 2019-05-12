@@ -143,14 +143,14 @@ More details [here](https://github.com/szilard/GBM-perf/issues/14).
 ### GPU utilization patterns
 
 For the GPU runs, it is interesting to observe the GPU utilization patterns and also the CPU utilization meanwhile
-(usually 1 CPU thread doing coordination work with the GPU etc).
+(usually 1 CPU thread).
 
 xgboost uses GPU at ~80% and 1 CPU core at 100%.
 
 h2o xgboost shows 3 phases: first only using CPU at ~30% (all cores) and no GPU, then GPU at ~70% and CPU at 100%, then
 no GPU and CPU at 100%. This means 3-4x longer training time vs native xgboost. 
 
-lightgbm uses GPU at 5-10% and meanwhile CPU at 100% (all cores).
+lightgbm uses GPU at 5-10% and meanwhile CPU at 100% (all cores). 
 
 catboost uses GPU at ~80% and 1 CPU core at 100%. Unlike the other tools catboost takes all the GPU memory available when it
 starts training no matter of the data size (so we don't know how much memory it needs by using the standard monitoring tools).
