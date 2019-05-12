@@ -18,9 +18,9 @@ X_train <- X_train_test[1:n1,]
 X_test <- X_train_test[(n1+1):(n1+n2),]
 
 dlgb_train <- lgb.Dataset(data = X_train, label = ifelse(d_train$dep_delayed_15min=='Y',1,0))
-system.time({
-  lgb.Dataset.construct(dlgb_train)
-})
+#system.time({
+#  lgb.Dataset.construct(dlgb_train)
+#})
 
 Sys.sleep(10)
 cat("Starting train...\n")
@@ -30,7 +30,7 @@ cat(system.time({
             objective = "binary", 
             nrounds = 100, num_leaves = 512, learning_rate = 0.1, 
             device = "gpu", 
-            ## nthread = 1,
+            nthread = 1,
             verbose = 0)
 })[[3]]," ",sep="")
 
