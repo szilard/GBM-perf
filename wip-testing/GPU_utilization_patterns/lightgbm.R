@@ -17,7 +17,8 @@ n2 <- nrow(d_test)
 X_train <- X_train_test[1:n1,]
 X_test <- X_train_test[(n1+1):(n1+n2),]
 
-dlgb_train <- lgb.Dataset(data = X_train, label = ifelse(d_train$dep_delayed_15min=='Y',1,0))
+##dlgb_train <- lgb.Dataset(data = X_train, label = ifelse(d_train$dep_delayed_15min=='Y',1,0))
+dlgb_train <- lgb.Dataset(data = X_train, label = ifelse(d_train$dep_delayed_15min=='Y',1,0), nthread = 8)
 #system.time({
 #  lgb.Dataset.construct(dlgb_train)
 #})
