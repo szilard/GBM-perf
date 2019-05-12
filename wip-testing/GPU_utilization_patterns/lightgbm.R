@@ -27,7 +27,7 @@ cat(system.time({
   md <- lgb.train(data = dlgb_train, 
             objective = "binary", 
             nrounds = 100, num_leaves = 512, learning_rate = 0.1, 
-            device = "gpu",
+            device = "gpu", nthread = 1,
             verbose = 0)
 })[[3]]," ",sep="")
 
