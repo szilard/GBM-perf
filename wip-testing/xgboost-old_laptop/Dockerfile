@@ -18,17 +18,11 @@ RUN wget https://s3.amazonaws.com/benchm-ml--main/train-0.1m.csv && \
 
 ARG CACHE_DATE
 
-RUN install2.r -r http://h2o-release.s3.amazonaws.com/h2o/latest_stable_R h2o
-
 RUN git clone --recursive https://github.com/dmlc/xgboost && \
     cd xgboost && git submodule init && git submodule update && \
     cd R-package && R CMD INSTALL .
 
 RUN R -e 'devtools::install_github("Laurae2/lgbdl"); lgbdl::lgb.dl()'
-
-RUN R -e 'devtools::install_github("catboost/catboost", subdir = "catboost/R-package")'
-
-RUN install2.r gbm
 
 
 ADD https://api.github.com/repos/szilard/GBM-perf/git/refs/heads/master version.json
