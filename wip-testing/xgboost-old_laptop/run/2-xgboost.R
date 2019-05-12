@@ -19,6 +19,7 @@ X_test <- X_train_test[(n1+1):(n1+n2),]
 
 dxgb_train <- xgb.DMatrix(data = X_train, label = ifelse(d_train$dep_delayed_15min=='Y',1,0))
 
+cat("Starting training...")
 
 cat(system.time({
   md <- xgb.train(data = dxgb_train, 
