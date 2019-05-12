@@ -35,7 +35,7 @@ ENV R_CMD="taskset -c 0 R --slave"
 CMD cd GBM-perf/wip-testing/xgboost-old_laptop/run && \
     ln -s /test.csv test.csv && \
     ln -sf /train-10m.csv train.csv && \
-    echo "1m:" && \
+    echo "10m:" && \
       echo -n "xgboost " && ${R_CMD} < 2-xgboost.R && \
       echo -n "lightgbm " && ${R_CMD} < 3-lightgbm.R
 
