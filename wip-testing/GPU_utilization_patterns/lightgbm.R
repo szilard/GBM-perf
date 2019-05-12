@@ -32,7 +32,7 @@ cat(system.time({
             objective = "binary", 
             nrounds = 100, num_leaves = 512, learning_rate = 0.1, 
             device = "gpu", 
-            nthread = 1,
+            ##nthread = 1,
             verbose = 0)
 })[[3]]," ",sep="")
 
