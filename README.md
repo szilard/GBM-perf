@@ -32,7 +32,7 @@ sudo docker run --rm gbmperf_cpu
 
 ### GPU
 
-(requires docker, nvidia drivers and the `nvidia-docker` utility)
+(requires docker, NVIDIA drivers and the `nvidia-docker` utility)
 
 ```
 git clone https://github.com/szilard/GBM-perf.git
