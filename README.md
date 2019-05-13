@@ -203,6 +203,34 @@ Note the situation is much better for linear models in Spark MLlib, only 3-4x sl
 footprint vs h2o for example, see results [here](https://github.com/szilard/GBM-perf/issues/20) (and training
 linear models is much much faster than trees, so training times are reasonable even for large data).
 
+#### Spark on a cluster
+
+Results on a EMR cluster with master+10 slave nodes and comparison with local mode on 1 server (and 
+"cluster" with 1 master+1 slave). To run in reasonable time only 10 trees (depth 10) have been used.
+
+size | hw | nodes | cores | partitions | time [s] | RAM [GB] | total RAM [GB]
+-- | -- | -- | -- | -- | -- | -- | --
+10M | local | r4.8xl | 32 | 32 | 830 | 125 | 240
+10M | Cluster_1 | r4.8xl | 32 | 64 | 1180 | 73 | 240
+10M | Cluster_10 | r4.8xl | 320 | 320 (m) | 330 |   | 2400
+100M | local | x1e.8xl | 32 |   | 7850 | 780 | 960
+100M | Cluster_10 | r4.8xl | 320 | 585 | 1825 | 10*72 | 2400
+
+100M records data is "big" enough for Spark to be in the "at scale" modus operandi. However, the 
+computation speed and memory footprint inefficiencies of the algorithm/implementation are so
+huge that no cluster of any size can really help. Furthermore larger data (billions) would mean even more 
+prohibiting slow training (many hours/days) for any reasonable cluster size (remember, the timings
+above are for 10 trees, any decent GBM would need at least 100 trees).
+
+Also, the fact that Spark has so huge memory footprint means that one can run e.g. lightgbm
+instead on much less RAM that even larger datasets would fit in the RAM of a single server.
+
+size | hw | cores | time [s] | AUC | RAM [GB] | total RAM [GB]
+-- | -- | -- | -- | -- | -- | --
+10M | r4.8xl | 16 (m) | 7 | 0.743 | 4 | 240
+100M | r4.8xl | 16 (m) | 60 | 0.743 | 13(d)+5 | 240
+
+
 
 ## Recommendations
 
