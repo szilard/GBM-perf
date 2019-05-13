@@ -208,7 +208,7 @@ linear models is much much faster than trees, so training times are reasonable e
 Results on a EMR cluster with master+10 slave nodes and comparison with local mode on 1 server (and 
 "cluster" with 1 master+1 slave). To run in reasonable time only 10 trees (depth 10) have been used.
 
-size | hw | nodes | cores | partitions | time [s] | RAM [GB] | total RAM [GB]
+size | hw | nodes | cores | partitions | time [s] | RAM [GB] | avail RAM [GB]
 -- | -- | -- | -- | -- | -- | -- | --
 10M | local | r4.8xl | 32 | 32 | 830 | 125 | 240
 10M | Cluster_1 | r4.8xl | 32 | 64 | 1180 | 73 | 240
@@ -219,17 +219,19 @@ size | hw | nodes | cores | partitions | time [s] | RAM [GB] | total RAM [GB]
 100M records data is "big" enough for Spark to be in the "at scale" modus operandi. However, the 
 computation speed and memory footprint inefficiencies of the algorithm/implementation are so
 huge that no cluster of any size can really help. Furthermore larger data (billions) would mean even more 
-prohibiting slow training (many hours/days) for any reasonable cluster size (remember, the timings
+prohibitively slow training (many hours/days) for any reasonable cluster size (remember, the timings
 above are for 10 trees, any decent GBM would need at least 100 trees).
 
 Also, the fact that Spark has so huge memory footprint means that one can run e.g. lightgbm
 instead on much less RAM that even larger datasets would fit in the RAM of a single server.
 lightgbm 10 trees:
 
-size | hw | cores | time [s] | AUC | RAM [GB] | total RAM [GB]
+size | hw | cores | time [s] | AUC | RAM [GB] | avail RAM [GB]
 -- | -- | -- | -- | -- | -- | --
 10M | r4.8xl | 16 (m) | 7 | 0.743 | 4 | 240
 100M | r4.8xl | 16 (m) | 60 | 0.743 | 13(d)+5 | 240
+
+More details [here](https://github.com/szilard/GBM-perf/issues/21).
 
 
 
