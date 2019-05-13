@@ -223,8 +223,8 @@ prohibitively slow training (many hours/days) for any reasonable cluster size (r
 above are for 10 trees, any decent GBM would need at least 100 trees).
 
 Also, the fact that Spark has so huge memory footprint means that one can run e.g. lightgbm
-instead on much less RAM that even larger datasets would fit in the RAM of a single server.
-lightgbm 10 trees:
+instead on much less RAM, so that even larger datasets would fit in the RAM of a single server.
+Results for lightgbm for comparison with the above Spark cluster results (10 trees):
 
 size | hw | cores | time [s] | AUC | RAM [GB] | avail RAM [GB]
 -- | -- | -- | -- | -- | -- | --
