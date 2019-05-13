@@ -224,6 +224,7 @@ above are for 10 trees, any decent GBM would need at least 100 trees).
 
 Also, the fact that Spark has so huge memory footprint means that one can run e.g. lightgbm
 instead on much less RAM that even larger datasets would fit in the RAM of a single server.
+lightgbm 10 trees:
 
 size | hw | cores | time [s] | AUC | RAM [GB] | total RAM [GB]
 -- | -- | -- | -- | -- | -- | --
