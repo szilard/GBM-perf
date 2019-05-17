@@ -25,3 +25,6 @@ cat(system.time({
 cat(h2o.auc(h2o.performance(md, dx_test)),"\n")
 
 
+h2o.shutdown(prompt = FALSE)
+Sys.sleep(1)
+
