@@ -19,7 +19,7 @@ cat(system.time({
           distribution = "bernoulli", 
           ntrees = 100, max_depth = 10, learn_rate = 0.1, 
           nbins = 100)
-})[[3]]," ",sep="")
+})[[3]],":",sep="")
 
 
 cat(h2o.auc(h2o.performance(md, dx_test)),"\n")

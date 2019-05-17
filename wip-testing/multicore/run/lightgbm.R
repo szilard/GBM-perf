@@ -25,7 +25,7 @@ cat(system.time({
             objective = "binary", 
             nrounds = 100, num_leaves = 512, learning_rate = 0.1, 
             verbose = 0)
-})[[3]]," ",sep="")
+})[[3]],":",sep="")
 
 
 phat <- predict(md, data = X_test)

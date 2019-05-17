@@ -25,7 +25,7 @@ cat(system.time({
             objective = "binary:logistic", 
             nround = 100, max_depth = 10, eta = 0.1, 
             tree_method = "hist")
-})[[3]]," ",sep="")
+})[[3]],":",sep="")
 
 
 phat <- predict(md, newdata = X_test)
