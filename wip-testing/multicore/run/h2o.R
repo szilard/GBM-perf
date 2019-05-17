@@ -3,10 +3,8 @@ library(h2o)
 })
 
 sink("/dev/null") 
-sink("/dev/null", type="message") 
 h2o.init()
 sink()
-sink(type="message") 
 h2o.no_progress()
 
 dx_train <- h2o.importFile("train.csv")
