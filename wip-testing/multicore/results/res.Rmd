@@ -1,50 +1,46 @@
 ```{r}
 
-library(tidyverse)
+library(data.table)
+library(ggplot2)
 
-d <- read_delim("res.csv", delim=":", 
-  col_names = c("size","tool","ncores","cores","tcores","runtime","auc")) 
+d <- fread("res.csv")
+names(d) <- c("size","tool","ncores","cores","tcores","runtime","auc")
 
-cores_order <- d %>% arrange(ncores) %>% .$cores %>% unique
+d[, pcores:=sub(" $","",paste(ncores,tcores))]
 
-```
-
-```{r fig.height=6}
-
-d %>% mutate(cores=factor(cores, levels=cores_order)) %>% 
-  ggplot() + geom_boxplot(aes(x = cores, y = runtime, color = tool)) +
-  coord_flip() + facet_wrap(~tool+size, scales = "free") + ylim(c(0,NA))
-
-d %>% filter(ncores<=16) %>% 
-  mutate(cores=factor(cores, levels=cores_order)) %>% 
-  ggplot() + geom_boxplot(aes(x = cores, y = runtime, color = tool)) +
-  coord_flip() + facet_wrap(~tool+size, scales = "free") + ylim(c(0,NA))
-
-d %>% filter(ncores>=16) %>% 
-  mutate(cores=factor(cores, levels=cores_order)) %>% 
-  ggplot() + geom_boxplot(aes(x = cores, y = runtime, color = tool)) +
-  coord_flip() + facet_wrap(~tool+size, scales = "free") + ylim(c(0,NA))
-
-d %>% filter(ncores>=16) %>% filter(!(tool=="lightgbm" & ncores==64)) %>% 
-  mutate(cores=factor(cores, levels=cores_order)) %>% 
-  ggplot() + geom_boxplot(aes(x = cores, y = runtime, color = tool)) +
-  coord_flip() + facet_wrap(~tool+size, scales = "free") + ylim(c(0,NA))
+pcores_order <- unique(d$pcores)
+d[, pcores:=factor(pcores, levels=pcores_order)]
 
 ```
 
-```{r fig.height=4}
+```{r fig.height=8, fig.width=12}
 
-d %>% mutate(cores=factor(cores, levels=cores_order)) %>% 
-  filter(!grepl(",",cores), ncores<=16) %>% 
-  group_by(tool) %>% mutate(runtime_norm = runtime*ncores/min(runtime*ncores)) %>% 
-  ggplot() + geom_boxplot(aes(x = cores, y = runtime_norm, color = tool)) +
-  coord_flip() + facet_grid(tool~size) + ylim(c(0,NA))
+ggplot(d) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
+  coord_flip() + facet_wrap(~tool+size, scales = "free") + ylim(c(0,NA))
 
-```
+ggplot(d[ncores<=16]) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
+  coord_flip() + facet_wrap(~tool+size, scales = "free") + ylim(c(0,NA))
 
-```{r}
+ggplot(d[ncores>=16]) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
+  coord_flip() + facet_wrap(~tool+size, scales = "free") + ylim(c(0,NA))
 
-d %>%  ggplot() + geom_boxplot(aes(x = as.factor(size), y = auc, color = tool)) 
+ggplot(d[ncores>=16 & !(tool=="lightgbm" & ncores==64)]) + 
+  geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
+  coord_flip() + facet_wrap(~tool+size, scales = "free") + ylim(c(0,NA))
+
+
+dd <- d[ncores<=16 & !grepl(",",cores)]
+
+ggplot(dd) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
+  coord_flip() + facet_wrap(~tool+size, scales = "free") + ylim(c(0,NA))
+
+dd[, runtime_norm := runtime*ncores/min(runtime*ncores), by=.(tool,size)]
+
+ggplot(dd) + geom_boxplot(aes(x = pcores, y = runtime_norm, color = tool)) +
+  coord_flip() + facet_wrap(~tool+size, scales = "free") + ylim(c(0,NA))
+
+
+ggplot(d) + geom_boxplot(aes(x = as.factor(size), y = auc, color = tool)) 
 
 ```
 
