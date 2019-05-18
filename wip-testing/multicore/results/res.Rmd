@@ -13,7 +13,7 @@ d[, pcores:=factor(pcores, levels=pcores_order)]
 
 ```
 
-```{r fig.height=8, fig.width=12}
+```{r fig.height=6, fig.width=9}
 
 ggplot(d) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
   coord_flip() + facet_wrap(~tool+size, scales = "free") + ylim(c(0,NA))
@@ -43,11 +43,20 @@ xtabs(speedup~size+tool, dd[ncores==16, .(speedup=mean(speedup)), by=.(tool, siz
 ggplot(dd) + geom_boxplot(aes(x = as.factor(ncores), y = speedup, color = tool)) +
   facet_grid(tool~size, scales = "free")
 
+ggplot(dd[size>=1 & tool %in% c("xgboost","lightgbm")]) + 
+  geom_boxplot(aes(x = as.factor(ncores), y = speedup, color = tool)) +
+  facet_grid(tool~size, scales = "free")
+
+
 
 ggplot(d) + geom_boxplot(aes(x = as.factor(size), y = auc, color = tool)) 
 
 merge(d[ncores==64], dd_1c,all.x = TRUE, allow.cartesian = TRUE)[,
     mean(runtime/runtime_1c), by=.(tool,size)][order(tool,size)]
+
+
+ggplot(dd) + geom_boxplot(aes(x = pcores, y = runtime/size, color = as.factor(size))) + facet_wrap(~tool, scales = "free", ncol=2) + ylim(c(0,NA))
+
 
 ```
 
