@@ -1,0 +1,50 @@
+```{r}
+
+library(tidyverse)
+
+d <- read_delim("res.csv", delim=":", 
+  col_names = c("size","tool","ncores","cores","tcores","runtime","auc")) 
+
+cores_order <- d %>% arrange(ncores) %>% .$cores %>% unique
+
+```
+
+```{r fig.height=6}
+
+d %>% mutate(cores=factor(cores, levels=cores_order)) %>% 
+  ggplot() + geom_boxplot(aes(x = cores, y = runtime, color = tool)) +
+  coord_flip() + facet_wrap(~tool+size, scales = "free") + ylim(c(0,NA))
+
+d %>% filter(ncores<=16) %>% 
+  mutate(cores=factor(cores, levels=cores_order)) %>% 
+  ggplot() + geom_boxplot(aes(x = cores, y = runtime, color = tool)) +
+  coord_flip() + facet_wrap(~tool+size, scales = "free") + ylim(c(0,NA))
+
+d %>% filter(ncores>=16) %>% 
+  mutate(cores=factor(cores, levels=cores_order)) %>% 
+  ggplot() + geom_boxplot(aes(x = cores, y = runtime, color = tool)) +
+  coord_flip() + facet_wrap(~tool+size, scales = "free") + ylim(c(0,NA))
+
+d %>% filter(ncores>=16) %>% filter(!(tool=="lightgbm" & ncores==64)) %>% 
+  mutate(cores=factor(cores, levels=cores_order)) %>% 
+  ggplot() + geom_boxplot(aes(x = cores, y = runtime, color = tool)) +
+  coord_flip() + facet_wrap(~tool+size, scales = "free") + ylim(c(0,NA))
+
+```
+
+```{r fig.height=4}
+
+d %>% mutate(cores=factor(cores, levels=cores_order)) %>% 
+  filter(!grepl(",",cores), ncores<=16) %>% 
+  group_by(tool) %>% mutate(runtime_norm = runtime*ncores/min(runtime*ncores)) %>% 
+  ggplot() + geom_boxplot(aes(x = cores, y = runtime_norm, color = tool)) +
+  coord_flip() + facet_grid(tool~size) + ylim(c(0,NA))
+
+```
+
+```{r}
+
+d %>%  ggplot() + geom_boxplot(aes(x = as.factor(size), y = auc, color = tool)) 
+
+```
+
