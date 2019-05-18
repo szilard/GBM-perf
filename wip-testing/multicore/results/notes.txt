@@ -1,2 +1,0 @@
-4+ cores run on r4.16xlarge (2 NUMA nodes)
-1-2 cores run later on r4.8xlarge
