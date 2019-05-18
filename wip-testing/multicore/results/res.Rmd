@@ -24,7 +24,7 @@ ggplot(d[ncores<=16]) + geom_boxplot(aes(x = pcores, y = runtime, color = tool))
 ggplot(d[ncores>=16]) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
   coord_flip() + facet_wrap(~tool+size, scales = "free") + ylim(c(0,NA))
 
-ggplot(d[ncores>=16 & !(tool=="lightgbm" & ncores==64)]) + 
+ggplot(d[ncores>=16 & !(tool=="lightgbm" & ncores>=62)]) + 
   geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
   coord_flip() + facet_wrap(~tool+size, scales = "free") + ylim(c(0,NA))
 
