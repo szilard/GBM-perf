@@ -1,0 +1,14 @@
+
+wget https://s3.amazonaws.com/h2o-release/sparkling-water/rel-2.4/11/sparkling-water-2.4.11.zip
+wget https://archive.apache.org/dist/spark/spark-2.4.0/spark-2.4.0-bin-hadoop2.7.tgz
+
+export SPARK_HOME="/home/ubuntu/spark-2.4.0-bin-hadoop2.7"
+export MASTER="local[*]"
+
+~/sparkling-water-2.4.11/bin/sparkling-shell --conf "spark.executor.memory=30g"
+
+
+import org.apache.spark.h2o._
+val h2oContext = H2OContext.getOrCreate(spark) 
+import h2oContext._ 
+
