@@ -1,0 +1,18 @@
+
+sudo apt-get install default-jdk
+
+
+git clone --recursive https://github.com/dmlc/xgboost.git
+
+export JAVA_HOME=/usr/lib/jvm/default-java
+
+cd xgboost/jvm-packages/
+mvn -DskipTests=true package
+
+
+
+grep -r spark.version xgboost/
+
+~/spark-2.4.3-bin-hadoop2.7/bin/spark-shell --jars xgboost/jvm-packages/xgboost4j-spark/target/xgboost4j-spark-0.90.jar,xgboost/jvm-packages/xgboost4j/target/xgboost4j-0.90.jar
+
+
