@@ -13,6 +13,7 @@ mvn -DskipTests=true package
 
 grep -r spark.version xgboost/
 
-~/spark-2.4.3-bin-hadoop2.7/bin/spark-shell --jars xgboost/jvm-packages/xgboost4j-spark/target/xgboost4j-spark-0.90.jar,xgboost/jvm-packages/xgboost4j/target/xgboost4j-0.90.jar
+~/spark-2.4.3-bin-hadoop2.7/bin/spark-shell --jars xgboost/jvm-packages/xgboost4j-spark/target/xgboost4j-spark-0.90.jar,xgboost/jvm-packages/xgboost4j/target/xgboost4j-0.90.jar --master local[*] --driver-memory 30G --executor-memory 30G 
+
 
 
