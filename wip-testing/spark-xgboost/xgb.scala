@@ -10,6 +10,8 @@ val d_train = spark.read.parquet("spark_ohe-train.parquet").cache()
 val d_test = spark.read.parquet("spark_ohe-test.parquet").cache()
 (d_train.count(), d_test.count())
 
+d_train.rdd.getNumPartitions
+
 
 val xgbParam = Map(
       "objective" -> "binary:logistic",
