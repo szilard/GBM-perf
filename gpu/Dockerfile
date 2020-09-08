@@ -1,18 +1,14 @@
-FROM nvidia/cuda:9.1-devel-ubuntu16.04
+FROM nvidia/cuda:11.0-devel-ubuntu20.04
 
 RUN apt-get update && \
-    apt-get install -y software-properties-common python-software-properties apt-transport-https
+    DEBIAN_FRONTEND="noninteractive" apt-get install -y software-properties-common apt-transport-https
 
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
-    add-apt-repository 'deb [arch=amd64] https://cran.rstudio.com/bin/linux/ubuntu xenial/' && \
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9 && \
+    add-apt-repository 'deb [arch=amd64] https://cran.rstudio.com/bin/linux/ubuntu focal-cran40/' && \
     apt-get update && \
     apt-get install -y r-base
 
-
-RUN apt-get install -y git wget libcurl4-openssl-dev default-jdk-headless libssl-dev
-
-## xgboost: CMake 3.12 or higher is required
-RUN apt-get install -y python-pip && pip install cmake --upgrade
+RUN apt-get install -y git wget libcurl4-openssl-dev default-jdk-headless libssl-dev libxml2-dev cmake
 
 RUN R CMD javareconf
 
@@ -38,7 +34,8 @@ RUN git clone --recursive https://github.com/dmlc/xgboost && \
 RUN apt-get install -y libboost-dev libboost-system-dev libboost-filesystem-dev ocl-icd-opencl-dev opencl-headers clinfo
 RUN mkdir -p /etc/OpenCL/vendors && \
     echo "libnvidia-opencl.so.1" > /etc/OpenCL/vendors/nvidia.icd   ## otherwise lightgm segfaults at runtime (compiles fine without it)
-RUN R -e 'devtools::install_github("Laurae2/lgbdl"); lgbdl::lgb.dl(use_gpu = TRUE)'
+RUN git clone --recursive https://github.com/microsoft/LightGBM && \
+    cd LightGBM && sed -i "s/use_gpu <- FALSE/use_gpu <- TRUE/"  R-package/src/install.libs.R && Rscript build_r.R
 
 RUN R -e 'devtools::install_github("catboost/catboost", subdir = "catboost/R-package")'
 
@@ -67,7 +64,7 @@ CMD cd GBM-perf/gpu/run && \
     echo "1m:" && \
       echo -n "h2o " && R --slave < 1-h2o.R && \
       echo -n "xgboost " && R --slave < 2-xgboost.R && \
-      echo -n "lightgbm " && R --slave < 3-lightgbm.R && \      
+      echo -n "lightgbm " && R --slave < 3-lightgbm.R && \
       echo -n "catboost " && R --slave < 4-catboost.R && \
     ln -sf /train-10m.csv train.csv && \
     echo "10m:" && \
