@@ -24,7 +24,8 @@ RUN git clone --recursive https://github.com/dmlc/xgboost && \
     cd xgboost && git submodule init && git submodule update && \
     cd R-package && R CMD INSTALL .
 
-RUN R -e 'devtools::install_github("Laurae2/lgbdl"); lgbdl::lgb.dl()'
+RUN git clone --recursive https://github.com/microsoft/LightGBM && \
+    cd LightGBM && Rscript build_r.R
 
 
 ADD https://api.github.com/repos/szilard/GBM-perf/git/refs/heads/master version.json
