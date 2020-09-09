@@ -154,6 +154,10 @@ h2o xgboost       | 270         | 0.755     | 4              | 30
 lightgbm          | 400         | 0.774     | 3              | 6
 catboost          | crash (OOM) |           | >16            | 14
 
+**UPDATE 2020-09-08**:
+
+catboost still crashes out-of-memory 
+
 Note that catboost CPU achieves lower AUC vs the 10M dataset (might be due to the way of binning or some other approximation).
 catboost GPU crashes out-of-memory on the 16GB GPU (while this doesn't tell us how fast it would run with more GPU RAM, 
 the results with 10M data indicate that it would be slow compared to the other libs).
