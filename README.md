@@ -119,6 +119,10 @@ you will pay more money for a larger instance and get actually much slower train
 [here](https://github.com/szilard/GBM-multicore) and
 [here](https://github.com/szilard/GBM-perf/issues/29).
 
+**UPDATE 2020-09-08**: 
+lightgbm and especially xgboost have improved in multi-core scaling and the NUMA issue has been largely mitigated, see 
+[here](https://github.com/szilard/GBM-perf/issues/29#issuecomment-689713624).
+
 
 ### 100M records and RAM usage
 
