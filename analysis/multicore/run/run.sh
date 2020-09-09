@@ -1,7 +1,7 @@
 #!/bin/bash
 
-##for SIZE in 0.1 1 10; do
-for SIZE in 1; do
+for SIZE in 0.1 1 10; do
+##for SIZE in 1; do
   ln -sf /train-${SIZE}m.csv train.csv 
   for CORES in $(cat cores.conf); do
     NCORES=$(echo $CORES | cut -d: -f1)
