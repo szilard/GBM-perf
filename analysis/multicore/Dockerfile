@@ -18,7 +18,8 @@ RUN wget https://s3.amazonaws.com/benchm-ml--main/train-0.1m.csv && \
 
 ARG CACHE_DATE
 
-RUN install2.r -r http://h2o-release.s3.amazonaws.com/h2o/latest_stable_R h2o
+RUN install2.r RCurl && \
+    install2.r -r http://h2o-release.s3.amazonaws.com/h2o/latest_stable_R h2o
 
 RUN git clone --recursive https://github.com/dmlc/xgboost && \
     cd xgboost && git submodule init && git submodule update && \
