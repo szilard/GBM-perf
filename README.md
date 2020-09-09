@@ -115,8 +115,9 @@ One would think more CPU cores means higher training speed, though because of RA
 run slower on 2 CPUs than 1 CPU!!** (with the exception of h2o for large data). The slowdown might be pretty 
 dramatic, e.g. 2x for lightgbm or 3-5x for xgboost for the larger data in this benchmark. If you don't know about this, 
 you will pay more money for a larger instance and get actually much slower training. More details
-[here](https://github.com/szilard/GBM-perf/issues/13) and 
-[here](https://github.com/szilard/GBM-multicore).
+[here](https://github.com/szilard/GBM-perf/issues/13),
+[here](https://github.com/szilard/GBM-multicore) and
+[here](https://github.com/szilard/GBM-perf/issues/29).
 
 
 ### 100M records and RAM usage
