@@ -111,8 +111,8 @@ Most high-end servers have nowadays more than 1 CPU on the motherboard. For exam
 (2x of the c5.9xlarge CPUs mentioned above), same for r4.16xlarge or m5.24xlarge. There are even EC2 instances with 
 4 CPUs e.g. x1.32xlarge (128 cores) or more.
 
-One would think more CPU cores means higher training speed, though because of RAM topology and NUMA, **most of the above tools
-run slower on 2 CPUs than 1 CPU!!** (with the exception of h2o for large data). The slowdown might be pretty 
+One would think more CPU cores means higher training speed, though because of RAM topology and NUMA, most of the above tools
+run slower on 2 CPUs than 1 CPU!! (with the exception of h2o for large data). The slowdown might be pretty 
 dramatic, e.g. 2x for lightgbm or 3-5x for xgboost for the larger data in this benchmark. If you don't know about this, 
 you will pay more money for a larger instance and get actually much slower training. More details
 [here](https://github.com/szilard/GBM-perf/issues/13),
