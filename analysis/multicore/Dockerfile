@@ -33,6 +33,6 @@ ADD https://api.github.com/repos/szilard/GBM-perf/git/refs/heads/master version.
 RUN git clone https://github.com/szilard/GBM-perf.git
 
 
-CMD cd GBM-perf/wip-testing/multicore/run && \
+CMD cd GBM-perf/analysis/multicore/run && \
     ln -s /test.csv test.csv && \
     bash run.sh
