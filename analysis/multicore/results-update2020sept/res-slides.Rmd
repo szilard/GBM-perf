@@ -1,0 +1,23 @@
+```{r}
+
+library(data.table)
+library(ggplot2)
+
+d <- fread("res-new.csv", sep=":")
+names(d) <- c("size","tool","ncores","cores","tcores","runtime","auc")
+
+d[, pcores:=sub(" $","",paste(ncores,tcores))]
+
+pcores_order <- unique(d$pcores)
+d[, pcores:=factor(pcores, levels=pcores_order)]
+
+```
+
+```{r fig.height=6, fig.width=9}
+
+ggplot(d[tool=="xgboost" & size==1]) + geom_boxplot(aes(x = pcores, y = runtime), color = "blue") +
+  coord_flip() + facet_wrap(~tool+size, scales = "free") + ylim(c(0,NA)) +
+  theme_grey(base_size = 22)
+
+```
+
