@@ -13,6 +13,9 @@ Poll conducted via twitter (April, 2019):
 
 ![](poll.png)
 
+Poll conducted via twitter (September, 2020):
+
+...
 
 
 ## How to run/reproduce the benchmark
@@ -104,6 +107,10 @@ for smaller data high-frequency CPU (c5) is the best. Nevertheless, **the rankin
 training time stays the same** for a given data size when changing CPU. More details
 [here](https://github.com/szilard/GBM-perf/issues/13).
 
+
+### Multi-core scaling
+
+...
 
 ### Multi-socket CPUs
 
