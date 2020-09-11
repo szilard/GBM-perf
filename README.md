@@ -295,6 +295,6 @@ and a summary comparison table here:
 
 ![](comparison_table.png)
 
-**UPDATE:** I gave several conference/meetup talks on the topic incorporating various updates, see e.g. my talk
+**UPDATE:** I gave since several conference/meetup talks on the topic incorporating various updates, see e.g. my talk
 at Berlin Buzzwords in 2019, video reording [here](https://www.youtube.com/watch?v=qjuizRba3ZQ).
 
