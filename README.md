@@ -15,7 +15,7 @@ Poll conducted via twitter (April, 2019):
 
 Poll conducted via twitter (September, 2020):
 
-...
+![](poll2.png)
 
 
 ## How to run/reproduce the benchmark
