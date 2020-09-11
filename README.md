@@ -13,7 +13,7 @@ Poll conducted via twitter (April, 2019):
 
 ![](poll.png)
 
-Poll conducted via twitter (September, 2020):
+More recent twitter poll (September, 2020):
 
 ![](poll2.png)
 
