@@ -47,6 +47,8 @@ RUN git clone https://github.com/szilard/GBM-perf.git
 RUN  apt-get clean && rm -rf /var/lib/apt/lists/*
 
 
+ENV R_CMD="R --slave"
+
 CMD cd GBM-perf/wip-testing/lightgbm-catenc/gpu/run && \
     ln -s /test.csv test.csv && \
     ln -sf /train-0.1m.csv train.csv && \
