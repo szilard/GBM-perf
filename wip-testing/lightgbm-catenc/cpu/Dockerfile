@@ -38,7 +38,7 @@ RUN git clone https://github.com/szilard/GBM-perf.git
 
 ENV R_CMD="taskset -c 0-15 R --slave"
 
-CMD cd GBM-perf/cpu/run && \
+CMD cd GBM-perf/wip-testing/lightgbm-catenc/cpu/run && \
     ln -s /test.csv test.csv && \
     ln -sf /train-0.1m.csv train.csv && \
     echo "0.1m:" && \
