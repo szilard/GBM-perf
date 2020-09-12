@@ -52,6 +52,9 @@ ENV R_CMD="R --slave"
 CMD cd GBM-perf/wip-testing/lightgbm-catenc/gpu/run && \
     ln -s /test.csv test.csv && \
     ln -sf /train-0.1m.csv train.csv && \
+    echo "warmup:" && \
+      echo -n "lightgbm OHE" && ${R_CMD} < 3-lightgbm.R && \
+      echo -n "lightgbm catenc" && ${R_CMD} < 3a-lightgbm-catenc.R && \
     echo "0.1m:" && \
       echo -n "lightgbm OHE" && ${R_CMD} < 3-lightgbm.R && \
       echo -n "lightgbm catenc" && ${R_CMD} < 3a-lightgbm-catenc.R && \
