@@ -28,6 +28,8 @@ RUN git clone --recursive https://github.com/dmlc/xgboost && \
 RUN git clone --recursive https://github.com/microsoft/LightGBM && \
     cd LightGBM && Rscript build_r.R
 
+RUN R -e 'devtools::install_github("catboost/catboost", subdir = "catboost/R-package")'
+
 
 ADD https://api.github.com/repos/szilard/GBM-perf/git/refs/heads/master version.json
 ## ^^^ hack to invalidate docker cache if repo gets updated
