@@ -9,7 +9,8 @@ for SIZE in 0.1; do
     TCORES=$(echo $CORES | cut -d: -f3)
     ##for TOOL in h2o xgboost lightgbm; do
     for TOOL in xgboost lightgbm catboost; do
-      for i in {1..3}; do
+      ##for i in {1..3}; do
+      for i in 1; do
         RUNTIME=$(taskset -c $LCORES R --slave < $TOOL.R $NCORES | tail -1)
         echo $SIZE:$TOOL:$NCORES:$LCORES:$TCORES:$RUNTIME
       done
