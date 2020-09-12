@@ -42,14 +42,14 @@ CMD cd GBM-perf/wip-testing/lightgbm-catenc/cpu/run && \
     ln -s /test.csv test.csv && \
     ln -sf /train-0.1m.csv train.csv && \
     echo "0.1m:" && \
-      echo -n "lightgbm " && ${R_CMD} < 3-lightgbm.R && \
-      echo -n "lightgbm cat enc" && ${R_CMD} < 3a-lightgbm-catenc.R && \
+      echo -n "lightgbm OHE" && ${R_CMD} < 3-lightgbm.R && \
+      echo -n "lightgbm catenc" && ${R_CMD} < 3a-lightgbm-catenc.R && \
     ln -sf /train-1m.csv train.csv && \
     echo "1m:" && \
-      echo -n "lightgbm " && ${R_CMD} < 3-lightgbm.R && \
-      echo -n "lightgbm cat enc" && ${R_CMD} < 3a-lightgbm-catenc.R && \
+      echo -n "lightgbm OHE" && ${R_CMD} < 3-lightgbm.R && \
+      echo -n "lightgbm catenc" && ${R_CMD} < 3a-lightgbm-catenc.R && \
     ln -sf /train-10m.csv train.csv && \
     echo "10m:" && \
-      echo -n "lightgbm " && ${R_CMD} < 3-lightgbm.R && \
-      echo -n "lightgbm cat enc" && ${R_CMD} < 3a-lightgbm-catenc.R 
+      echo -n "lightgbm OHE" && ${R_CMD} < 3-lightgbm.R && \
+      echo -n "lightgbm catenc" && ${R_CMD} < 3a-lightgbm-catenc.R 
 
