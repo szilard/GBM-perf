@@ -18,6 +18,18 @@ lightgbm 19.939 0.7745457
 catboost 79.573 0.7355515
 
 
+0.1m:
+lightgbm OHE 2.107 0.7301411
+lightgbm catenc 2.137 0.7174663
+1m:
+lightgbm OHE 3.998 0.7655526
+lightgbm catenc 4.058 0.7650181
+10m:
+lightgbm OHE 20.749 0.7745457
+lightgbm catenc 20.845 0.792273
+
+
+
 -------------------------------
 
 GPU   p3.2xlarge     2020-09-08
@@ -42,6 +54,17 @@ h2o 54.506 0.7555138
 xgboost 11.194 0.7546828
 lightgbm 63.529 0.7749503
 catboost 36.535 0.7368551
+
+
+0.1m:
+lightgbm OHE 8.565 0.7301211
+lightgbm catenc 8.665 0.7155734
+1m:
+lightgbm OHE 14.461 0.766018
+lightgbm catenc 11.929 0.7676921
+10m:
+lightgbm OHE 68.609 0.7749303
+lightgbm catenc 50.024 0.7926504
 
 
 -------------------------------
