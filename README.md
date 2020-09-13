@@ -261,7 +261,7 @@ to use, e.g.:
 
 ![](comparison_table.png)
 
-You can find more info in my talks on GBMs at several conferences and meetups with many of them having video
+You can find more info in my talks at several conferences and meetups with many of them having video
 recordings available, for example my talk
 at Berlin Buzzwords in 2019, video reording [here](https://www.youtube.com/watch?v=qjuizRba3ZQ), slides
 [here](https://bit.ly/szilard-talk-berlbuzz19).
