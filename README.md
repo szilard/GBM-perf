@@ -264,5 +264,5 @@ to use, e.g.:
 You can find more info in my talks on GBMs at several conferences and meetups with many of them having video
 recordings available, for example my talk
 at Berlin Buzzwords in 2019, video reording [here](https://www.youtube.com/watch?v=qjuizRba3ZQ), slides
-[here](bit.ly/szilard-talk-berlbuzz19).
+[here](https://bit.ly/szilard-talk-berlbuzz19).
 
