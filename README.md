@@ -50,45 +50,25 @@ sudo nvidia-docker run --rm gbmperf_gpu
 
 ### CPU 
 
-r4.8xlarge (32 cores, but run on physical cores only/no hyperthreading) with software as of 2019-04-29:
-
-Tool              | Time[s] 100K | Time[s] 1M  |  Time[s] 10M  |   AUC 1M  |   AUC 10M
-------------------|--------------|-------------|---------------|-----------|------------
-h2o               |   16         |   20        |    100        |   0.762   |   0.776
-xgboost           |   3.8        |   12        |     78        |   0.749   |   0.755
-**lightgbm ohe**  |   **2.4**    |    **5.2**  |     **42**    |   0.764   |   0.774
-catboost          |   5.4        |   50        |    490        |   0.740   |   0.744 
-
-**UPDATE 2020-09-08**:
+r4.8xlarge (32 cores, but run on physical cores only/no hyperthreading) with software as of 2020-09-08:
 
 Tool              | Time[s] 100K | Time[s] 1M  |  Time[s] 10M  |   AUC 1M  |   AUC 10M
 ------------------|--------------|-------------|---------------|-----------|------------
 h2o               |   14         |   16        |     90        |   0.762   |   0.776
 xgboost           |   **0.8**    |   5.5       |     70        |   0.748   |   0.754
-**lightgbm ohe**  |   2.1        |   **3.9**   |     **20**    |   0.765   |   0.774
-**lightgbm cats** |   2.1        |   **4.0**   |     **20**    |   0.765   |   0.792
+**lightgbm**      |   2.1        |   **4.0**   |     **20**    |   0.765   |   0.792
 catboost          |   3.8        |   10        |     80        |   0.734   |   0.735 
 
 
 ### GPU
 
-p3.2xlarge (1 GPU, Tesla V100) with software as of 2019-04-29:
-
-Tool            | Time[s] 100K | Time[s] 1M  |  Time[s] 10M  |   AUC 1M  |   AUC 10M
-----------------|--------------|-------------|---------------|-----------|------------
-h2o xgboost     |   9          |    14       |     60        |   0.749   |   0.756  
-**xgboost**     | **2.4**      |  **4.8**    |   **13**      |   0.750   |   0.756
-lightgbm ohe    |   10         |    16       |     67        |   0.766   |   0.774
-catboost        |   3.9        |    10       |    135        |   0.742   |   0.750 
-
-**UPDATE 2020-09-08**:
+p3.2xlarge (1 GPU, Tesla V100) with software as of 2020-09-08:
 
 Tool            | Time[s] 100K | Time[s] 1M  |  Time[s] 10M  |   AUC 1M  |   AUC 10M
 ----------------|--------------|-------------|---------------|-----------|------------
 h2o xgboost     |   6.4        |    14       |     55        |   0.749   |   0.756  
 **xgboost**     |   3.4        |  6.4        |   **11**      |   0.748   |   0.754
-lightgbm ohe    |   8          |    14       |     63        |   0.766   |   0.775
-lightgbm cats   |   8          |    12       |     50        |   0.763   |   0.792
+lightgbm        |   8          |    12       |     50        |   0.763   |   0.792
 catboost        |   **1.8**    |    **4.7**  |     36        | 0.732 ?!  |   0.736 ?!
 
 
@@ -150,12 +130,6 @@ Tool              | time [s]   | AUC       | RAM train [GB]
 h2o               | 520        |  0.775    |   8
 xgboost           | 510        |  0.751    |  15
 **lightgbm ohe**  | **310**    |  0.774    |   **5**
-catboost          | 3360       |  0.723 ?! |  140
-
-**UPDATE 2020-09-08**:
-
-Tool              | time [s]   | AUC       | RAM train [GB]
-------------------|------------|-----------|-------------------------
 catboost          | 930        |   0.736   |  50
 
 
@@ -168,12 +142,7 @@ h2o xgboost       | 270         | 0.755     | 4              | 30
 lightgbm ohe      | 400         | 0.774     | 3              | 6
 catboost          | crash (OOM) |           | >16            | 14
 
-**UPDATE 2020-09-08**: <br>
-catboost still crashes out-of-memory 
-
-Note that catboost CPU achieves lower AUC vs the 10M dataset (might be due to the way of binning or some other approximation).
-catboost GPU crashes out-of-memory on the 16GB GPU (while this doesn't tell us how fast it would run with more GPU RAM, 
-the results with 10M data indicate that it would be slow compared to the other libs).
+catboost GPU crashes out-of-memory on the 16GB GPU.
 
 h2o xgboost on GPU is slower than native xgboost on GPU and also adds
 a lot of overhead in RAM usage ("extra RAM") (this must be due to some pre- and post-processing of data in h2o as one can
@@ -281,22 +250,19 @@ More details [here](https://github.com/szilard/GBM-perf/issues/21).
 
 If you **don't have a GPU, lightgbm** (CPU) trains the fastest.
 
-If you **have a GPU, xgboost** (GPU) is also very fast (and depending on the data, your hardware etc.
+If you **have a GPU, xgboost** (GPU) is very fast (and depending on the data, your hardware etc.
 often faster than the above mentioned lightgbm on CPU).
 
 If you consider deployment, **h2o has the best ways to deploy** as a real-time
 (fast scoring) application.
 
 Note, however, there are a lot more other criteria to consider when you choose which tool
-to use.
-
-More info in my eRum 2018 R conference talk 
-(video recording [here](https://www.youtube.com/watch?v=DqS6EKjqBbY),
-slides [here](https://speakerdeck.com/szilard/better-than-deep-learning-gradient-boosting-machines-gbm-in-r-erum-conference-budapest-may-2018)), 
-and a summary comparison table here:
+to use, e.g.:
 
 ![](comparison_table.png)
 
-**UPDATE:** I gave since several conference/meetup talks on this topic incorporating various updates, see e.g. my talk
-at Berlin Buzzwords in 2019, video reording [here](https://www.youtube.com/watch?v=qjuizRba3ZQ).
+You can find more info in my talks on GBMs at several conferences and meetups with many of them having video
+recordings available, for example my talk
+at Berlin Buzzwords in 2019, video reording [here](https://www.youtube.com/watch?v=qjuizRba3ZQ), slides
+[here](bit.ly/szilard-talk-berlbuzz19).
 
