@@ -1,0 +1,66 @@
+```{r}
+
+library(data.table)
+library(ggplot2)
+
+d <- fread("res.csv", sep=":")
+names(d) <- c("size","tool","ncores","cores","tcores","runtime","auc")
+
+d[, pcores:=sub(" $","",paste(ncores,tcores))]
+
+pcores_order <- unique(d$pcores)
+d[, pcores:=factor(pcores, levels=pcores_order)]
+
+d[, tool:=factor(tool, levels = c("h2o","xgboost","lightgbm","catboost"))]
+
+```
+
+```{r fig.height=9, fig.width=11}
+
+ggplot(d) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
+  coord_flip() + facet_wrap(~tool+size, scales = "free", ncol = 3) + ylim(c(0,NA))
+
+ggplot(d[ncores>=4]) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
+  coord_flip() + facet_wrap(~tool+size, scales = "free", ncol = 3) + ylim(c(0,NA))
+
+```
+
+```{r fig.height=10, fig.width=11}
+
+dd <- d[ncores<=16 & !grepl(",",cores)]
+
+ggplot(dd) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
+  coord_flip() + facet_wrap(~tool+size, scales = "free", ncol = 3) + ylim(c(0,NA))
+
+dd_1c <- dd[ncores==1,.(runtime_1c=mean(runtime)),by=.(tool,size)]
+dd <- merge(dd, dd_1c,all.x = TRUE, allow.cartesian = TRUE)
+
+dd[, speedup := (1/runtime)/(1/runtime_1c), by=.(tool,size)]
+options(digits=2)
+xtabs(speedup~size+tool, dd[ncores==2, .(speedup=mean(speedup)), by=.(tool, size)])
+xtabs(speedup~size+tool, dd[ncores==4, .(speedup=mean(speedup)), by=.(tool, size)])
+xtabs(speedup~size+tool, dd[ncores==16, .(speedup=mean(speedup)), by=.(tool, size)])
+
+ggplot(dd) + geom_boxplot(aes(x = as.factor(ncores), y = speedup, color = tool)) +
+  facet_grid(tool~size, scales = "free")
+
+```
+
+```{r fig.height=3.5, fig.width=6}
+
+ggplot(d, aes(x = size, y = auc, color = tool)) + geom_point() + geom_line() + scale_x_log10()
+
+```
+
+```{r fig.height=6, fig.width=9}
+
+ggplot(dd) + geom_boxplot(aes(x = pcores, y = runtime/size, color = as.factor(size))) + facet_wrap(~tool, scales = "free", ncol=2) + ylim(c(0,NA))
+
+ggplot(d[tool=="xgboost" & size==1]) + geom_boxplot(aes(x = pcores, y = runtime), color = "blue") +
+  coord_flip() + facet_wrap(~tool+size, scales = "free") + ylim(c(0,NA)) +
+  theme_grey(base_size = 22)
+
+
+
+```
+
