@@ -44,9 +44,19 @@ xtabs(speedup~size+tool, dd[ncores==16, .(speedup=mean(speedup)), by=.(tool, siz
 ggplot(dd) + geom_boxplot(aes(x = as.factor(ncores), y = speedup, color = tool)) +
   facet_grid(tool~size, scales = "free")
 
+
+dd_16c <- d[cores=="0-15",.(runtime_16c=mean(runtime)),by=.(tool,size)]
+dd_64c <- d[cores=="0-63",.(runtime_64c=mean(runtime)),by=.(tool,size)]
+dd_numa_ht <- merge(dd_16c, dd_64c)
+dd_numa_ht[,numa_ht_pc:=((1/runtime_64c)/(1/runtime_16c)-1)*100]
+options(digits=1)
+xtabs(numa_ht_pc~size+tool, dd_numa_ht)
+
 ```
 
 ```{r fig.height=3.5, fig.width=6}
+
+ggplot(dd_numa_ht, aes(x = size, y = numa_ht_pc, color = tool, ymin=-100)) + geom_point() + geom_line() + scale_x_log10() + geom_hline(yintercept = 0, color = "red", size = 1.5) + scale_y_continuous(breaks = seq(-100,100,by=20))
 
 ggplot(d, aes(x = size, y = auc, color = tool)) + geom_point() + geom_line() + scale_x_log10()
 
@@ -60,6 +70,9 @@ ggplot(d[tool=="xgboost" & size==1]) + geom_boxplot(aes(x = pcores, y = runtime)
   coord_flip() + facet_wrap(~tool+size, scales = "free") + ylim(c(0,NA)) +
   theme_grey(base_size = 22)
 
+ggplot(d[tool=="lightgbm" & size==1]) + geom_boxplot(aes(x = pcores, y = runtime), color = "red") +
+  coord_flip() + facet_wrap(~tool+size, scales = "free") + ylim(c(0,NA)) +
+  theme_grey(base_size = 22)
 
 
 ```
