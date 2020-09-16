@@ -136,7 +136,8 @@ data size   |  h2o |  xgboost | lightgbm | catboost
    1M  |  -15 %    |    -2%        |     -60%         |      -20%
  10M  | 25%   |    35%          |  -20%          |      10%
 
-where negative numbers mean on 64 cores it is slower than on 16 cores (by that much %).
+where negative numbers mean on 64 cores it is slower than on 16 cores (by that much %) (e.g. -50% means a decrease in speed by 50% that is
+an doubling of training time). These numbers were much much worse until very recently (2020) before the above mentioned mitigating optimizations. 
 
 
 
