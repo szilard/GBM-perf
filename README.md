@@ -94,9 +94,9 @@ training time stays the same for a given data size when changing CPU. More detai
 
 While GBM trees must be grown sequentially (as each tree depends on the results of the previous ones), GBM training can be parallelized e.g. 
 by parallelizing each split (in fact the histogram calculations). Modern CPUs have many cores, but the scaling of these implementations is far 
-worse than proportional to the number of cores. In fact, it has been known for long (2016) that xgboost and lightgbm actually slow down on systems
+worse than proportional to the number of cores. In fact, it has been known for long (2016) that xgboost and later lightgbm slow down (!) on systems
 with 2 or more CPU sockets or when hyperthreaded cores are used. These problems have been very recently (2020) somewhat mitigated, but it is
-still usually best to restrict your process to the physical cores (avoid hyperthreading) of only 1 CPU socket (if the server has
+still usually best to restrict your training process to the physical cores (avoid hyperthreading) and only 1 CPU socket (if the server has
 2 or more sockets). 
 
 Even if only physical (no hyperthreading) CPU cores are used on 1 socket only, the speedup for example from 1 core to 16 cores 
@@ -108,7 +108,8 @@ data size   |  h2o |  xgboost | lightgbm | catboost
  1M         |  8x  |    6.5x  |     4x   |      6x
  10M        | 24x  |    5x    |  7.5x    |      8x
 
-with more details [here](https://github.com/szilard/GBM-perf/issues/29#issuecomment-691646736).
+with more details [here](https://github.com/szilard/GBM-perf/issues/29#issuecomment-691646736). In fact the scaling was worse until
+very recently, for example xgboost was at 2.5x at 1M rows (vs 6.5x now) before several optimizations have been implemented in 2020. 
 
 
 
