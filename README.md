@@ -85,14 +85,31 @@ c5.9xlarge (Xeon Platinum 8124M 3.00GHz, 36 cores) or more number of cores
 m5.12xlarge (Xeon Platinum 8175M 2.50GHz, 48 cores).
 
 c5 and m5 are typically 20-50% faster than r4, for larger data more cores (m5) is the best, 
-for smaller data high-frequency CPU (c5) is the best. Nevertheless, **the ranking of libs by
-training time stays the same** for a given data size when changing CPU. More details
+for smaller data high-frequency CPU (c5) is the best. Nevertheless, the ranking of libs by
+training time stays the same for a given data size when changing CPU. More details
 [here](https://github.com/szilard/GBM-perf/issues/13).
 
 
-### Multi-core scaling
+### Multi-core scaling (CPU)
 
-...
+While GBM trees must be grown sequentially (as each tree depends on the results of the previous ones), GBM training can be parallalized e.g. 
+by parallalizing each split (in fact the histogram calculations). Modern CPUs have many cores, but the scaling of these implementations is far 
+worse than proportional to the number of cores. In fact, it has been known for long (2016) that xgboost and lightgbm actually slow down on systems
+with 2 or more CPU sockets or when hyperthreaded cores are used. These problems have been very recently (2020) somewhat mitigated, but it is
+still usually best to restrict your process to the physical cores (avoid hyperthreading) of only 1 CPU socket (if the server has
+2 or more sockets). 
+
+Even if only physical CPU cores are used, the speedup for example from 1 core to 16 cores is not 16x, but (on r4.8xlarge):
+
+data size   |  h2o |  xgboost | lightgbm | catboost
+------------|------|----------|----------|----------
+0.1M        |  3   |    6.5   |   1.5    |      3.5
+ 1M         |  8   |    6.5   |     4    |      6
+ 10M        | 24   |    5     |  7.5     |      8
+
+with more details [here](https://github.com/szilard/GBM-perf/issues/29#issuecomment-691646736).
+
+
 
 ### Multi-socket CPUs
 
