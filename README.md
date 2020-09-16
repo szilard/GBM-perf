@@ -127,7 +127,7 @@ More details on the NUMA issue
 [here](https://github.com/szilard/GBM-multicore) and
 [here](https://github.com/szilard/GBM-perf/issues/29).
 
-Currently, the difference in speed e.g. on r4.8xlarge (2 sockets, 16 cores + 16 HT each, so total of 64 cores) between 
+Currently, the difference in training speed e.g. on r4.16xlarge (2 sockets, 16 cores + 16 HT each, so total of 64 cores) between 
 16 physical cores and 64 total cores is:
 
 data size   |  h2o |  xgboost | lightgbm | catboost
