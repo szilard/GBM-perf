@@ -99,7 +99,8 @@ with 2 or more CPU sockets or when hyperthreaded cores are used. These problems 
 still usually best to restrict your process to the physical cores (avoid hyperthreading) of only 1 CPU socket (if the server has
 2 or more sockets). 
 
-Even if only physical CPU cores are used, the speedup for example from 1 core to 16 cores is not 16x, but (on r4.8xlarge):
+Even if only physical (no hyperthreading) CPU cores are used on 1 socket only, the speedup for example from 1 core to 16 cores 
+is not 16x, but (on r4.8xlarge):
 
 data size   |  h2o |  xgboost | lightgbm | catboost
 ------------|------|----------|----------|----------
