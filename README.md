@@ -92,10 +92,10 @@ training time stays the same for a given data size when changing CPU. More detai
 
 ### Multi-core scaling (CPU)
 
-While GBM trees must be grown sequentially (as each tree depends on the results of the previous ones), GBM training can be parallelized e.g. 
+While GBM trees must be grown sequentially (as each building tree depends on the results of the previous ones), GBM training can be parallelized e.g. 
 by parallelizing each split (in fact the histogram calculations). Modern CPUs have many cores, but the scaling of these implementations is far 
-worse than proportional to the number of cores. In fact, it has been known for long (2016) that xgboost and later lightgbm slow down (!) on systems
-with 2 or more CPU sockets or when hyperthreaded cores are used. These problems have been very recently (2020) somewhat mitigated, but it is
+worse than proportional to the number of cores. Furthermore, it has been known for long (2016) that xgboost and later lightgbm slow down (!) on systems
+with 2 or more CPU sockets or when hyperthreaded cores are used. These problems have been very recently (2020) mitigated, but it is
 still usually best to restrict your training process to the physical cores (avoid hyperthreading) and only 1 CPU socket (if the server has
 2 or more sockets). 
 
@@ -112,7 +112,6 @@ with more details [here](https://github.com/szilard/GBM-perf/issues/29#issuecomm
 very recently, for example xgboost was at 2.5x at 1M rows (vs 6.5x now) before several optimizations have been implemented in 2020. 
 
 
-
 ### Multi-socket CPUs
 
 Most high-end servers have nowadays more than 1 CPU on the motherboard. For example c5.18xlarge has 2 CPUs
@@ -120,16 +119,13 @@ Most high-end servers have nowadays more than 1 CPU on the motherboard. For exam
 4 CPUs e.g. x1.32xlarge (128 cores) or more.
 
 One would think more CPU cores means higher training speed, though because of RAM topology and NUMA, most of the above tools
-run slower on 2 CPUs than 1 CPU!! (with the exception of h2o for large data). The slowdown might be pretty 
-dramatic, e.g. 2x for lightgbm or 3-5x for xgboost for the larger data in this benchmark. If you don't know about this, 
-you will pay more money for a larger instance and get actually much slower training. More details
+used to run slower on 2 CPUs than 1 CPU (!) until very recently (2020). The slowdown was sometimes pretty 
+dramatic, e.g. 2x for lightgbm or 3-5x for xgboost even for the largest data in this benchmark. 
+Very recently these effects have been mitigated by several optimizations in lightgbm and even more notably in xgboost. 
+More details on the NUMA issue 
 [here](https://github.com/szilard/GBM-perf/issues/13),
 [here](https://github.com/szilard/GBM-multicore) and
 [here](https://github.com/szilard/GBM-perf/issues/29).
-
-**UPDATE 2020-09-08**: 
-lightgbm and especially xgboost have improved in multi-core scaling and the NUMA issue has been mitigated, see 
-[here](https://github.com/szilard/GBM-perf/issues/29#issuecomment-689713624).
 
 
 ### 100M records and RAM usage
