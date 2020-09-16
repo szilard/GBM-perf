@@ -103,9 +103,9 @@ Even if only physical CPU cores are used, the speedup for example from 1 core to
 
 data size   |  h2o |  xgboost | lightgbm | catboost
 ------------|------|----------|----------|----------
-0.1M        |  3   |    6.5   |   1.5    |      3.5
- 1M         |  8   |    6.5   |     4    |      6
- 10M        | 24   |    5     |  7.5     |      8
+0.1M        |  3x  |    6.5x  |   1.5x   |      3.5x
+ 1M         |  8x  |    6.5x  |     4x   |      6x
+ 10M        | 24x  |    5x    |  7.5x    |      8x
 
 with more details [here](https://github.com/szilard/GBM-perf/issues/29#issuecomment-691646736).
 
