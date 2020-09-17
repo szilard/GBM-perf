@@ -137,14 +137,16 @@ data size   |  h2o |  xgboost | lightgbm | catboost
  10M  | 25%   |    35%          |  -20%          |      10%
 
 where negative numbers mean on 64 cores it is slower than on 16 cores (by that much %) (e.g. -50% means a decrease in speed by 50% that is
-an doubling of training time). These numbers were much much worse until very recently (2020) before the above mentioned mitigating optimizations,
-for example training time (sec) for xgboost 1M rows:
+an doubling of training time). These numbers were much much worse until very recently (2020), for example training time (sec) for xgboost 1M rows:
 
 cores       |  May 2019  | Sept 2020
 ------------|------------|------------
 1           |    30      |   34
 16 (1s)     |    12      |   5.1
 64 (2s+HT)  |   120      |   5.2
+
+that is xgboost was 10x slower on 64 cores vs 16 cores and it was slower on 64 cores vs even 1 core (!). One can see that the recent
+optimization have improved both the multicore scaling and the NUMA (multi-socket) issue.
 
 
 ### 100M records and RAM usage
