@@ -146,7 +146,7 @@ cores       |  May 2019  | Sept 2020
 64 (2so+HT) |   120      |   5.2
 
 that is xgboost was 10x slower on 64 cores vs 16 cores and it was slower on 64 cores vs even 1 core (!). One can see that the recent
-optimization have improved both the multicore scaling and the NUMA (multi-socket) issue.
+optimizations have improved both the multicore scaling and the NUMA (multi-socket) issue.
 
 
 ### 100M records and RAM usage
