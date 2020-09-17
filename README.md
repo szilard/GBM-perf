@@ -93,8 +93,8 @@ training time stays the same for a given data size when changing CPU. More detai
 ### Multi-core scaling (CPU)
 
 While GBM trees must be grown sequentially (as building each tree depends on the results of the previous ones), GBM training can be parallelized e.g. 
-by parallelizing each split (in fact the histogram calculations). Modern CPUs have many cores, but the scaling of these implementations is far 
-worse than proportional to the number of cores. Furthermore, it has been known for long (2016) that xgboost and later lightgbm slow down (!) on systems
+by parallelizing the computation in each split (more exactly the histogram calculations). Modern CPUs have many cores, but the scaling of these GBM implementations is far 
+worse from being proportional to the number of cores. Furthermore, it has been known for long (2016) that xgboost (and later lightgbm) slow down (!) on systems
 with 2 or more CPU sockets or when hyperthreaded cores are used. These problems have been very recently mitigated (2020), but it is
 still usually best to restrict your training process to the physical cores (avoid hyperthreading) and only 1 CPU socket (if the server has
 2 or more sockets). 
@@ -137,13 +137,13 @@ data size   |  h2o |  xgboost | lightgbm | catboost
  10M  | 25%   |    35%          |  -20%          |      10%
 
 where negative numbers mean on 64 cores it is slower than on 16 cores (by that much %) (e.g. -50% means a decrease in speed by 50% that is
-an doubling of training time). These numbers were much much worse until very recently (2020), for example training time (sec) for xgboost 1M rows:
+a doubling of training time). These numbers were much much worse until very recently (2020), for example training time (sec) for xgboost 1M rows:
 
 cores       |  May 2019  | Sept 2020
 ------------|------------|------------
 1           |    30      |   34
-16 (1s)     |    12      |   5.1
-64 (2s+HT)  |   120      |   5.2
+16 (1so)    |    12      |   5.1
+64 (2so+HT) |   120      |   5.2
 
 that is xgboost was 10x slower on 64 cores vs 16 cores and it was slower on 64 cores vs even 1 core (!). One can see that the recent
 optimization have improved both the multicore scaling and the NUMA (multi-socket) issue.
