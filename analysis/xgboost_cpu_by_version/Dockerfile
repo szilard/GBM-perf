@@ -26,7 +26,7 @@ ADD https://api.github.com/repos/szilard/GBM-perf/git/refs/heads/master version.
 RUN git clone https://github.com/szilard/GBM-perf.git
 
 
-ENV CORES_1SO_NOHT
+ENV CORES_1SO_NOHT=0-15
 
 CMD cd GBM-perf/analysis/xgboost_cpu_by_version && \
     ln -s /test.csv test.csv && \
