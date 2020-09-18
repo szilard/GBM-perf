@@ -15,7 +15,6 @@ RUN wget https://s3.amazonaws.com/benchm-ml--main/train-1m.csv && \
 ARG CACHE_DATE
 
 ARG VER
-ARG CORES_1SO_NOHT
 
 RUN git clone --recursive https://github.com/dmlc/xgboost && \
     cd xgboost && git checkout tags/$VER && git submodule init && git submodule update && \
@@ -27,10 +26,12 @@ ADD https://api.github.com/repos/szilard/GBM-perf/git/refs/heads/master version.
 RUN git clone https://github.com/szilard/GBM-perf.git
 
 
+ARG CORES_1SO_NOHT
+
 CMD cd GBM-perf/analysis/xgboost_cpu_by_version && \
     ln -s /test.csv test.csv && \
     ln -sf /train-1m.csv train.csv && \
-    echo -n "xgboost 1 core" && "taskset -c 0 R --slave" < 2-xgboost.R && \
-    echo -n "xgboost 1 socket & no HT" && "taskset -c $CORES_1SO_NOHT R --slave" < 2-xgboost.R && \
-    echo -n "xgboost all cores" && "R --slave" < 2-xgboost.R 
+    echo -n "xgboost 1 core" && taskset -c 0 R --slave < 2-xgboost.R && \
+    echo -n "xgboost 1 socket & no HT" && taskset -c $CORES_1SO_NOHT R --slave < 2-xgboost.R && \
+    echo -n "xgboost all cores" && R --slave < 2-xgboost.R 
 
