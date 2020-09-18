@@ -1,0 +1,4 @@
+VER=1.2.0
+sudo docker build --build-arg CACHE_DATE=$(date +%Y-%m-%d) --build-arg VER=$VER -t gbmperf_xgboost_cpu_ver .
+sudo docker run --rm gbmperf_xgboost_cpu_ver
+
