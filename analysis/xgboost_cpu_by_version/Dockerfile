@@ -15,6 +15,7 @@ RUN wget https://s3.amazonaws.com/benchm-ml--main/train-1m.csv && \
 ARG CACHE_DATE
 
 ARG VER
+ARG CORES_1SO_NOHT
 
 RUN git clone --recursive https://github.com/dmlc/xgboost && \
     cd xgboost && git checkout tags/$VER && git submodule init && git submodule update && \
@@ -30,6 +31,6 @@ CMD cd GBM-perf/analysis/xgboost_cpu_by_version && \
     ln -s /test.csv test.csv && \
     ln -sf /train-1m.csv train.csv && \
     echo -n "xgboost 1c" && "taskset -c 0 R --slave" < 2-xgboost.R && \
-    echo -n "xgboost 16c" && "taskset -c 0-15 R --slave" < 2-xgboost.R && \
-    echo -n "xgboost 64c" && "taskset -c 0-63 R --slave" < 2-xgboost.R 
+    echo -n "xgboost 16c" && "taskset -c $CORES_1SO_NOHT R --slave" < 2-xgboost.R && \
+    echo -n "xgboost 64c" && "R --slave" < 2-xgboost.R 
 
