@@ -1,5 +1,5 @@
 VER=v1.2.0
 CORES_1SO_NOHT=0-15    ## set physical core ids on first socket, no hyperthreading
-sudo docker build --build-arg CACHE_DATE=$(date +%Y-%m-%d) --build-arg VER=$VER --build-arg CORES_1SO_NOHT=$CORES_1SO_NOHT -t gbmperf_xgboost_cpu_ver .
-sudo docker run --rm gbmperf_xgboost_cpu_ver
+sudo docker build --build-arg CACHE_DATE=$(date +%Y-%m-%d) --build-arg VER=$VER -t gbmperf_xgboost_cpu_ver .
+sudo docker run --rm -e CORES_1SO_NOHT=$CORES_1SO_NOHT gbmperf_xgboost_cpu_ver
 
