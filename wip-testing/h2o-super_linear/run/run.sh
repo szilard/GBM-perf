@@ -7,7 +7,7 @@ for SIZE in 0.1 10; do
     LCORES=$(echo $CORES | cut -d: -f2)
     TCORES=$(echo $CORES | cut -d: -f3)
     for TOOL in h2o; do
-      for i in {1..2}; do
+      for i in {1..3}; do
         RUNTIME=$(taskset -c $LCORES R --slave < $TOOL.R $NCORES | tail -1)
         echo $SIZE:$TOOL:$NCORES:$LCORES:$TCORES:$RUNTIME
       done
