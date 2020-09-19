@@ -1,0 +1,2 @@
+sudo docker build --build-arg CACHE_DATE=$(date +%Y-%m-%d) -t gbmperf_h2o_suplin .
+sudo docker run --rm gbmperf_h2o_suplin
