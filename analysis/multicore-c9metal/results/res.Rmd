@@ -7,8 +7,8 @@ d <- fread("res.csv", sep=":")
 names(d) <- c("size","tool","ncores","cores","tcores","runtime","auc")
 
 d[, pcores:=sub(" $","",paste(ncores,tcores))]
-
-pcores_order <- unique(d$pcores)
+#pcores_order <- unique(d$pcores)
+pcores_order <- c("1","2","4","8","12","16","24","48 NUMA","48 HT","96 ALL")
 d[, pcores:=factor(pcores, levels=pcores_order)]
 
 d[, tool:=factor(tool, levels = c("h2o","xgboost","lightgbm","catboost"))]
@@ -27,7 +27,7 @@ ggplot(d[ncores>=4]) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) 
 
 ```{r fig.height=10, fig.width=11}
 
-dd <- d[ncores<=16 & !grepl(",",cores)]
+dd <- d[ncores<=24 & !grepl(",",cores)]
 
 ggplot(dd) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
   coord_flip() + facet_wrap(~tool+size, scales = "free", ncol = 3) + ylim(c(0,NA))
@@ -38,17 +38,17 @@ dd <- merge(dd, dd_1c,all.x = TRUE, allow.cartesian = TRUE)
 dd[, speedup := (1/runtime)/(1/runtime_1c), by=.(tool,size)]
 options(digits=2)
 xtabs(speedup~size+tool, dd[ncores==2, .(speedup=mean(speedup)), by=.(tool, size)])
-xtabs(speedup~size+tool, dd[ncores==4, .(speedup=mean(speedup)), by=.(tool, size)])
-xtabs(speedup~size+tool, dd[ncores==16, .(speedup=mean(speedup)), by=.(tool, size)])
+xtabs(speedup~size+tool, dd[ncores==8, .(speedup=mean(speedup)), by=.(tool, size)])
+xtabs(speedup~size+tool, dd[ncores==24, .(speedup=mean(speedup)), by=.(tool, size)])
 
 ggplot(dd) + geom_boxplot(aes(x = as.factor(ncores), y = speedup, color = tool)) +
   facet_grid(tool~size, scales = "free")
 
 
-dd_16c <- d[cores=="0-15",.(runtime_16c=mean(runtime)),by=.(tool,size)]
-dd_64c <- d[cores=="0-63",.(runtime_64c=mean(runtime)),by=.(tool,size)]
-dd_numa_ht <- merge(dd_16c, dd_64c)
-dd_numa_ht[,numa_ht_pc:=((1/runtime_64c)/(1/runtime_16c)-1)*100]
+dd_24c <- d[cores=="0-23",.(runtime_24c=mean(runtime)),by=.(tool,size)]
+dd_96c <- d[cores=="0-95",.(runtime_96c=mean(runtime)),by=.(tool,size)]
+dd_numa_ht <- merge(dd_24c, dd_96c)
+dd_numa_ht[,numa_ht_pc:=((1/runtime_96c)/(1/runtime_24c)-1)*100]
 options(digits=1)
 xtabs(numa_ht_pc~size+tool, dd_numa_ht)
 
