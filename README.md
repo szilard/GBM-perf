@@ -89,6 +89,10 @@ for smaller data high-frequency CPU (c5.9xlarge) is the best. Nevertheless, the 
 training time stays the same for a given data size when changing CPU. More details
 [here](https://github.com/szilard/GBM-perf/issues/13).
 
+Even more recently a CPU with both higher frequency and more cores became available on AWS: c5.12xlarge (Xeon Platinum 8275CL 3.00GHz, 48 cores)
+and also instances with 2 of these CPUs (but see results for multi-socket systems below): c5.24xlarge and c5.metal. 
+Results for c5.metal are [here](https://github.com/szilard/GBM-perf/issues/41).
+
 
 ### Multi-core scaling (CPU)
 
