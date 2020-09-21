@@ -84,8 +84,8 @@ AWS has now better CPUs than r4.8xlarge (Xeon E5-2686 v4 2.30GHz, 32 cores), for
 c5.9xlarge (Xeon Platinum 8124M 3.00GHz, 36 cores) or more number of cores 
 m5.12xlarge (Xeon Platinum 8175M 2.50GHz, 48 cores).
 
-c5 and m5 are typically 20-50% faster than r4, for larger data more cores (m5) is the best, 
-for smaller data high-frequency CPU (c5) is the best. Nevertheless, the ranking of libs by
+c5.9xlarge and m5.12xlarge are typically 20-50% faster than r4.8xlarge, for larger data more cores (m5.12xlarge) is the best, 
+for smaller data high-frequency CPU (c5.9xlarge) is the best. Nevertheless, the ranking of libs by
 training time stays the same for a given data size when changing CPU. More details
 [here](https://github.com/szilard/GBM-perf/issues/13).
 
