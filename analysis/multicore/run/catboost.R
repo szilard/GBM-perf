@@ -26,7 +26,7 @@ params <- list(iterations = 100, depth = 10, learning_rate = 0.1,
    verbose = 0)
 cat(system.time({
   md <- catboost.train(learn_pool = dx_train, test_pool = NULL, params = params)
-})[[3]]," ",sep="")
+})[[3]],":",sep="")
 
 
 phat <- catboost.predict(md, dx_test)

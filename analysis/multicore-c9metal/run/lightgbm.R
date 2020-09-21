@@ -29,7 +29,7 @@ cat(system.time({
             nrounds = 100, num_leaves = 512, learning_rate = 0.1, 
             categorical_feature = cols_cats,
             verbose = 0)
-})[[3]]," ",sep="")
+})[[3]],":",sep="")
 
 
 phat <- predict(md, data = as.matrix(d_test[,1:p]))
