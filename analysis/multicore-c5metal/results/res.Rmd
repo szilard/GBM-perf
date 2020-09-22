@@ -74,6 +74,12 @@ ggplot(d[tool=="lightgbm" & size==1]) + geom_boxplot(aes(x = pcores, y = runtime
   coord_flip() + facet_wrap(~tool+size, scales = "free") + ylim(c(0,NA)) +
   theme_grey(base_size = 22)
 
+```
+
+```{r fig.height=5, fig.width=10}
+
+ggplot(d[tool %in% c("lightgbm","xgboost") & ncores>=4]) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
+  coord_flip() + facet_wrap(~tool+size, scales = "free") + ylim(c(0,NA)) 
 
 ```
 
