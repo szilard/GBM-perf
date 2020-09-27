@@ -62,7 +62,7 @@ catboost          |   3.8        |   10        |     80        |   0.734   |   0
 
 ### GPU
 
-p3.2xlarge (1 GPU, Tesla V100) with software as of 2020-09-08:
+p3.2xlarge (1 GPU, Tesla V100) with software as of 2020-09-08 (and CUDA 11.0):
 
 Tool            | Time[s] 100K | Time[s] 1M  |  Time[s] 10M  |   AUC 1M  |   AUC 10M
 ----------------|--------------|-------------|---------------|-----------|------------
