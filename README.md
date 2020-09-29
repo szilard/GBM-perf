@@ -288,7 +288,7 @@ More details [here](https://github.com/szilard/GBM-perf/issues/21).
 
 ## Recommendations
 
-If you **don't have a GPU, lightgbm** (CPU) trains the fastest.
+If you **don't have a GPU, lightgbm** (CPU) trains often the fastest (on larger data).
 
 If you **have a GPU, xgboost** (GPU) is very fast (and depending on the data, your hardware etc.
 often faster than the above mentioned lightgbm on CPU).
