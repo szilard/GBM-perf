@@ -81,6 +81,8 @@ y_train_GPU = cudf.Series(y_train)
 X_test_GPU = cudf.DataFrame.from_pandas(pd.DataFrame(data=X_test.todense()))
 y_test_GPU = cudf.Series(y_test)
 
+# TODO: try CuPy sparse mx
+
 #--- 7GB GPU mem / 2GB RAM (max during transfer 7GB RAM)
 
 
