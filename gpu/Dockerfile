@@ -35,7 +35,8 @@ RUN apt-get install -y libboost-dev libboost-system-dev libboost-filesystem-dev 
 RUN mkdir -p /etc/OpenCL/vendors && \
     echo "libnvidia-opencl.so.1" > /etc/OpenCL/vendors/nvidia.icd   ## otherwise lightgm segfaults at runtime (compiles fine without it)
 RUN git clone --recursive https://github.com/microsoft/LightGBM && \
-    cd LightGBM && sed -i "s/use_gpu <- FALSE/use_gpu <- TRUE/"  R-package/src/install.libs.R && Rscript build_r.R
+    cd LightGBM && \
+    Rscript build_r.R --use-gpu
 
 RUN R -e 'devtools::install_github("catboost/catboost", subdir = "catboost/R-package")'
 
