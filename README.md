@@ -50,13 +50,13 @@ sudo nvidia-docker run --rm gbmperf_gpu
 
 ### CPU 
 
-r4.8xlarge (32 cores, but run on physical cores only/no hyperthreading) with software as of 2020-09-08:
+r4.8xlarge (32 cores, but run on physical cores only/no hyperthreading) with software as of 2021-01-14:
 
 Tool              | Time[s] 100K | Time[s] 1M  |  Time[s] 10M  |   AUC 1M  |   AUC 10M
 ------------------|--------------|-------------|---------------|-----------|------------
-h2o               |   14         |   16        |     90        |   0.762   |   0.776
-xgboost           |   **0.8**    |   5.5       |     70        |   0.748   |   0.754
-**lightgbm**      |   2.1        |   **4.0**   |     **20**    |   0.765   |   0.792
+h2o               |   12         |   15        |     90        |   0.762   |   0.776
+**xgboost**       |   **0.6**    |   **3.5**   |     40        |   0.748   |   0.754
+**lightgbm**      |   2.6        |   4.2       |     **20**    |   0.765   |   0.792
 catboost          |   3.8        |   10        |     80        |   0.734   |   0.735 
 
 
