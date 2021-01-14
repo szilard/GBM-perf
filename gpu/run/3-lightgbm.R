@@ -21,7 +21,7 @@ d_train <- d_all[1:nrow(d_train)]
 d_test <- d_all[(nrow(d_train)+1):(nrow(d_train)+nrow(d_test))]
 
 p <- ncol(d_all)-1
-dlgb_train <- lgb.Dataset(data = as.matrix(d_train[,1:p]), label = d_train$dep_delayed_15min)
+dlgb_train <- lgb.Dataset(data = as.matrix(d_train[,1:p]), label = d_train$dep_delayed_15min, free_raw_data = FALSE)
 
 cat(system.time({
   md <- lgb.train(data = dlgb_train, 
