@@ -36,8 +36,7 @@ RUN mkdir -p /etc/OpenCL/vendors && \
     echo "libnvidia-opencl.so.1" > /etc/OpenCL/vendors/nvidia.icd   ## otherwise lightgm segfaults at runtime (compiles fine without it)
 
 RUN git clone --recursive https://github.com/microsoft/LightGBM && cd LightGBM && \
-    sed -i 's/cmake_args <- c(cmake_args, "-DUSE_GPU=ON")/cmake_args <- c(cmake_args, "-DUSE_GPU=ON -DOpenCL_LIBRARY=\/usr\/lib\/x86_64-linux-gnu\/libOpenCL.so -DBOOST_LIBRARYDIR=\/usr\/lib\/x86_64-linux-gnu")/'  R-package/src/install.libs.R && \
-    Rscript build_r.R --use-gpu
+    Rscript build_r.R --use-gpu --opencl-library=/usr/lib/x86_64-linux-gnu/libOpenCL.so --boost-librarydir==/usr/lib/x86_64-linux-gnu
 
 RUN R -e 'devtools::install_github("catboost/catboost", subdir = "catboost/R-package")'
 
