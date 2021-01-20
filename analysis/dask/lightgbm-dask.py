@@ -37,7 +37,7 @@ y_train.persist()
 client.has_what()
 
 
-md = DaskLGBMClassifier(num_leaves=512, learning_rate=0.1, n_estimators=100, tree_learner="data")
+md = DaskLGBMClassifier(num_leaves=512, learning_rate=0.1, n_estimators=100, tree_learner="data", silent=False)
 %time md.fit( client=client, X=X_train, y=y_train)
 
 md_loc = md.to_local()
