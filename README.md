@@ -288,10 +288,10 @@ More details [here](https://github.com/szilard/GBM-perf/issues/21).
 
 ## Recommendations
 
-If you **don't have a GPU, lightgbm** (CPU) trains often the fastest (on larger data).
+If you **don't have a GPU, lightgbm and xgboost** (CPU) train the fastest.
 
 If you **have a GPU, xgboost** (GPU) is very fast (and depending on the data, your hardware etc.
-often faster than the above mentioned lightgbm on CPU).
+often faster than the above mentioned lightgbm/xgboost on CPU).
 
 If you consider deployment, **h2o has the best ways to deploy** as a real-time
 (fast scoring) application.
@@ -303,6 +303,8 @@ to use, e.g.:
 
 You can find more info in my talks at several conferences and meetups with many of them having video
 recordings available, for example my talk
-at Berlin Buzzwords in 2019, video reording [here](https://www.youtube.com/watch?v=qjuizRba3ZQ), slides
-[here](https://bit.ly/szilard-talk-berlbuzz19).
+at Berlin Buzzwords in 2019, video recording [here](https://www.youtube.com/watch?v=qjuizRba3ZQ), slides
+[here](https://bit.ly/szilard-talk-berlbuzz19), or a more updated talk from November 2020 at the LA Data Science Meetup,
+video recording [here](https://www.youtube.com/watch?v=ecUUUdisKAc), 
+slides [here](https://docs.google.com/presentation/d/1hRJveGyFArYzfpPSD9XeOi6oCHRjrj12yx4MDIrtPZg/edit).
 
