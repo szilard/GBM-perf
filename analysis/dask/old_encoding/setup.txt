@@ -2,10 +2,15 @@
 sudo docker run --rm  -ti -p 8787:8787 continuumio/anaconda3 /bin/bash
 
 
-pip3 install -U xgboost
+## ## deprecated 
+## pip3 install -U dask-ml dask-xgboost
+## ## dask-xgboost-0.1.11 xgboost-0.90
 
 
-pip3 install -U lightgbm
+pip3 install -U xgboost dask_ml
+
+
+pip3 install -U lightgbm 
 
 
 ## for dask lightgm for now use this:
@@ -14,6 +19,7 @@ sudo docker build -t dasklgbm .
 sudo docker run --rm  -p 8787:8787 dasklgbm
 sudo docker ps -a
 sudo docker exec -ti ... /bin/bash
+pip3 install -U dask_ml
 ipython
 
 

@@ -4,7 +4,7 @@ from sklearn import metrics
 from dask.distributed import Client, LocalCluster
 import dask.dataframe as dd
 
-import xgboost as xgb
+from lightgbm.dask import DaskLGBMClassifier
 
 
 cluster = LocalCluster(n_workers=16, threads_per_worker=1)
@@ -27,17 +27,15 @@ y_train.persist()
 client.has_what()
 
 
-dxgb_train = xgb.dask.DaskDMatrix(client, X_train, y_train)
-dxgb_test = xgb.dask.DaskDMatrix(client, X_test)
 
+md = DaskLGBMClassifier(num_leaves=512, learning_rate=0.1, n_estimators=100, tree_learner="data", silent=False)
+%time md.fit( client=client, X=X_train, y=y_train)
 
-param = {'objective':'binary:logistic', 'tree_method':'hist', 'max_depth':10, 'eta':0.1}             
-%time md = xgb.dask.train(client, param, dxgb_train, num_boost_round = 100)
+md_loc = md.to_local()
+X_test_loc = X_test.compute()
 
+y_pred = md_loc.predict_proba(X_test)[:,1]
+print(metrics.roc_auc_score(y_test, y_pred))
 
-y_pred = xgb.dask.predict(client, md, dxgb_test)
-y_pred_loc = y_pred.compute()
-y_test_loc = y_test.compute()
-print(metrics.roc_auc_score(y_test_loc, y_pred_loc))
 
 
