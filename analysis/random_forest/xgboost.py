@@ -49,6 +49,5 @@ param = {'max_depth':10, 'eta':0.1, 'objective':'binary:logistic', 'tree_method'
 
 y_pred = md.predict(dxgb_test)   
 
-print(metrics.confusion_matrix(y_test, y_pred>0.7))
 print(metrics.roc_auc_score(y_test, y_pred))
 

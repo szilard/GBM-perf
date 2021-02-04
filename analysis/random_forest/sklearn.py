@@ -32,6 +32,5 @@ md = ensemble.RandomForestClassifier(max_depth = 10, n_estimators = 100, n_jobs 
 
 y_pred = md.predict_proba(X_test)[:,1]
 
-print(metrics.confusion_matrix(y_test, y_pred>0.7))
 print(metrics.roc_auc_score(y_test, y_pred))
 
