@@ -1,0 +1,5 @@
+docker run --rm  -ti continuumio/anaconda3 /bin/bash
+
+pip3 install -U pytorch-tabnet
+
+
