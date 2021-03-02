@@ -1,5 +1,13 @@
-docker run --rm  -ti continuumio/anaconda3 /bin/bash
+## CPU
+
+sudo docker run --rm  -ti continuumio/anaconda3 /bin/bash
 
 pip3 install -U pytorch-tabnet
 
+
+## GPU
+
+sudo docker build -t tabnet_gpu .
+
+sudo nvidia-docker run -ti --rm tabnet_gpu /bin/bash
 

@@ -37,9 +37,3 @@ param = {'max_depth':10, 'eta':0.1, 'objective':'binary:logistic', 'tree_method'
 y_pred = md.predict(dxgb_test)   
 print(metrics.roc_auc_score(y_test, y_pred))
 
-
-## m5.2xlarge
-## Wall time: 1.29 s
-## 0.7234366181705152
-
-

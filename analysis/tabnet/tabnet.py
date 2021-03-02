@@ -62,6 +62,3 @@ md.fit( X_train=X_train, y_train=y_train,
 y_pred = md.predict_proba(X_test)[:,1]
 print(metrics.roc_auc_score(y_test, y_pred))
 
-## m5.2xlarge
-## Wall time: 8min 14s
-## 0.7132600595348346
