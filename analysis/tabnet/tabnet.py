@@ -18,6 +18,10 @@ vars_num = ["DepTime","Distance"]
 for col in vars_cat:
   d_all[col] = preprocessing.LabelEncoder().fit_transform(d_all[col])
 
+#normalize
+d_all["DepTime"]=d_all["DepTime"]/2400
+d_all["Distance"]=np.log10(d_all["Distance"]/100)
+
 X_all = d_all[vars_num+vars_cat]
 y_all = np.where(d_all["dep_delayed_15min"]=="Y",1,0)
 
