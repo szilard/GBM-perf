@@ -11,3 +11,9 @@ sudo docker build -t tabnet_gpu .
 
 sudo nvidia-docker run -ti --rm tabnet_gpu /bin/bash
 
+
+## R:
+
+install.packages("tabnet")
+
+

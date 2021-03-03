@@ -24,8 +24,13 @@ y_all = np.where(d_all["dep_delayed_15min"]=="Y",1,0)
 cat_idxs = [ i for i, col in enumerate(X_all.columns) if col in vars_cat]
 cat_dims = [ len(np.unique(X_all.iloc[:,i].values)) for i in cat_idxs]
 
-X_train = X_all[0:d_train.shape[0]].to_numpy()
-y_train = y_all[0:d_train.shape[0]]
+idx_trvl = np.random.choice(["train", "valid"], p =[.8, .2], size=(d_train.shape[0],))
+
+X_train = X_all[0:d_train.shape[0]][idx_trvl=="train"].to_numpy()
+y_train = y_all[0:d_train.shape[0]][idx_trvl=="train"]
+X_valid = X_all[0:d_train.shape[0]][idx_trvl=="valid"].to_numpy()
+y_valid = y_all[0:d_train.shape[0]][idx_trvl=="valid"]
+
 X_test = X_all[d_train.shape[0]:(d_train.shape[0]+d_test.shape[0])].to_numpy()
 y_test = y_all[d_train.shape[0]:(d_train.shape[0]+d_test.shape[0])]
 
@@ -43,10 +48,10 @@ md = TabNetClassifier(cat_idxs=cat_idxs,
 
 %%time
 md.fit( X_train=X_train, y_train=y_train,
-    eval_set=[(X_train, y_train)],
-    eval_name=['train'],
+    eval_set=[(X_train, y_train), (X_valid, y_valid)],
+    eval_name=['train', 'valid'],
     eval_metric=['auc'],
-    max_epochs=10, patience=0,
+    max_epochs=1000, patience=3,
     batch_size=1024, virtual_batch_size=128,
     num_workers=0,
     weights=1,
