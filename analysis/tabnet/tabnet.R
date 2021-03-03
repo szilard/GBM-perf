@@ -16,7 +16,7 @@ d_test <- d_train_test[(n1+1):(n1+n2),]
 
 
 system.time({
-  md <- tabnet_fit(dep_delayed_15min ~ . ,d_train, epochs = 1, verbose = TRUE)
+  md <- tabnet_fit(dep_delayed_15min ~ . ,d_train, epochs = 10, verbose = TRUE)
 })
 
 

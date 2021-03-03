@@ -32,23 +32,17 @@ y_test = y_all[d_train.shape[0]:(d_train.shape[0]+d_test.shape[0])]
 
 md = TabNetClassifier(cat_idxs=cat_idxs,
                        cat_dims=cat_dims,
-                       cat_emb_dim=1,
-                       optimizer_fn=torch.optim.Adam,
-                       optimizer_params=dict(lr=2e-2),
-                       scheduler_params={"step_size":50, # how to use learning rate scheduler
-                                         "gamma":0.9},
-                       scheduler_fn=torch.optim.lr_scheduler.StepLR,
-                       mask_type='entmax' # "sparsemax"
+                       cat_emb_dim=1
 )
 
 %%time
 md.fit( X_train=X_train, y_train=y_train,
-    max_epochs=10, patience=0,
-    batch_size=1024, virtual_batch_size=128,
-    weights=0
+    max_epochs=10, patience=0
 )
 
 
 y_pred = md.predict_proba(X_test)[:,1]
 print(metrics.roc_auc_score(y_test, y_pred))
+
+
 
