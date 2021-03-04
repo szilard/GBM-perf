@@ -23,6 +23,7 @@ y_all = np.where(d_all["dep_delayed_15min"]=="Y",1,0)
 
 cat_idxs = [ i for i, col in enumerate(X_all.columns) if col in vars_cat]
 cat_dims = [ len(np.unique(X_all.iloc[:,i].values)) for i in cat_idxs]
+cat_emb_dim = np.floor(np.log(cat_dims)).astype(int)
 
 X_train = X_all[0:d_train.shape[0]].to_numpy()
 y_train = y_all[0:d_train.shape[0]]
@@ -32,10 +33,11 @@ y_test = y_all[d_train.shape[0]:(d_train.shape[0]+d_test.shape[0])]
 
 md = TabNetClassifier(cat_idxs=cat_idxs,
                        cat_dims=cat_dims,
-                       cat_emb_dim=1,
+                       cat_emb_dim=cat_emb_dim,
                        ## optimizer_fn=torch.optim.Adam,
                        ## optimizer_params=dict(lr=2e-2),
                        ## mask_type='sparsemax',
+                       n_steps=1,
 )
 
 %%time
