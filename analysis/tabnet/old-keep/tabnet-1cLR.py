@@ -30,19 +30,28 @@ X_test = X_all[d_train.shape[0]:(d_train.shape[0]+d_test.shape[0])].to_numpy()
 y_test = y_all[d_train.shape[0]:(d_train.shape[0]+d_test.shape[0])]
 
 
+MAX_EPOCH = 10 
+BS = 1024 
+
 md = TabNetClassifier(cat_idxs=cat_idxs,
                        cat_dims=cat_dims,
                        cat_emb_dim=1,
                        ## optimizer_fn=torch.optim.Adam,
                        ## optimizer_params=dict(lr=2e-2),
-                       ## mask_type='sparsemax',
+                       scheduler_fn=torch.optim.lr_scheduler.OneCycleLR,
+                       scheduler_params=dict(max_lr=0.05,
+                                             steps_per_epoch=int(X_train.shape[0] / BS),
+                                             epochs=MAX_EPOCH,
+                                             is_batch_level=True),
+                       mask_type='entmax' # "sparsemax"
 )
 
 %%time
 md.fit( X_train=X_train, y_train=y_train,
-    max_epochs=10, patience=0,
+    max_epochs=MAX_EPOCH, patience=0,
     ## batch_size=1024, virtual_batch_size=128,
     ## weights=0,
+    drop_last = True
 )
 
 
