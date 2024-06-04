@@ -25,6 +25,8 @@ RUN git clone --recursive https://github.com/dmlc/xgboost && \
     cd xgboost && git submodule init && git submodule update && \
     cd R-package && R CMD INSTALL .
 
+RUN install2.r markdown
+
 RUN git clone --recursive https://github.com/microsoft/LightGBM && \
     cd LightGBM && Rscript build_r.R
 
