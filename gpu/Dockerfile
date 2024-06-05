@@ -1,11 +1,11 @@
-FROM nvidia/cuda:11.0-devel-ubuntu20.04
+FROM nvidia/cuda:12.5.0-devel-ubuntu22.04
+
+ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && \
-    DEBIAN_FRONTEND="noninteractive" apt-get install -y software-properties-common apt-transport-https
+    apt-get install -y software-properties-common apt-transport-https
 
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9 && \
-    add-apt-repository 'deb [arch=amd64] https://cran.rstudio.com/bin/linux/ubuntu focal-cran40/' && \
-    apt-get update && \
     apt-get install -y r-base
 
 RUN apt-get install -y git wget libcurl4-openssl-dev default-jdk-headless libssl-dev libxml2-dev cmake libgit2-dev

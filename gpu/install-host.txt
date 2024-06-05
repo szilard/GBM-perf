@@ -27,19 +27,20 @@ sudo apt-get install -y docker-ce
 
 ## install nvidia driver+cuda
 
-# https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=2004&target_type=debnetwork
+# https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=22.04&target_type=deb_local
 
-wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
-sudo mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600
-sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/7fa2af80.pub
-sudo add-apt-repository "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/ /"
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-ubuntu2204.pin
+sudo mv cuda-ubuntu2204.pin /etc/apt/preferences.d/cuda-repository-pin-600
+wget https://developer.download.nvidia.com/compute/cuda/12.5.0/local_installers/cuda-repo-ubuntu2204-12-5-local_12.5.0-555.42.02-1_amd64.deb
+sudo dpkg -i cuda-repo-ubuntu2204-12-5-local_12.5.0-555.42.02-1_amd64.deb
+sudo cp /var/cuda-repo-ubuntu2204-12-5-local/cuda-*-keyring.gpg /usr/share/keyrings/
 sudo apt-get update
 sudo apt-get -y install cuda
 
 
 
-
 ## install nvidia-docker 
+## UPDATE: DEPRECATION NOTICE: This project has been superseded by the NVIDIA Container Toolkit.
 
 # https://devblogs.nvidia.com/nvidia-docker-gpu-server-application-deployment-made-easy/
 # https://github.com/NVIDIA/nvidia-docker#quick-start
@@ -54,6 +55,6 @@ sudo apt-get update
 sudo apt-get install -y nvidia-docker2
 sudo pkill -SIGHUP dockerd
 
-docker run --runtime=nvidia --rm nvidia/cuda:11.0-devel-ubuntu20.04 nvidia-smi
-nvidia-docker run --rm nvidia/cuda:11.0-devel-ubuntu20.04 nvidia-smi
+sudo docker run --runtime=nvidia --rm nvidia/cuda:12.5.0-devel-ubuntu22.04 nvidia-smi
+sudo nvidia-docker run --rm nvidia/cuda:12.5.0-devel-ubuntu22.04 nvidia-smi
 
