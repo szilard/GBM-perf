@@ -16,7 +16,7 @@ RUN apt-get install -y git wget libcurl4-openssl-dev default-jdk-headless libssl
 
 RUN R CMD javareconf
 
-ENV MAKE="make -j$(nproc)"
+ARG MAKE
 
 RUN R -e 'install.packages(c("ROCR","data.table","R6","devtools","RCurl","jsonlite"), repos = "https://cran.rstudio.com/")'
 
