@@ -24,7 +24,7 @@ cat(system.time({
   md <- xgb.train(data = dxgb_train, 
             objective = "binary:logistic", 
             nround = 100, max_depth = 10, eta = 0.1, 
-            tree_method = "gpu_hist")
+            tree_method = "hist", device = "cuda")
 })[[3]]," ",sep="")
 
 
