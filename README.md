@@ -81,6 +81,15 @@ h2o xgboost     |   6.4        |    14       |     45        |   0.749   |   0.7
 lightgbm        |   7          |    10       |     42        |   0.767   |   0.792
 catboost        |   **1.8**    |    **4.6**  |     37        | 0.732 ?!  |   0.736 ?!
 
+Update (2024-06-04, CUDA 12.5, little changed since 2021-01-14 except *xgboost getting even faster*):
+
+Tool            | Time[s] 100K | Time[s] 1M  |  Time[s] 10M  |   AUC 1M  |   AUC 10M
+----------------|--------------|-------------|---------------|-----------|------------
+h2o xgboost     |   6.4        |    14       |     42        |   0.749   |   0.756  
+**xgboost**     |   **0.7**    |   **1.3**   |   **5**       |   0.748   |   0.756
+lightgbm        |   7          |    9        |     40        |   0.766   |   0.791
+catboost        |   1.6        |    3.4      |     23        | 0.735 ?!  |   0.737 ?!
+
 
 
 ## Additional results 
