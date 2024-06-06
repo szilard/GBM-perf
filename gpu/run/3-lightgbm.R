@@ -34,8 +34,6 @@ cat(system.time({
 })[[3]]," ",sep="")
 
 
-
-
 phat <- predict(md, data = as.matrix(d_test[,1:p]))
 rocr_pred <- prediction(phat, d_test$dep_delayed_15min)
 cat(performance(rocr_pred, "auc")@y.values[[1]],"\n")
