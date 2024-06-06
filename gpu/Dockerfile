@@ -71,23 +71,23 @@ CMD cd GBM-perf/gpu/run && \
     echo "warmup:" && \
       echo -n "h2o " && R --slave < 1-h2o.R && \
       echo -n "xgboost " && R --slave < 2-xgboost.R && \
-     # echo -n "lightgbm " && R --slave < 3-lightgbm.R && \
+      echo -n "lightgbm " && R --slave < 3-lightgbm.R && \
       echo -n "catboost " && R --slave < 4-catboost.R && \
     echo "0.1m:" && \
       echo -n "h2o " && R --slave < 1-h2o.R && \
       echo -n "xgboost " && R --slave < 2-xgboost.R && \
-     # echo -n "lightgbm " && R --slave < 3-lightgbm.R && \
+      echo -n "lightgbm " && R --slave < 3-lightgbm.R && \
       echo -n "catboost " && R --slave < 4-catboost.R && \
     ln -sf /train-1m.csv train.csv && \
     echo "1m:" && \
       echo -n "h2o " && R --slave < 1-h2o.R && \
       echo -n "xgboost " && R --slave < 2-xgboost.R && \
-     # echo -n "lightgbm " && R --slave < 3-lightgbm.R && \
+      echo -n "lightgbm " && R --slave < 3-lightgbm.R && \
       echo -n "catboost " && R --slave < 4-catboost.R && \
     ln -sf /train-10m.csv train.csv && \
     echo "10m:" && \
       echo -n "h2o " && R --slave < 1-h2o.R && \
       echo -n "xgboost " && R --slave < 2-xgboost.R && \
-     # echo -n "lightgbm " && R --slave < 3-lightgbm.R && \
+      echo -n "lightgbm " && R --slave < 3-lightgbm.R && \
       echo -n "catboost " && R --slave < 4-catboost.R
 
