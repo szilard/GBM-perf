@@ -43,14 +43,16 @@ RUN wget https://s3-us-west-2.amazonaws.com/xgboost-nightly-builds/release_2.0.0
 RUN R CMD INSTALL xgboost_r_gpu_linux_82d846bbeb83c652a0b1dff0e3519e67569c4a3d.tar.gz
 
 
-# lightgbm compilation errors out
+# lightgbm compilation errors out, need patch to fix it, see https://github.com/microsoft/LightGBM/pull/5950
 
-#RUN apt-get install -y libboost-dev libboost-system-dev libboost-filesystem-dev ocl-icd-opencl-dev opencl-headers clinfo
-#RUN mkdir -p /etc/OpenCL/vendors && \
-#    echo "libnvidia-opencl.so.1" > /etc/OpenCL/vendors/nvidia.icd   ## otherwise lightgm segfaults at runtime (compiles fine without it)
+RUN apt-get install -y libboost-dev libboost-system-dev libboost-filesystem-dev ocl-icd-opencl-dev opencl-headers clinfo
+RUN mkdir -p /etc/OpenCL/vendors && \
+    echo "libnvidia-opencl.so.1" > /etc/OpenCL/vendors/nvidia.icd   ## otherwise lightgm segfaults at runtime (compiles fine without it)
 
-#RUN git clone --recursive https://github.com/microsoft/LightGBM && cd LightGBM && \
-#    Rscript build_r.R --use-gpu --opencl-library=/usr/lib/x86_64-linux-gnu/libOpenCL.so --boost-librarydir=/usr/lib/x86_64-linux-gnu
+RUN git clone --recursive https://github.com/microsoft/LightGBM && cd LightGBM && \
+       wget https://gist.githubusercontent.com/szilard/a2a233161aa14c7cdb3523f838def709/raw/ccc49d698373d83433c3ffba088406ca0961003b/lightgbm-R-gpu-fix.patch && \
+       patch -u build_r.R -i lightgbm-R-gpu-fix.patch && \
+    Rscript build_r.R --use-gpu --opencl-library=/usr/lib/x86_64-linux-gnu/libOpenCL.so --boost-librarydir=/usr/lib/x86_64-linux-gnu
 
 
 RUN R -e 'devtools::install_github("catboost/catboost", subdir = "catboost/R-package")'
