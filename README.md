@@ -65,7 +65,7 @@ Results on newer hardware (m7i/c7i/r7i) [here](https://github.com/szilard/GBM-pe
 
 ### GPU
 
-p3.2xlarge (1 GPU, Tesla V100) with software as of 2024-06-06 (and CUDA 12.5):
+p3.2xlarge (1 GPU, NVIDIA V100) with software as of 2024-06-06 (and CUDA 12.5):
 
 Tool            | Time[s] 100K | Time[s] 1M  |  Time[s] 10M  |   AUC 1M  |   AUC 10M
 ----------------|--------------|-------------|---------------|-----------|------------
@@ -74,6 +74,7 @@ h2o xgboost     |   6.4        |    14       |     42        |   0.749   |   0.7
 lightgbm        |   7          |    9        |     40        |   0.766   |   0.791
 catboost        |   1.6        |    3.4      |     23        | 0.735 ?!  |   0.737 ?!
 
+Results on newer hardware (g5/...) [here](https://github.com/szilard/GBM-perf/issues/57). 
 
 
 ## Additional results 
