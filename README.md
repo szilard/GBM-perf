@@ -50,16 +50,7 @@ sudo nvidia-docker run --rm gbmperf_gpu
 
 ### CPU 
 
-r4.8xlarge (32 cores, but run on physical cores only/no hyperthreading) with software as of 2021-01-14:
-
-Tool              | Time[s] 100K | Time[s] 1M  |  Time[s] 10M  |   AUC 1M  |   AUC 10M
-------------------|--------------|-------------|---------------|-----------|------------
-h2o               |   12         |   15        |     90        |   0.762   |   0.776
-**xgboost**       |   **0.6**    |   **3.5**   |     40        |   0.748   |   0.754
-**lightgbm**      |   2.6        |   4.2       |     **20**    |   0.765   |   0.792
-catboost          |   3.8        |   10        |     80        |   0.734   |   0.735 
-
-Update (2024-06-04, very little changed since 2021-01-14):
+r4.8xlarge (32 cores, but run on physical cores only/no hyperthreading) with software as of 2024-06-04:
 
 Tool              | Time[s] 100K | Time[s] 1M  |  Time[s] 10M  |   AUC 1M  |   AUC 10M
 ------------------|--------------|-------------|---------------|-----------|------------
@@ -72,16 +63,7 @@ catboost          |   1.9        |   7.0       |     70        |   0.734   |   0
 
 ### GPU
 
-p3.2xlarge (1 GPU, Tesla V100) with software as of 2021-01-15 (and CUDA 11.0):
-
-Tool            | Time[s] 100K | Time[s] 1M  |  Time[s] 10M  |   AUC 1M  |   AUC 10M
-----------------|--------------|-------------|---------------|-----------|------------
-h2o xgboost     |   6.4        |    14       |     45        |   0.749   |   0.756  
-**xgboost**     |   3.6        |  6.5        |   **11**      |   0.748   |   0.756
-lightgbm        |   7          |    10       |     42        |   0.767   |   0.792
-catboost        |   **1.8**    |    **4.6**  |     37        | 0.732 ?!  |   0.736 ?!
-
-Update (2024-06-04, CUDA 12.5, little changed since 2021-01-14 except *xgboost getting even faster*):
+p3.2xlarge (1 GPU, Tesla V100) with software as of 2024-06-06 (and CUDA 12.5):
 
 Tool            | Time[s] 100K | Time[s] 1M  |  Time[s] 10M  |   AUC 1M  |   AUC 10M
 ----------------|--------------|-------------|---------------|-----------|------------
