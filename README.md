@@ -59,7 +59,8 @@ h2o               |   11         |   12        |     60        |   0.762   |   0
 **lightgbm**      |   2.3        |   4.0       |     **20**    |   0.765   |   0.792
 catboost          |   1.9        |   7.0       |     70        |   0.734   |   0.735 
 
-Results on newer hardware (m7i/c7i/r7i) [here](https://github.com/szilard/GBM-perf/issues/56).
+Results on newer hardware (m7i/c7i/r7i) [here](https://github.com/szilard/GBM-perf/issues/56) 
+(TLDR: ~2x speedup on the newer hardware).
 
 
 ### GPU
