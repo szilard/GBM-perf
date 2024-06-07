@@ -40,7 +40,7 @@ sudo docker run --rm gbmperf_cpu
 ```
 git clone https://github.com/szilard/GBM-perf.git
 cd GBM-perf/gpu
-sudo docker build -t gbmperf_gpu .
+sudo docker build --build-arg CACHE_DATE=$(date +%Y-%m-%d) -t gbmperf_gpu .
 sudo nvidia-docker run --rm gbmperf_gpu
 ```
 
