@@ -74,7 +74,7 @@ h2o xgboost     |   6.4        |    14       |     42        |   0.749   |   0.7
 lightgbm        |   7          |    9        |     40        |   0.766   |   0.791
 catboost        |   1.6        |    3.4      |     23        | 0.735 ?!  |   0.737 ?!
 
-Results on newer hardware (g5/... that is A10G/... - WIP) [here](https://github.com/szilard/GBM-perf/issues/57). 
+Results on newer hardware (g5/g6/... that is A10G/L4/... - WIP) [here](https://github.com/szilard/GBM-perf/issues/57). 
 
 
 ## Additional results 
