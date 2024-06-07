@@ -8,7 +8,7 @@ RUN R CMD javareconf
 
 ENV MAKE="make -j4"
 
-RUN install2.r ROCR data.table
+RUN install2.r ROCR markdown      # lightgbm needs markdown
 
 RUN wget https://s3.amazonaws.com/benchm-ml--main/train-0.1m.csv && \
     wget https://s3.amazonaws.com/benchm-ml--main/train-1m.csv && \
@@ -24,8 +24,6 @@ RUN install2.r RCurl && \
 RUN git clone --recursive https://github.com/dmlc/xgboost && \
     cd xgboost && git submodule init && git submodule update && \
     cd R-package && R CMD INSTALL .
-
-RUN install2.r markdown
 
 RUN git clone --recursive https://github.com/microsoft/LightGBM && \
     cd LightGBM && Rscript build_r.R
