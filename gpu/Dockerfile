@@ -31,7 +31,7 @@ ARG CACHE_DATE
 RUN R -e 'install.packages("h2o", repos = "http://h2o-release.s3.amazonaws.com/h2o/latest_stable_R")'
 
 
-# xgboost compilation errors out, so use CUDA-built binaries (supplied in the release section on github for the latest release)
+# xgboost compilation errors out, so use CUDA-built binaries (supplied in the release section on github for the latest releases)
 
 #RUN git clone --recursive https://github.com/dmlc/xgboost && \
 #    cd xgboost && \
