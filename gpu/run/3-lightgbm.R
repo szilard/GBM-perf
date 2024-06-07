@@ -21,7 +21,8 @@ d_train <- d_all[1:nrow(d_train)]
 d_test <- d_all[(nrow(d_train)+1):(nrow(d_train)+nrow(d_test))]
 
 p <- ncol(d_all)-1
-dlgb_train <- lgb.Dataset(data = as.matrix(d_train[,1:p]), label = d_train$dep_delayed_15min, free_raw_data = FALSE)
+dlgb_train <- lgb.Dataset(data = as.matrix(d_train[,1:p]), label = d_train$dep_delayed_15min, free_raw_data = FALSE,
+               categorical_feature = cols_cats)
 
 
 params <- list(objective = "binary", num_leaves = 512, learning_rate = 0.1, device = "gpu")
@@ -29,7 +30,6 @@ params <- list(objective = "binary", num_leaves = 512, learning_rate = 0.1, devi
 cat(system.time({
   md <- lgb.train(data = dlgb_train, 
             nrounds = 100, params = params, 
-            categorical_feature = cols_cats,
             verbose = 0)
 })[[3]]," ",sep="")
 
