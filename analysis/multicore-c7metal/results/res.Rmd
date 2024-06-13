@@ -1,0 +1,85 @@
+```{r}
+
+library(data.table)
+library(ggplot2)
+
+d <- fread("res.csv", sep=":")
+names(d) <- c("size","tool","ncores","cores","tcores","runtime","auc")
+
+d[, pcores:=sub(" $","",paste(ncores,tcores))]
+#pcores_order <- unique(d$pcores)
+pcores_order <- c("1","2","4","8","12","16","24","32","48","96 HT","96 NUMA","192 ALL")
+d[, pcores:=factor(pcores, levels=pcores_order)]
+
+d[, tool:=factor(tool, levels = c("xgboost","lightgbm"))]
+
+```
+
+```{r fig.height=9, fig.width=11}
+
+ggplot(d) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
+  coord_flip() + facet_wrap(~tool+size, scales = "free", ncol = 3) + ylim(c(0,NA))
+
+ggplot(d[ncores>=4]) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
+  coord_flip() + facet_wrap(~tool+size, scales = "free", ncol = 3) + ylim(c(0,NA))
+
+```
+
+```{r fig.height=10, fig.width=11}
+
+dd <- d[ncores<=48 & !grepl(",",cores)]
+
+ggplot(dd) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
+  coord_flip() + facet_wrap(~tool+size, scales = "free", ncol = 3) + ylim(c(0,NA))
+
+dd_1c <- dd[ncores==1,.(runtime_1c=mean(runtime)),by=.(tool,size)]
+dd <- merge(dd, dd_1c,all.x = TRUE, allow.cartesian = TRUE)
+
+dd[, speedup := (1/runtime)/(1/runtime_1c), by=.(tool,size)]
+options(digits=2)
+xtabs(speedup~size+tool, dd[ncores==2, .(speedup=mean(speedup)), by=.(tool, size)])
+xtabs(speedup~size+tool, dd[ncores==8, .(speedup=mean(speedup)), by=.(tool, size)])
+xtabs(speedup~size+tool, dd[ncores==24, .(speedup=mean(speedup)), by=.(tool, size)])
+
+ggplot(dd) + geom_boxplot(aes(x = as.factor(ncores), y = speedup, color = tool)) +
+  facet_grid(tool~size, scales = "free") + ylim(c(0,NA))
+
+
+dd_24c <- d[cores=="0-23",.(runtime_24c=mean(runtime)),by=.(tool,size)]
+dd_96c <- d[cores=="0-95",.(runtime_96c=mean(runtime)),by=.(tool,size)]
+dd_numa_ht <- merge(dd_24c, dd_96c)
+dd_numa_ht[,numa_ht_pc:=((1/runtime_96c)/(1/runtime_24c)-1)*100]
+options(digits=1)
+xtabs(numa_ht_pc~size+tool, dd_numa_ht)
+
+```
+
+```{r fig.height=3.5, fig.width=6}
+
+ggplot(dd_numa_ht, aes(x = size, y = numa_ht_pc, color = tool, ymin=-100)) + geom_point() + geom_line() + scale_x_log10() + geom_hline(yintercept = 0, color = "red", size = 1.5) + scale_y_continuous(breaks = seq(-100,100,by=20))
+
+ggplot(d, aes(x = size, y = auc, color = tool)) + geom_point() + geom_line() + scale_x_log10()
+
+```
+
+```{r fig.height=6, fig.width=9}
+
+ggplot(dd) + geom_boxplot(aes(x = pcores, y = runtime/size, color = as.factor(size))) + facet_wrap(~tool, scales = "free", ncol=2) + ylim(c(0,NA))
+
+ggplot(d[tool=="xgboost" & size==1]) + geom_boxplot(aes(x = pcores, y = runtime), color = "blue") +
+  coord_flip() + facet_wrap(~tool+size, scales = "free") + ylim(c(0,NA)) +
+  theme_grey(base_size = 22)
+
+ggplot(d[tool=="lightgbm" & size==1]) + geom_boxplot(aes(x = pcores, y = runtime), color = "red") +
+  coord_flip() + facet_wrap(~tool+size, scales = "free") + ylim(c(0,NA)) +
+  theme_grey(base_size = 22)
+
+```
+
+```{r fig.height=5, fig.width=10}
+
+ggplot(d[tool %in% c("lightgbm","xgboost") & ncores>=4]) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
+  coord_flip() + facet_wrap(~tool+size, scales = "free") + ylim(c(0,NA)) 
+
+```
+
