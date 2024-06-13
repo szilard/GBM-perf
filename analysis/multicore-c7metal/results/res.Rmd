@@ -7,7 +7,6 @@ d <- fread("res.csv", sep=":", header = FALSE)
 names(d) <- c("size","tool","ncores","cores","tcores","runtime","auc")
 
 d[, pcores:=sub(" $","",paste(ncores,tcores))]
-#pcores_order <- unique(d$pcores)
 pcores_order <- c("1","2","4","8","12","16","24","32","48","96 HT","96 NUMA","192 ALL")
 d[, pcores:=factor(pcores, levels=pcores_order)]
 
@@ -15,7 +14,7 @@ d[, tool:=factor(tool, levels = c("xgboost","lightgbm"))]
 
 ```
 
-```{r fig.height=9, fig.width=11}
+```{r fig.height=5, fig.width=11}
 
 ggplot(d) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
   coord_flip() + facet_wrap(~tool+size, scales = "free", ncol = 3) + ylim(c(0,NA))
@@ -23,14 +22,20 @@ ggplot(d) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
 ggplot(d[ncores>=4]) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
   coord_flip() + facet_wrap(~tool+size, scales = "free", ncol = 3) + ylim(c(0,NA))
 
+ggplot(d[ncores>=4]) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
+  coord_flip() + facet_grid(tool ~ size, scales = "free") + ylim(c(0,NA)) 
+
 ```
 
-```{r fig.height=10, fig.width=11}
+```{r fig.height=6, fig.width=11}
 
 dd <- d[ncores<=48 & !grepl(",",cores)]
 
 ggplot(dd) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
   coord_flip() + facet_wrap(~tool+size, scales = "free", ncol = 3) + ylim(c(0,NA))
+
+ggplot(dd) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
+  coord_flip() + facet_grid(tool ~ size, scales = "free") + ylim(c(0,NA))
 
 dd_1c <- dd[ncores==1,.(runtime_1c=mean(runtime)),by=.(tool,size)]
 dd <- merge(dd, dd_1c,all.x = TRUE, allow.cartesian = TRUE)
@@ -64,9 +69,13 @@ ggplot(d, aes(x = size, y = auc, color = tool)) + geom_point() + geom_line() + s
 
 ```
 
-```{r fig.height=6, fig.width=9}
+```{r fig.height=4, fig.width=9}
 
 ggplot(dd) + geom_boxplot(aes(x = pcores, y = runtime/size, color = as.factor(size))) + facet_wrap(~tool, scales = "free", ncol=2) + ylim(c(0,NA))
+
+```
+
+```{r fig.height=6, fig.width=9}
 
 ggplot(d[tool=="xgboost" & size==1]) + geom_boxplot(aes(x = pcores, y = runtime), color = "blue") +
   coord_flip() + facet_wrap(~tool+size, scales = "free") + ylim(c(0,NA)) +
@@ -78,10 +87,4 @@ ggplot(d[tool=="lightgbm" & size==1]) + geom_boxplot(aes(x = pcores, y = runtime
 
 ```
 
-```{r fig.height=5, fig.width=10}
-
-ggplot(d[tool %in% c("lightgbm","xgboost") & ncores>=4]) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
-  coord_flip() + facet_wrap(~tool+size, scales = "free") + ylim(c(0,NA)) 
-
-```
 
