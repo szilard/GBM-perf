@@ -8,7 +8,7 @@ RUN R CMD javareconf
 
 ENV MAKE="make -j4"
 
-RUN install2.r ROCR data.table
+RUN install2.r ROCR data.table markdown
 
 RUN wget https://s3.amazonaws.com/benchm-ml--main/train-0.1m.csv && \
     wget https://s3.amazonaws.com/benchm-ml--main/train-1m.csv && \
