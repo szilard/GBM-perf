@@ -1,2 +1,2 @@
 sudo docker build --build-arg CACHE_DATE=$(date +%Y-%m-%d) -t gbmperf_cpu_multicore .
-sudo docker run --rm gbmperf_cpu_multicore
+sudo docker run --rm gbmperf_cpu_multicore | tee res.csv
