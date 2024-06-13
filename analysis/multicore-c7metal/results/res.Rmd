@@ -14,7 +14,7 @@ d[, tool:=factor(tool, levels = c("xgboost","lightgbm"))]
 
 ```
 
-```{r fig.height=5, fig.width=11}
+```{r fig.height=5.5, fig.width=11}
 
 ggplot(d) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
   coord_flip() + facet_wrap(~tool+size, scales = "free", ncol = 3) + ylim(c(0,NA))
@@ -22,12 +22,12 @@ ggplot(d) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
 ggplot(d[ncores>=4]) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
   coord_flip() + facet_wrap(~tool+size, scales = "free", ncol = 3) + ylim(c(0,NA))
 
-ggplot(d[ncores>=4]) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
-  coord_flip() + facet_grid(tool ~ size, scales = "free") + ylim(c(0,NA)) 
-
 ```
 
 ```{r fig.height=6, fig.width=11}
+
+ggplot(d[ncores>=4]) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
+  coord_flip() + facet_grid(tool ~ size, scales = "free") + ylim(c(0,NA)) 
 
 dd <- d[ncores<=48 & !grepl(",",cores)]
 
@@ -86,5 +86,23 @@ ggplot(d[tool=="lightgbm" & size==1]) + geom_boxplot(aes(x = pcores, y = runtime
   theme_grey(base_size = 22)
 
 ```
+
+```{r fig.height=6, fig.width=9}
+
+ddm <- dd[ncores %in% c(1,2,4,8,16,32),
+    .(run_time = mean(runtime)),by=.(tool, size, ncores)][order(tool, size)]
+ddm[,ncores_prev:=shift(ncores),.(tool, size)]
+ddm[,runtime_prev:=shift(run_time),.(tool, size)]
+ddm[,ncores_x:=ncores/ncores_prev]
+ddm[,speedup:=runtime_prev/run_time]
+
+ggplot(ddm) + geom_point(aes(x = as.factor(ncores), y = speedup,
+        color=ifelse(speedup>1,">1","<1"))) + facet_grid(tool~size) +
+  scale_colour_manual(values=c("Red","Blue")) + theme(legend.position="none") +
+  ylim(c(0.5,2))
+
+```
+
+
 
 
