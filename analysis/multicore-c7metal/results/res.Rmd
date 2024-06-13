@@ -3,7 +3,7 @@
 library(data.table)
 library(ggplot2)
 
-d <- fread("res.csv", sep=":")
+d <- fread("res.csv", sep=":", header = FALSE)
 names(d) <- c("size","tool","ncores","cores","tcores","runtime","auc")
 
 d[, pcores:=sub(" $","",paste(ncores,tcores))]
@@ -45,10 +45,10 @@ ggplot(dd) + geom_boxplot(aes(x = as.factor(ncores), y = speedup, color = tool))
   facet_grid(tool~size, scales = "free") + ylim(c(0,NA))
 
 
-dd_24c <- d[cores=="0-23",.(runtime_24c=mean(runtime)),by=.(tool,size)]
-dd_96c <- d[cores=="0-95",.(runtime_96c=mean(runtime)),by=.(tool,size)]
-dd_numa_ht <- merge(dd_24c, dd_96c)
-dd_numa_ht[,numa_ht_pc:=((1/runtime_96c)/(1/runtime_24c)-1)*100]
+dd_48c <- d[cores=="0-47",.(runtime_48c=mean(runtime)),by=.(tool,size)]
+dd_192c <- d[cores=="0-191",.(runtime_192c=mean(runtime)),by=.(tool,size)]
+dd_numa_ht <- merge(dd_48c, dd_192c)
+dd_numa_ht[,numa_ht_pc:=((1/runtime_192c)/(1/runtime_48c)-1)*100]
 options(digits=1)
 xtabs(numa_ht_pc~size+tool, dd_numa_ht)
 

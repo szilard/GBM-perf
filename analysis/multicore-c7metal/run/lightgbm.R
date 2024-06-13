@@ -31,7 +31,7 @@ cat(system.time({
   md <- lgb.train(data = dlgb_train, 
             nrounds = 100, params = params, 
             verbose = 0)
-})[[3]]," ",sep="")
+})[[3]],":",sep="")
 
 
 phat <- predict(md, newdata = as.matrix(d_test[,1:p]))
