@@ -21,18 +21,20 @@ d_train <- d_all[1:nrow(d_train)]
 d_test <- d_all[(nrow(d_train)+1):(nrow(d_train)+nrow(d_test))]
 
 p <- ncol(d_all)-1
-dlgb_train <- lgb.Dataset(data = as.matrix(d_train[,1:p]), label = d_train$dep_delayed_15min)
+dlgb_train <- lgb.Dataset(data = as.matrix(d_train[,1:p]), label = d_train$dep_delayed_15min, free_raw_data = FALSE, 
+         categorical_feature = cols_cats)
+
+
+params <- list(objective = "binary", num_leaves = 512, learning_rate = 0.1)
 
 cat(system.time({
   md <- lgb.train(data = dlgb_train, 
-            objective = "binary", 
-            nrounds = 100, num_leaves = 512, learning_rate = 0.1, 
-            categorical_feature = cols_cats,
+            nrounds = 100, params = params, 
             verbose = 0)
-})[[3]],":",sep="")
+})[[3]]," ",sep="")
 
 
-phat <- predict(md, data = as.matrix(d_test[,1:p]))
+phat <- predict(md, newdata = as.matrix(d_test[,1:p]))
 rocr_pred <- prediction(phat, d_test$dep_delayed_15min)
 cat(performance(rocr_pred, "auc")@y.values[[1]],"\n")
 
