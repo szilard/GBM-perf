@@ -39,7 +39,9 @@ dd[, speedup := (1/runtime)/(1/runtime_1c), by=.(tool,size)]
 options(digits=2)
 xtabs(speedup~size+tool, dd[ncores==2, .(speedup=mean(speedup)), by=.(tool, size)])
 xtabs(speedup~size+tool, dd[ncores==8, .(speedup=mean(speedup)), by=.(tool, size)])
-xtabs(speedup~size+tool, dd[ncores==24, .(speedup=mean(speedup)), by=.(tool, size)])
+xtabs(speedup~size+tool, dd[ncores==16, .(speedup=mean(speedup)), by=.(tool, size)])
+xtabs(speedup~size+tool, dd[ncores==32, .(speedup=mean(speedup)), by=.(tool, size)])
+xtabs(speedup~size+tool, dd[ncores==48, .(speedup=mean(speedup)), by=.(tool, size)])
 
 ggplot(dd) + geom_boxplot(aes(x = as.factor(ncores), y = speedup, color = tool)) +
   facet_grid(tool~size, scales = "free") + ylim(c(0,NA))
