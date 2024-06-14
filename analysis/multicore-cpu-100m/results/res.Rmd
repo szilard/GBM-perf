@@ -6,6 +6,9 @@ library(ggplot2)
 d <- fread("res.csv", sep=":", header = FALSE)
 names(d) <- c("size","tool","ncores","cores","tcores","runtime","auc")
 
+d[, tcores:=NULL]
+d[, tcores:=""]
+
 d[, pcores:=sub(" $","",paste(ncores,tcores))]
 pcores_order <- c("1","2","4","8","12","16","24","32","48","96 HT","96 NUMA","192 ALL")
 d[, pcores:=factor(pcores, levels=pcores_order)]
@@ -14,7 +17,7 @@ d[, tool:=factor(tool, levels = c("xgboost","lightgbm"))]
 
 ```
 
-```{r fig.height=5.5, fig.width=11}
+```{r fig.height=4, fig.width=11}
 
 ggplot(d) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
   coord_flip() + facet_wrap(~tool+size, scales = "free", ncol = 3) + ylim(c(0,NA))
@@ -24,15 +27,23 @@ ggplot(d[ncores>=4]) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) 
 
 ```
 
-```{r fig.height=6, fig.width=11}
+```{r fig.height=7, fig.width=6}
 
 ggplot(d[ncores>=4]) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
   coord_flip() + facet_grid(tool ~ size, scales = "free") + ylim(c(0,NA)) 
 
+```
+
+```{r fig.height=4, fig.width=8}
+
 dd <- d[ncores<=48 & !grepl(",",cores)]
 
 ggplot(dd) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
-  coord_flip() + facet_wrap(~tool+size, scales = "free", ncol = 3) + ylim(c(0,NA))
+  coord_flip() + facet_wrap(~tool+size, scales = "free") + ylim(c(0,NA))
+
+```
+
+```{r fig.height=6, fig.width=6}
 
 ggplot(dd) + geom_boxplot(aes(x = pcores, y = runtime, color = tool)) +
   coord_flip() + facet_grid(tool ~ size, scales = "free") + ylim(c(0,NA))
@@ -52,54 +63,33 @@ ggplot(dd) + geom_boxplot(aes(x = as.factor(ncores), y = speedup, color = tool))
   facet_grid(tool~size, scales = "free") + ylim(c(0,NA))
 
 
-dd_48c <- d[cores=="0-47",.(runtime_48c=mean(runtime)),by=.(tool,size)]
-dd_192c <- d[cores=="0-191",.(runtime_192c=mean(runtime)),by=.(tool,size)]
-dd_numa_ht <- merge(dd_48c, dd_192c)
-dd_numa_ht[,numa_ht_pc:=((1/runtime_192c)/(1/runtime_48c)-1)*100]
-options(digits=1)
-xtabs(numa_ht_pc~size+tool, dd_numa_ht)
-
 ```
 
-```{r fig.height=3.5, fig.width=6}
-
-ggplot(dd_numa_ht, aes(x = size, y = numa_ht_pc, color = tool, ymin=-100)) + geom_point() + geom_line() + scale_x_log10() + geom_hline(yintercept = 0, color = "red", size = 1.5) + scale_y_continuous(breaks = seq(-100,100,by=20))
-
-ggplot(d, aes(x = size, y = auc, color = tool)) + geom_point() + geom_line() + scale_x_log10()
-
-```
-
-```{r fig.height=4, fig.width=9}
-
-ggplot(dd) + geom_boxplot(aes(x = pcores, y = runtime/size, color = as.factor(size))) + facet_wrap(~tool, scales = "free", ncol=2) + ylim(c(0,NA))
-
-```
 
 ```{r fig.height=6, fig.width=9}
 
-ggplot(d[tool=="xgboost" & size==1]) + geom_boxplot(aes(x = pcores, y = runtime), color = "blue") +
+ggplot(d[tool=="xgboost" & size==100]) + geom_boxplot(aes(x = pcores, y = runtime), color = "blue") +
   coord_flip() + facet_wrap(~tool+size, scales = "free") + ylim(c(0,NA)) +
   theme_grey(base_size = 22)
 
-ggplot(d[tool=="lightgbm" & size==1]) + geom_boxplot(aes(x = pcores, y = runtime), color = "red") +
+ggplot(d[tool=="lightgbm" & size==100]) + geom_boxplot(aes(x = pcores, y = runtime), color = "red") +
   coord_flip() + facet_wrap(~tool+size, scales = "free") + ylim(c(0,NA)) +
   theme_grey(base_size = 22)
 
 ```
 
-```{r fig.height=6, fig.width=9}
+```{r fig.height=6, fig.width=6}
 
 ddm <- dd[ncores %in% c(1,2,4,8,16,32),
-    .(run_time = mean(runtime)),by=.(tool, size, ncores)][order(tool, size)]
+    .(run_time = mean(runtime)),by=.(tool, size, ncores)][order(tool, size, ncores)]
 ddm[,ncores_prev:=shift(ncores),.(tool, size)]
 ddm[,runtime_prev:=shift(run_time),.(tool, size)]
 ddm[,ncores_x:=ncores/ncores_prev]
 ddm[,speedup:=runtime_prev/run_time]
 
-ggplot(ddm) + geom_point(aes(x = as.factor(ncores), y = speedup,
-        color=ifelse(speedup>1,">1","<1"))) + facet_grid(tool~size) +
-  scale_colour_manual(values=c("Red","Blue")) + theme(legend.position="none") +
-  ylim(c(0.5,2))
+ggplot(ddm) + geom_point(aes(x = as.factor(ncores), y = speedup)) + 
+  facet_grid(tool~size) + theme(legend.position="none") +
+  ylim(c(1,2))
 
 ```
 
