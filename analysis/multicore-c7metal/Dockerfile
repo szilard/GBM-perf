@@ -6,7 +6,7 @@ RUN apt-get update && \
 
 RUN R CMD javareconf
 
-ENV MAKE="make -j4"
+ENV MAKE="make -j16"
 
 RUN install2.r ROCR data.table markdown
 
