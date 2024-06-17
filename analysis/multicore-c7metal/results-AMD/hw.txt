@@ -1,0 +1,57 @@
+
+c7a.metal-48xl
+
+
+lscpu
+Architecture:             x86_64
+  CPU op-mode(s):         32-bit, 64-bit
+  Address sizes:          46 bits physical, 57 bits virtual
+  Byte Order:             Little Endian
+CPU(s):                   192
+  On-line CPU(s) list:    0-191
+Vendor ID:                AuthenticAMD
+  Model name:             AMD EPYC 9R14 96-Core Processor
+    CPU family:           25
+    Model:                17
+    Thread(s) per core:   1
+    Core(s) per socket:   96
+    Socket(s):            2
+    Stepping:             1
+    Frequency boost:      enabled
+    CPU(s) scaling MHz:   71%
+    CPU max MHz:          3701.9529
+    CPU min MHz:          1500.0000
+    BogoMIPS:             5199.87
+    Flags:                fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good amd_lbr_v2
+                          nopl nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm ext
+                          apic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba perfmon_v
+                          2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw av
+                          x512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk avx512_bf16 clzero irperf xsaveerptr rdpru wbnoinvd amd_ppin cppc arat npt lbrv
+                          svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold avic v_vmsave_vmload vgif x2avic v_spec_ctrl vnmi avx512vbmi umip pku ospke avx512_vbmi2
+                          gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq la57 rdpid overflow_recov succor smca fsrm flush_l1d sev sev_es debug_swap
+Virtualization features:
+  Virtualization:         AMD-V
+Caches (sum of all):
+  L1d:                    6 MiB (192 instances)
+  L1i:                    6 MiB (192 instances)
+  L2:                     192 MiB (192 instances)
+  L3:                     768 MiB (24 instances)
+NUMA:
+  NUMA node(s):           2
+  NUMA node0 CPU(s):      0-95
+  NUMA node1 CPU(s):      96-191
+Vulnerabilities:
+  Gather data sampling:   Not affected
+  Itlb multihit:          Not affected
+  L1tf:                   Not affected
+  Mds:                    Not affected
+  Meltdown:               Not affected
+  Mmio stale data:        Not affected
+  Reg file data sampling: Not affected
+  Retbleed:               Not affected
+  Spec rstack overflow:   Mitigation; Safe RET
+  Spec store bypass:      Mitigation; Speculative Store Bypass disabled via prctl
+  Spectre v1:             Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+  Spectre v2:             Mitigation; Enhanced / Automatic IBRS; IBPB conditional; STIBP disabled; RSB filling; PBRSB-eIBRS Not affected; BHI Not affected
+  Srbds:                  Not affected
+  Tsx async abort:        Not affected
