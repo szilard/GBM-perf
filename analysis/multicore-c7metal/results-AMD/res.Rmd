@@ -7,7 +7,7 @@ d <- fread("res.csv", sep=":", header = FALSE)
 names(d) <- c("size","tool","ncores","cores","tcores","runtime","auc")
 
 d[, pcores:=sub(" $","",paste(ncores,tcores))]
-pcores_order <- c("1","2","4","8","12","16","24","32","48","96 HT","96 NUMA","192 ALL")
+pcores_order <- c("1","2","4","8","12","16","24","32","48","96","96 NUMA","192 ALL")
 d[, pcores:=factor(pcores, levels=pcores_order)]
 
 d[, tool:=factor(tool, levels = c("xgboost","lightgbm"))]
@@ -51,21 +51,6 @@ xtabs(speedup~size+tool, dd[ncores==48, .(speedup=mean(speedup)), by=.(tool, siz
 ggplot(dd) + geom_boxplot(aes(x = as.factor(ncores), y = speedup, color = tool)) +
   facet_grid(tool~size, scales = "free") + ylim(c(0,NA))
 
-
-dd_48c <- d[cores=="0-47",.(runtime_48c=mean(runtime)),by=.(tool,size)]
-dd_192c <- d[cores=="0-191",.(runtime_192c=mean(runtime)),by=.(tool,size)]
-dd_numa_ht <- merge(dd_48c, dd_192c)
-dd_numa_ht[,numa_ht_pc:=((1/runtime_192c)/(1/runtime_48c)-1)*100]
-options(digits=1)
-xtabs(numa_ht_pc~size+tool, dd_numa_ht)
-
-```
-
-```{r fig.height=3.5, fig.width=6}
-
-ggplot(dd_numa_ht, aes(x = size, y = numa_ht_pc, color = tool, ymin=-100)) + geom_point() + geom_line() + scale_x_log10() + geom_hline(yintercept = 0, color = "red", size = 1.5) + scale_y_continuous(breaks = seq(-100,100,by=20))
-
-ggplot(d, aes(x = size, y = auc, color = tool)) + geom_point() + geom_line() + scale_x_log10()
 
 ```
 
