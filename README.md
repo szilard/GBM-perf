@@ -333,5 +333,6 @@ at Berlin Buzzwords in 2019, video recording [here](https://www.youtube.com/watc
 video recording [here](https://www.youtube.com/watch?v=ecUUUdisKAc), 
 slides [here](https://docs.google.com/presentation/d/1hRJveGyFArYzfpPSD9XeOi6oCHRjrj12yx4MDIrtPZg/edit).
 
-
+**2024 updates** in a university seminar talk, 
+slides [here](https://docs.google.com/presentation/d/1WApb_qrBX8kXaW4JFsiR4lLSbaKWESeREERt0AM1vZM/edit#slide=id.g53965d405_00).
 
