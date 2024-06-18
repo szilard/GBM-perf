@@ -206,6 +206,15 @@ see by looking at the GPU utilization patterns as discussed next).
 
 More details [here](https://github.com/szilard/GBM-perf/issues/14).
 
+**2024 update:** latest CPU results for the newest c7i.metal-48xl (using 48 physical cores on 1 socket, no hyperthreading,
+no NUMA/2 sockets):
+
+Tool              | time [s]   
+------------------|-----------
+xgboost           | 190       
+**lightgbm**      | **55**   
+
+
 
 ### GPU utilization patterns
 
