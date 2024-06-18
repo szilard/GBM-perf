@@ -214,6 +214,10 @@ Tool              | time [s]
 xgboost           | 190       
 **lightgbm**      | **55**   
 
+The 2.7x speedup in CPU XGBoost (vs results above) are due to the significant improvement in multicore scaling (2020),
+further improvements in speed and also the increase in number of cores of the top CPUs. 
+The 5.6x speedup in CPU LightGBM are due to implementation of direct handling of categorical variables and increase in
+number of cores of the top CPUs (LightGBM benefits more than XGBoost with many CPU cores for large datasets).
 
 
 ### GPU utilization patterns
