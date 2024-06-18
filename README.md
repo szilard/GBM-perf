@@ -98,7 +98,7 @@ Even more recently a CPU with both higher frequency and more cores became availa
 and also instances with 2 of these CPUs (but see results for multi-socket systems below): c5.24xlarge and c5.metal. 
 Results for c5.metal are [here](https://github.com/szilard/GBM-perf/issues/41).
 
-2024 update: latest results for the newest CPUs (c7i.metal-48xl and c7a.metal-48xl) are [here](https://github.com/szilard/GBM-perf/issues/59).
+**2024 update:** latest results for the newest CPUs (c7i.metal-48xl and c7a.metal-48xl) are [here](https://github.com/szilard/GBM-perf/issues/59).
 
 
 ### Multi-core scaling (CPU)
@@ -122,7 +122,7 @@ data size   |  h2o |  xgboost | lightgbm | catboost
 with more details [here](https://github.com/szilard/GBM-perf/issues/29#issuecomment-691646736). In fact the scaling was worse until
 very recently, for example xgboost was at 2.5x at 1M rows (vs 6.5x now) before several optimizations have been implemented in 2020. 
 
-2024 update: latest results for the newest CPUs (c7i.metal-48xl and c7a.metal-48xl) with 
+**2024 update:** latest results for the newest CPUs (c7i.metal-48xl and c7a.metal-48xl) with 
 multicore scaling up to 48 physical cores (no hyperthreading) and beyond (with hyperthreading) 
 are [here](https://github.com/szilard/GBM-perf/issues/59).
 
@@ -164,7 +164,7 @@ cores       |  May 2019  | Sept 2020
 that is xgboost was 10x slower on 64 cores vs 16 cores and it was slower on 64 cores vs even 1 core (!). One can see that the recent
 optimizations have improved both the multicore scaling and the NUMA (multi-socket) issue.
 
-2024 update: latest results for the newest CPUs (c7i.metal-48xl and c7a.metal-48xl) 
+**2024 update:** latest results for the newest CPUs (c7i.metal-48xl and c7a.metal-48xl) 
 with 192 cores (with 2 CPU sockets) are [here](https://github.com/szilard/GBM-perf/issues/59).
 
 
