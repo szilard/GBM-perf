@@ -17,6 +17,11 @@ More recent twitter poll (September, 2020):
 
 ![](poll2.png)
 
+**2024 update:**
+
+![](poll3.png)
+
+
 
 ## How to run/reproduce the benchmark
 
