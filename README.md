@@ -17,7 +17,7 @@ More recent twitter poll (September, 2020):
 
 ![](poll2.png)
 
-**2024 update:**
+**2024 update** (June 2024):
 
 ![](poll3.png)
 
