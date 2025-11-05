@@ -1,4 +1,3 @@
-
 ## install docker
 
 # https://docs.docker.com/install/linux/docker-ce/ubuntu/
@@ -22,6 +21,11 @@ sudo apt-get update
 
 sudo apt-get install -y docker-ce
 
+---
+
+sudo apt update
+
+sudo apt install docker.io
 
 
 
@@ -36,6 +40,18 @@ sudo dpkg -i cuda-repo-ubuntu2204-12-5-local_12.5.0-555.42.02-1_amd64.deb
 sudo cp /var/cuda-repo-ubuntu2204-12-5-local/cuda-*-keyring.gpg /usr/share/keyrings/
 sudo apt-get update
 sudo apt-get -y install cuda
+
+---
+
+# https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=24.04&target_type=deb_network
+
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb
+sudo dpkg -i cuda-keyring_1.1-1_all.deb
+sudo apt-get update
+sudo apt-get -y install cuda-toolkit-13-0
+
+sudo apt-get install -y cuda-drivers
+
 
 
 
@@ -57,4 +73,25 @@ sudo pkill -SIGHUP dockerd
 
 sudo docker run --runtime=nvidia --rm nvidia/cuda:12.5.0-devel-ubuntu22.04 nvidia-smi
 sudo nvidia-docker run --rm nvidia/cuda:12.5.0-devel-ubuntu22.04 nvidia-smi
+
+---
+
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /etc/apt/keyrings/nvidia-container-toolkit-keyring.gpg
+
+echo "deb [signed-by=/etc/apt/keyrings/nvidia-container-toolkit-keyring.gpg] https://nvidia.github.io/libnvidia-container/stable/deb/$(. /etc/os-release; echo $ID$VERSION_ID)/$(dpkg --print-architecture) /" |\
+  sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+
+sudo apt update
+sudo apt install -y nvidia-container-toolkit
+
+sudo nvidia-ctk runtime configure --runtime=docker
+sudo systemctl restart docker
+
+sudo docker run --rm --runtime=nvidia nvidia/cuda:13.0.1-base-ubuntu24.04 nvidia-smi
+
+
+
+
+
 
