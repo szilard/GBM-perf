@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.5.0-devel-ubuntu22.04
+FROM nvidia/cuda:13.0.1-devel-ubuntu24.04
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -32,15 +32,16 @@ RUN R -e 'install.packages("h2o", repos = "http://h2o-release.s3.amazonaws.com/h
 
 
 # xgboost compilation errors out, so use CUDA-built binaries (supplied in the release section on github for the latest releases)
+# UPDATE: it compiles OK from source again, so using this again instead of binaries below 
 
-#RUN git clone --recursive https://github.com/dmlc/xgboost && \
-#    cd xgboost && \
-#    mkdir build && cd build && cmake .. -DUSE_CUDA=ON -DR_LIB=ON && \
-#    make install -j
+RUN git clone --recursive https://github.com/dmlc/xgboost && \
+    cd xgboost && \
+    mkdir build && cd build && cmake .. -DUSE_CUDA=ON -DR_LIB=ON && \
+    make install -j
 
 # release 2.0.3 (2023-12-19)
-RUN wget https://s3-us-west-2.amazonaws.com/xgboost-nightly-builds/release_2.0.0/xgboost_r_gpu_linux_82d846bbeb83c652a0b1dff0e3519e67569c4a3d.tar.gz
-RUN R CMD INSTALL xgboost_r_gpu_linux_82d846bbeb83c652a0b1dff0e3519e67569c4a3d.tar.gz
+# RUN wget https://s3-us-west-2.amazonaws.com/xgboost-nightly-builds/release_2.0.0/xgboost_r_gpu_linux_82d846bbeb83c652a0b1dff0e3519e67569c4a3d.tar.gz
+# RUN R CMD INSTALL xgboost_r_gpu_linux_82d846bbeb83c652a0b1dff0e3519e67569c4a3d.tar.gz
 
 
 # lightgbm compilation errors out, need patch to fix it, see https://github.com/microsoft/LightGBM/pull/5950
