@@ -92,7 +92,7 @@ Thanks [@Laurae2](https://github.com/Laurae2) for lots of help with some if thes
 
 Training time by years (2017-2025) on the same/similar hardware has improved like this:
 
-![](analysis/history/history.png)
+![](history.png)
 
 CPU results on r4.8xlarge, while GPU results up to 2024 on V100 (p3.2xlarge) and since 2025 on A10G (g5.4xlarge) 
 (A10G and V100 showed [similar performace](https://github.com/szilard/GBM-perf/issues/57#issue-2340021753) in 2024). 
