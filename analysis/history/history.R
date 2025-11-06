@@ -9,8 +9,8 @@ dm
 colnames(dm) <- c("platform","year","size","software","runtime")
 
 ggplot(dm, aes(x = year, y = runtime, color = software)) +
-  geom_line(data = subset(dm, year <= 2024)) +
-  geom_line(data = subset(dm, year >= 2024), linetype = "dashed") +
+  geom_line(data = subset(dm, year <= 2024 | platform=="CPU")) +
+  geom_line(data = subset(dm, year >= 2024 & platform=="GPU"), linetype = "dashed") +
   geom_point() +
   scale_y_log10() +
   facet_grid(size ~ platform) +
