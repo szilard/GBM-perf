@@ -88,6 +88,14 @@ Results on newer hardware (A10/A100/H100) [here](https://github.com/szilard/GBM-
 Some additional studies obtained "manually" (not fully automated with docker as the main benchmark above).
 Thanks [@Laurae2](https://github.com/Laurae2) for lots of help with some if these. 
 
+### Historical results
+
+Training time by years (2017-2025) on the same hardware has improved like this:
+
+![](analysis/history/history.png)
+
+CPU results on r4.8xlarge while GPU results up to 2024 on V100 (p3.2xlarge) and since 2025 on A10G (g5.4xlarge) (A10G and V100 showed similar performace in 2024). 
+
 ### Faster CPUs
 
 AWS has now better CPUs than r4.8xlarge (Xeon E5-2686 v4 2.30GHz, 32 cores), for example with higher CPU frequency 
